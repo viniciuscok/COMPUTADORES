@@ -80,18 +80,8 @@
 				</select>
 			</div>	
 			
-			<div class="col-sm-4 form-group" tito:msgerror="email">
-				<label for="emailImpressora" class="control-label">E-mail</label>
-				<input id="emailImpressora" type="text" class="form-control" th:field=*{email}/>
-			</div>
-			
-		</div>
-		
-		
-		
-		<div class="row">
-			<div class="col-sm-2 form-group orc-required" tito:msgerror="tipoImpressora">
-				<label for="tipoImpressora" class="control-label">Tipo Impressora</label>
+			<div class="col-sm-4 form-group orc-required" tito:msgerror="tipoImpressora">
+				<label for="tipoImpressora" class="control-label">tipoImpressora</label>
 				<div>
 					<th:block th:each=" tipoImpressora: ${tipoImpressoras}">
 						<div class="radio  radio-inline">
@@ -101,13 +91,27 @@
 					</th:block>
 				</div>
 			</div>
+		</div>
+		
+		
+		
+		<div class="row">
+			<div class="col-sm-2 form-group orc-required" tito:msgerror="numeroDeSerie">
+				<label for="numeroDeSerieImpressora" class="control-label">numeroDeSerie</label>
+				<input id="numeroDeSerieImpressora" type="text" class="form-control" th:field=*{numeroDeSerie}/>
+			</div>
 			
 			<div class="col-sm-2 form-group orc-required" tito:msgerror="enderecoIP">
-				<label for="enderecoIPImpressora" class="control-label">IP</label>
+				<label for="enderecoIPImpressora" class="control-label">enderecoIP</label>
 				<input id="enderecoIPImpressora" type="text" class="form-control" th:field=*{enderecoIP}/>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="status">
+			<div class="col-sm-2 form-group orc-required" tito:msgerror="nomeRede">
+				<label for="nomeRedeImpressora" class="control-label">nomeRede</label>
+				<input id="nomeRedeImpressora" type="text" class="form-control" th:field=*{nomeRede}/>
+			</div>
+			
+			<div class="col-sm-2 form-group orc-required" tito:msgerror="status">
 				<label for="statusImpressora" class="control-label">Status da Impressora</label>
 				<div>
 					<th:block th:each=" status: ${statusImpressora}">
@@ -118,20 +122,6 @@
 					</th:block>
 				</div>
 			</div>
-			
-			<div class="col-sm-2 form-group orc-required" tito:msgerror="numeroDeSerie">
-				<label for="numeroDeSerieImpressora" class="control-label">N/S</label>
-				<input id="numeroDeSerieImpressora" placeholder="Número de Série" type="text" class="form-control" th:field=*{numeroDeSerie}/>
-			</div>
-			
-			
-			
-			<div class="col-sm-2 form-group orc-required" tito:msgerror="nomeRede">
-				<label for="nomeRedeImpressora" class="control-label">Compartilhamento</label>
-				<input id="nomeRedeImpressora" type="text" class="form-control" th:field=*{nomeRede}/>
-			</div>
-			
-			
 		</div>
 		
 		<div class="row">
@@ -145,9 +135,10 @@
 		<div class="row">
 			
 			
-			
-			
-			
+			<div class="col-sm-2 form-group orc-required" tito:msgerror="email">
+				<label for="emailImpressora" class="control-label">email</label>
+				<input id="emailImpressora" type="text" class="form-control" th:field=*{email}/>
+			</div>
 		</div>
 		
 		

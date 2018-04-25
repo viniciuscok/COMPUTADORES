@@ -121,13 +121,13 @@
 			
 			<div class="col-sm-2 form-group orc-required" tito:msgerror="numeroDeSerie">
 				<label for="numeroDeSerieImpressora" class="control-label">N/S</label>
-				<input id="numeroDeSerieImpressora" placeholder="Número de Série" type="text" class="form-control" th:field=*{numeroDeSerie}/>
+				<input id="numeroDeSerieImpressora" readonly="teste" placeholder="teste" type="text" class="form-control" th:field=*{numeroDeSerie}/>
 			</div>
 			
 			
 			
 			<div class="col-sm-2 form-group orc-required" tito:msgerror="nomeRede">
-				<label for="nomeRedeImpressora" class="control-label">Compartilhamento</label>
+				<label for="nomeRedeImpressora" class="control-label">nomeRede</label>
 				<input id="nomeRedeImpressora" type="text" class="form-control" th:field=*{nomeRede}/>
 			</div>
 			

@@ -44,9 +44,6 @@
 							<a th:href="@{/tipomodelos/novo}">Tipo Modelo</a>
 						</li>
 						<li class="aw-menu__item  aw-menu__item--link">
-							<a th:href="@{/toners/novo}">Toner</a>
-						</li>
-						<li class="aw-menu__item  aw-menu__item--link">
 							<a th:href="@{/usuarios/novo}">Usuario</a>
 						</li>
 					</ul>

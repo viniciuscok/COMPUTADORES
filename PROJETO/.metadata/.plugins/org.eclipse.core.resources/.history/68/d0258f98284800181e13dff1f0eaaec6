@@ -26,7 +26,7 @@
 							<a th:href="@{/filiais/nova}">Filial</a>
 						</li>
 						<li class="aw-menu__item  aw-menu__item--link  is-active">
-							<a th:href="@{/impressoras/novo}">Impressora</a>
+							<a th:href="@{/impressoras/nova}">Impressora</a>
 						</li>
 						<li class="aw-menu__item  aw-menu__item--link  is-active">
 							<a th:href="@{/marcas/nova}">Marca</a>
@@ -42,9 +42,6 @@
 						</li>
 						<li class="aw-menu__item  aw-menu__item--link">
 							<a th:href="@{/tipomodelos/novo}">Tipo Modelo</a>
-						</li>
-						<li class="aw-menu__item  aw-menu__item--link">
-							<a th:href="@{/toners/novo}">Toner</a>
 						</li>
 						<li class="aw-menu__item  aw-menu__item--link">
 							<a th:href="@{/usuarios/novo}">Usuario</a>
