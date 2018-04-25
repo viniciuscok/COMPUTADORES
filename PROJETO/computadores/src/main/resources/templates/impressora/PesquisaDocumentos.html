@@ -1,0 +1,89 @@
+<!--  <!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:tito="http://vinicius.com.br">
+
+<head>
+	<title>Orçamento</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Pesquisa de Documentos</h1> 
+			</div>
+			
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/documentos/novo}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Documento</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<form method="GET" th:object="${documentoFilter}" class="form-vertical  js-form-loading">
+		
+		<div class="row">
+			<div class="col-sm-12 form-group orc-required">
+				<label for="nomeDocumento" class="control-label">Nome</label>
+				<input id="nomeDocumento" type="text" class="form-control" th:field=*{nome}/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Pesquisar</button>
+		</div>
+
+	</form>
+	
+	<div class="table-responsive orc-tabela-simples">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th class="table-documento-codigo">
+						<-- <th:block th:replace="fragments/Ordenacao :: order (${pagina}, 'codigo', 'Código')"></th:block> 
+						<tito:order page=${pagina} field="codigo" text="Código"/>	
+					</th>
+					<th class="table-documento-nome">
+						<tito:order page=${pagina} field="nome" text="Nome"/>
+					</th>
+					<th class="table-documento-acoes"></th>
+				</tr>
+			</thead>
+			<tbody>	
+				<tr th:each="documento : ${pagina.conteudo}">
+					<td class="text-center" th:text="${documento.codigo}"></td>
+					<td th:text="${documento.nome}"></td>
+					<td class="text-center">
+						<a class="btn btn-link btn-xs js-tooltip" title="Editar">
+							<i class="glyphicon glyphicon-pencil"></i>
+						</a>
+						<a class="btn btn-link btn-xs js-tooltip" title="Excluir">
+							<i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				<tr th:if="${pagina.vazia}">
+					<td colspan="3">Nehum documento encontrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<tito:paginacao page=${pagina} />
+</div>
+
+</section>
+</body>
+</html>
+-->

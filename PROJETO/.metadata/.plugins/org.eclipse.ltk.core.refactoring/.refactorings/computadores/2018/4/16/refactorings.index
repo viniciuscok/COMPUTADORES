@@ -1,0 +1,44 @@
+1523833102105	Rename package 'br.com.teste.heranca'
+1523833278886	Rename compilation unit 'HerancaApplication.java'
+1523833343824	Rename package 'br.com.teste.heranca.controller'
+1523833833020	Rename package 'br.com.teste.heranca.model'
+1523833849676	Rename package 'br.com.teste.heranca.repository'
+1523833879356	Rename package 'br.com.teste.heranca.service'
+1523834008003	Delete elements
+1523834017583	Delete element
+1523834027596	Delete elements
+1523834037275	Delete elements
+1523834043752	Delete elements
+1523841897468	Delete element
+1523842517492	Delete element
+1523842648659	Rename resource 'documento'
+1523842664468	Rename resource 'CadastroDocumento.html'
+1523843478489	Copy folder
+1523843493645	Rename resource 'CadastroFilial.html'
+1523843734943	Rename resource 'PesquisaDocumentos.html'
+1523843916463	Copy folder
+1523843932096	Rename resource 'CadastroFilial.html'
+1523844027466	Rename type 'Marca'
+1523844430152	Copy folder
+1523844477761	Rename resource 'CadastroFilial.html'
+1523911568625	Copy folder
+1523911582757	Rename resource 'CadastroFilial.html'
+1523913902993	Copy folder
+1523913927300	Rename resource 'CadastroFilial.html'
+1523923675269	Copy files
+1523923841338	Rename resource 'CadastroFilial.html'
+1523924251683	Rename resource 'CadastroFilial.html'
+1523924385217	Rename resource 'CadastroUsuario.html'
+1523924424306	Copy file
+1523924434757	Delete element
+1523924454009	Rename resource 'CadastroUsuario.html'
+1523937236265	Rename type 'Setor'
+1523994523040	Rename compilation unit 'ModeloConverter.java'
+1524015808933	Delete element
+1524017067670	Rename type 'CadastroComputadorServico'
+1524019108301	Copy folder
+1524019126254	Rename resource 'CadastroFilial.html'
+1524088127995	Copy folder
+1524088643180	Rename resource 'CadastroFilial.html'
+1524187873378	Copy folder
+1524187893709	Rename resource 'CadastroFilial.html'

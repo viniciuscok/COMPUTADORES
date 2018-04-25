@@ -1,0 +1,73 @@
+<!--  <!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:tito="">
+<head>
+	<title>Cadastro de serviço</title>
+</head>
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Cadastro de serviço</h1>
+			</div>
+			
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/servicos}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Serviços</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+ 
+ 	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	<form method="post" th:object="${servico}" class="form-vertical  js-form-loading">
+		
+		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group orc-required" tito:msgerror="nome">
+				<label for="nomeServico" class="control-label">Nome</label>
+				<input id="nomeServico" type="text" class="form-control" th:field=*{nome}/>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-3 form-group orc-required" tito:msgerror="valor">
+				<label for="valorServico" class="control-label">Valor</label>
+				<div class="input-group">
+ 					<span class="input-group-addon" id="basic-addon1">R$</span>
+  					<input id="valorServico" type="text" class="form-control js-decimal" aria-describedby="basic-addon1" 
+  						th:field=*{valor}>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsServico">Observação</label>
+  				<textarea class="form-control" id="obsServico" rows="3" th:field=*{obs}></textarea>
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Salvar</button>
+			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
+		</div>
+
+	</form>
+</div>
+
+</section>
+</body>
+</html>-->
