@@ -65,7 +65,7 @@ public class Toner implements Serializable
 	
 	@NotNull(message="Favor informar o modelo")
 	@ManyToOne
-	@JoinColumn(name="codigo_modelo", nullable=false, unique=false)
+	@JoinColumn(name="codigo_modelo", nullable=false, unique=true)
 	public Modelo getModelo() {
 		return modelo;
 	}

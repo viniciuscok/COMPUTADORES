@@ -17,6 +17,7 @@ import br.com.pirelli.repository.Marcas;
 import br.com.pirelli.repository.Modelos;
 import br.com.pirelli.service.CadastroTonerService;
 import br.com.pirelli.service.exception.TonerException;
+import br.com.pirelli.service.exception.TonerJaCadastradoException;
 
 @Controller
 @RequestMapping("/toners")
@@ -57,9 +58,10 @@ public class CadastroTonerController
 		try
 		{
 			cadastroTonerService.salvar(toner);
-		}catch(TonerException e)
+		}catch(TonerJaCadastradoException e)
 		{
 			result.rejectValue("modelo", e.getMessage(), e.getMessage());
+			return novo(toner);
 		}
 		
 		attributes.addFlashAttribute("mensagem", "Toner inserido com sucesso");

@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:tito="">
+	xmlns:kuubuu="">
 
 <head>
 	<title>Computadores</title>
@@ -38,7 +38,7 @@
 		<th:block th:include="fragments/ErroValidacao"></th:block>
 		
 		<div class="row">
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="filial" >
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="filial" >
 				<label for="filialToner" class="control-label">Filial</label>
 				<select id="filialToner" class="form-control" th:field="*{filial}">
 					<option value="">Selecione uma filial</option>
@@ -46,7 +46,7 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="modelo" >
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="modelo" >
 				<label for="modeloToner" class="control-label">Modelo</label>
 				<select id="modeloToner" class="form-control" th:field="*{modelo}">
 					<option value="">Selecione um modelo</option>
@@ -54,7 +54,7 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="marca" >
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="marca" >
 				<label for="marcaToner" class="control-label">Marca</label>
 				<select id="marcaToner" class="form-control" th:field="*{marca}">
 					<option value="">Selecione uma marca</option>
@@ -64,7 +64,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-12 form-group" tito:msgerror="email">
+			<div class="col-sm-12 form-group" kuubuu:errortext="email">
 				<label for="emailToner" class="control-label">Email</label>
 				<input id="emailToner" type="text" class="form-control" th:field=*{email}/>
 			</div>

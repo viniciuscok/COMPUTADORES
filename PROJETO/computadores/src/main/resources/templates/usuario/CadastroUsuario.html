@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:tito="">
+	xmlns:kuubuu="">
 
 <head>
 	<title>Computadores</title>
@@ -38,7 +38,7 @@
 		<th:block th:include="fragments/ErroValidacao"></th:block>
 		
 		<div class="row">
-			<div class="col-sm-12 form-group orc-required" tito:msgerror="nome">
+			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="nome">
 				<label for="nomeUsuario" class="control-label">Nome</label>
 				<input id="nomeUsuario" type="text" class="form-control" th:field=*{nome}/>
 			</div>

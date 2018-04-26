@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:tito="">
+	xmlns:kuubuu="">
 
 <head>
 	<title>Computadores</title>
@@ -38,12 +38,12 @@
 		<th:block th:include="fragments/ErroValidacao"></th:block>
 		
 		<div class="row">
-			<div class="col-sm-6 form-group orc-required" tito:msgerror="nome">
+			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="nome">
 				<label for="nomeModelo" class="control-label">Nome</label>
 				<input id="nomeModelo" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 			
-			<div class="col-sm-6 form-group orc-required" tito:msgerror="nome">
+			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="tipoModelo">
 				<label for="nomeModelo" class="control-label">Equipamento</label>
 				<select id="nomeModelo" class="form-control" th:field=*{tipoModelo}>
 					<option value="">Selecione um equipamento</option>

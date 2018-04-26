@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:tito="">
+	xmlns:kuubuu="">
 
 <head>
 	<title>Computadores</title>
@@ -38,7 +38,7 @@
 		<th:block th:include="fragments/ErroValidacao"></th:block>
 		
 		<div class="row">
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="nome">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="nome">
 				<label for="filialComputador" class="control-label">Filial</label>
 				<select id="filialComputador" class="form-control" th:field=*{filial}>
 					<option value="0">Selecione uma filial</option>
@@ -46,44 +46,24 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="nome">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="nome">
 				<label for="nomeComputador" class="control-label">Computador</label>
 				<input id="nomeComputador" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 			
-			<div class="col-sm-4 form-group" tito:msgerror="enderecoIP">
-				<label for="ipComputador" class="control-label">IP</label>
-				<input id="ipComputador" type="text" class="form-control" th:field=*{enderecoIP}/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="usuario">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="usuario">
 				<label for="usuarioComputador" class="control-label">Usuario</label>
 				<select id="usuarioComputador" class="form-control" th:field=*{usuario}>
 					<option value="">Selecione um Usuário</option>
 					<option th:each="usuario : ${usuarios}" th:value="${usuario.codigo}" th:text="${usuario.nome}"></option>
 				</select>
 			</div>
-			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="modelo">
-				<label for="modeloComputador" class="control-label">Modelo</label>
-				<select id="modeloComputador" class="form-control" th:field=*{modelo}>
-					<option value="">Selecione um modelo</option>
-					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
-				</select>
-			</div>
-			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="marca">
-				<label for="marcaComputador" class="control-label">Marca</label>
-				<select id="marcaComputador" class="form-control" th:field=*{marca}>
-					<option value="">Selecione uma marca</option>
-					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
-				</select>
-			</div>	
 		</div>
 		<div class="row">
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="tipoComputador">
-				<label for="origem" class="control-label">Tipo de Computador</label>
+			
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="tipoComputador">
+				<label for="tipoComputador" class="control-label">Tipo de Computador</label>
 				<div>
 					<th:block th:each="tipoComputador : ${tipoComputadores}">
 						<div class="radio  radio-inline">
@@ -94,7 +74,29 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="setor">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="modelo">
+				<label for="modeloComputador" class="control-label">Modelo</label>
+				<select id="modeloComputador" class="form-control" th:field=*{modelo} disabled>
+					<option value="">Selecione um modelo</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
+				</select>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="marca">
+				<label for="marcaComputador" class="control-label">Marca</label>
+				<select id="marcaComputador" class="form-control" th:field=*{marca}>
+					<option value="">Selecione uma marca</option>
+					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
+				</select>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-sm-4 form-group" kuubuu:errortext="enderecoIP">
+				<label for="ipComputador" class="control-label">IP</label>
+				<input id="ipComputador" type="text" class="form-control" th:field=*{enderecoIP}/>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="setor">
 				<label for="setorComputador" class="control-label">Setor</label>
 				<select id="setorComputador" class="form-control" th:field=*{setor}>
 					<option value="">Selecione um setor</option>
@@ -102,7 +104,7 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="sistemaOperacional">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="sistemaOperacional">
 				<label for="soComputador" class="control-label">Sistema Operacional</label>
 				<select id="soComputador" class="form-control" th:field=*{sistemaOperacional}>
 					<option value="">Selecione um sistema</option>
@@ -115,39 +117,39 @@
 		<div class="row">
 			
 			
-			<div class="col-sm-2 form-group" tito:mserror="processador">
+			<div class="col-sm-2 form-group" kuubuu:errortext="processador">
 				<label for="processadorComputador" class="control-label">Processador</label>
 				<input id="processadorComputador" type="text" class="form-control" th:field=*{processador}/>
 			</div>
 			
-			<div class="col-sm-2 form-group" tito:mserror="memoria">
+			<div class="col-sm-2 form-group" kuubuu:errortext="memoria">
 				<label for="memoriaComputador" class="control-label">Memória</label>
 				<input id="memoriaComputador" type="text" class="form-control" th:field=*{memoria}/>
 			</div>
 			
-			<div class="col-sm-2 form-group" tito:mserror="hd">
+			<div class="col-sm-2 form-group" kuubuu:errortext="hd">
 				<label for="hdComputador" class="control-label">HD</label>
 				<input id="hdComputador" type="text" class="form-control" th:field=*{hd}/>
 			</div>
 			
-			<div class="col-sm-2 form-group" tito:mserror="code">
+			<div class="col-sm-2 form-group" kuubuu:errortext="code">
 				<label for="codeComputador" class="control-label">Code</label>
 				<input id="codeComputador" type="text" class="form-control" th:field=*{code}/>
 			</div>
 			
-			<div class="col-sm-2 form-group" tito:mserror="numeroDeSerie">
+			<div class="col-sm-2 form-group" kuubuu:errortext="numeroDeSerie">
 				<label for="numeroSerieComputador" class="control-label">Número de Série</label>
 				<input id="numeroSerieComputador" type="text" class="form-control" th:field=*{numeroDeSerie}/>
 			</div>
 			
-			<div class="col-sm-2 form-group" tito:mserror="bemPatrimonial">
+			<div class="col-sm-2 form-group" kuubuu:errortext="bemPatrimonial">
 				<label for="bpComputador" class="control-label">Bem Patrimonial</label>
 				<input id="bpComputador" type="text" class="form-control" th:field=*{bemPatrimonial}/>
 			</div>
 			
 		</div>	
 		<div class="row">
-			<div class="col-sm-4 form-group orc-required" tito:msgerror="status">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
 				<label for="statusComputador" class="control-label">Status do Computador</label>
 				<div>
 					<th:block th:each=" status: ${statusComputadores}">

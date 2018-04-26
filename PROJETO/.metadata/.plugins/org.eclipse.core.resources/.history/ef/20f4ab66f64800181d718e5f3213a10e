@@ -1,0 +1,22 @@
+$(function()
+{
+	var tipoImpressora = $('.js-radio-tipo-impressora');
+	
+	tipoImpressora.on('change', function onTipoImpressoraAlterado(evento){
+		var tipoImpressoraSelecionada = $(evento.currentTarget);
+		var tipoImpressoraInput = $('#id_REDE');
+		var enderecoIP = $('#enderecoIPImpressora');
+		if(tipoImpressoraSelecionada.data('documento')===tipoImpressoraInput.data('documento'))
+		{
+			enderecoIP.removeAttr('disabled');
+			console.log('teste')
+		}else
+		{
+			enderecoIP.attr(disabled);
+			//console.log("Tipo de impressora selecionada", tipoImpressoraSelecionada.data('documento'));	
+		}
+		
+		
+	})
+	
+});
