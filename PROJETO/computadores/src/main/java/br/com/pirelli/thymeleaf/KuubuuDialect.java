@@ -22,6 +22,8 @@ public class KuubuuDialect extends AbstractProcessorDialect
 	{
 		final Set<IProcessor> processadores = new HashSet<>();
 		processadores.add(new ErrorTextAttributeTagProcessor(dialectPrefix));
+		processadores.add(new PaginationElementTagProcessor(dialectPrefix));
+		processadores.add(new OrderElementTagProcessor(dialectPrefix));
 		return processadores;
 	}
 

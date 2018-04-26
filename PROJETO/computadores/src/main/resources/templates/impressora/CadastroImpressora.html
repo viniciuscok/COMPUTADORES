@@ -116,8 +116,8 @@
 				<div>
 					<th:block th:each=" status: ${statusImpressora}">
 						<div class="radio  radio-inline">
-							<input th:id="|id_${statusImpressora}|" type="radio" th:value="${status}" th:field="*{status}"> 
-							<label th:for="|id_${statusImpressora}|" th:text="${status.descricao}">Status do Computador</label>
+							<input th:id="|id_${status}|" type="radio" th:value="${status}" th:field="*{status}"> 
+							<label th:for="|id_${status}|" th:text="${status.descricao}">Status do Computador</label>
 						</div>
 					</th:block>
 				</div>

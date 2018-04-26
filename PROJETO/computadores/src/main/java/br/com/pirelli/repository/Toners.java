@@ -1,5 +1,6 @@
 package br.com.pirelli.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,6 @@ import br.com.pirelli.model.Toner;
 public interface Toners extends JpaRepository<Toner, Long> 
 {
 	Optional<Toner> findByModeloAndMarca(Modelo modelo, Marca marca);
+	
+	
 }
