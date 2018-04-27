@@ -1,10 +1,11 @@
 package br.com.pirelli.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -67,8 +68,17 @@ public class CadastroFilialController
 		ModelAndView mv = new ModelAndView("filial/PesquisaFiliais");
 		
 		PageWrapper<Filial> pagina = new PageWrapper<>(filiais.findByNome(filialFilter.getNome(), pageable), httpServletRequest);
-		System.out.println(pagina.isVazia());
+		//PageWrapper<Filial> pagina = new PageWrapper<>(filiais.findAll(pageable),httpServletRequest);
+		//List<Filial> fi = pagina.getConteudo();
+		//for (Filial filial : fi)
+		//{
+		//	System.out.println(filial.getCodigo());
+		//	System.out.println(filial.getNome());
+		//}
+		//System.out.println(pagina.getConteudo());
 		mv.addObject("pagina", pagina);
+		//mv.addObject("paginas", filiais.findByNome(filialFilter.getNome(), pageable));
+		//pageable.
 		return mv;
 	}
 }

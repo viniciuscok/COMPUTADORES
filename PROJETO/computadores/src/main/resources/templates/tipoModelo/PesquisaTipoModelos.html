@@ -14,13 +14,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Pesquisa de Filial</h1> 
+				<h1>Pesquisa de Tipos de Modelos</h1> 
 			</div>
 			
 			<div class="col-sm-2">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-default" th:href="@{/filiais/nova}">
-						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Filial</span>
+					<a class="btn btn-default" th:href="@{/tipomodelos/novo}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo tipo de modelo</span>
 					</a>
 				</div>
 			</div>
@@ -31,12 +31,12 @@
 
 <div class="container-fluid">
 	
-	<form method="GET" th:object="${filialFilter}" class="form-vertical  js-form-loading">
+	<form method="GET" th:object="${tipoModeloFilter}" class="form-vertical  js-form-loading">
 		
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required">
-				<label for="nomeFilial" class="control-label">Nome</label>
-				<input id="nomeFilial" type="text" class="form-control" th:field=*{nome}/>
+				<label for="nomeTipoModelo" class="control-label">Nome</label>
+				<input id="nomeTipoModelo" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 		</div>
 		
@@ -55,9 +55,9 @@
 			</thead>
 			
 			<tbody>
-				<tr th:each="filial : ${pagina.conteudo}">
-					<td class="text-center" th:text="${filial.codigo}">1</td>
-					<td th:text="${filial.nome}">1</td>
+				<tr th:each="tipoModelo : ${pagina.conteudo}">
+					<td class="text-center" th:text="${tipoModelo.codigo}">1</td>
+					<td th:text="${tipoModelo.nome}">1</td>
 					<td class="text-center">
 						<a class="btn  btn-link  btn-xs" title="Editar"> 
 							<i class="glyphicon glyphicon-pencil"></i>
@@ -68,7 +68,7 @@
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="3">Nenhuma filial encontrada</td>
+					<td colspan="3">Nenhum tipo de modelo encontrado</td>
 				</tr>
 			</tbody>
 		</table>

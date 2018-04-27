@@ -15,10 +15,10 @@ public interface Filiais extends JpaRepository<Filial, Long>
 {
 	public Optional<Filial> findByNomeStartingWithIgnoreCase(String nome);
 	
-	@Query(value = "SELECT * FROM Filial WHERE Nome = ?1",
-		    countQuery = "SELECT count(*) FROM Filial WHERE NOME = ?1",
+	@Query(value = "SELECT * FROM Filial WHERE nome like ?1% order by nome ASC", 
+			countQuery = "SELECT count(*) FROM Filial WHERE nome like ?1% order by nome ASC",
 		    nativeQuery = true)
-		  Page<Filial> findByNome(String nome, Pageable pageable);
+	Page<Filial> findByNome(String nome, Pageable pageable);
 		
 
 }
