@@ -63,7 +63,7 @@ public class CadastroUsuarioController
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(UsuarioFilter usuarioFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	public ModelAndView pesquisar(UsuarioFilter usuarioFilter, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("usuario/PesquisaUsuarios");
 		

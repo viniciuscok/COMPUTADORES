@@ -60,7 +60,7 @@ public class CadastroMarcaController
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(MarcaFilter marcaFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	public ModelAndView pesquisar(MarcaFilter marcaFilter, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("marca/PesquisaMarcas");
 		

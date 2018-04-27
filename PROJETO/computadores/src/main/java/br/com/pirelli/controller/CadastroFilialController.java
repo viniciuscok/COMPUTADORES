@@ -63,7 +63,7 @@ public class CadastroFilialController
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(FilialFilter filialFilter, BindingResult result, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest )
+	public ModelAndView pesquisar(FilialFilter filialFilter, BindingResult result, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest )
 	{
 		ModelAndView mv = new ModelAndView("filial/PesquisaFiliais");
 		

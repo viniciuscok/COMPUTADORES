@@ -22,6 +22,7 @@ public class Impressora extends Equipamento
 	private String nomeRede;
 	private String email;
 	private TipoImpressora tipoImpressora;
+	private CategoriaImpressora categoriaImpressora;
 	private Toner toner;
 	
 	@NotBlank(message="Fila de impressão ou WK deve ser informado")
@@ -50,6 +51,15 @@ public class Impressora extends Equipamento
 		this.tipoImpressora = tipoImpressora;
 	}
 	
+	@NotNull(message="A categoria da Impressora deve ser informada")
+	@Enumerated(EnumType.STRING)
+	@Column(name="categoria_impressora", nullable=false, unique=false)
+	public CategoriaImpressora getCategoriaImpressora() {
+		return categoriaImpressora;
+	}
+	public void setCategoriaImpressora(CategoriaImpressora categoriaImpressora) {
+		this.categoriaImpressora = categoriaImpressora;
+	}
 	@NotNull(message="Toner ou Ribon deve ser informado")
 	@ManyToOne
 	@JoinColumn(name="codigo_toner", nullable=false, unique=false)

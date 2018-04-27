@@ -47,11 +47,11 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="modelo">
-				<label for="modeloImpressora" class="control-label">Modelo</label>
-				<select id="modeloImpressora" class="form-control" th:field=*{modelo}>
-					<option value="">Selecione um modelo</option>
-					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="setor">
+				<label for="setorImpressora" class="control-label">Setor</label>
+				<select id="setorImpressora" class="form-control" th:field=*{setor}>
+					<option value="">Selecione um setor</option>
+					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
 				</select>
 			</div>
 			
@@ -62,29 +62,42 @@
 					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
 				</select>
 			</div>	
+			
+			
+			
+			
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="setor">
-				<label for="setorImpressora" class="control-label">Setor</label>
-				<select id="setorImpressora" class="form-control" th:field=*{setor}>
-					<option value="">Selecione um setor</option>
-					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
+				<label for="categoriaImpressora" class="control-label">Categoria</label>
+				<div>
+					<th:block th:each=" categoria: ${categorias}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${categoria}|" type="radio" th:value="${categoria}" th:field="*{categoriaImpressora}"> 
+							<label th:for="|id_${categoria}|" th:text="${categoria.descricao}">Categoria da Impressora</label>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="modelo">
+				<label for="modeloImpressora" class="control-label">Modelo</label>
+				<select id="modeloImpressora" class="form-control" th:field=*{modelo}>
+					<option value="">Selecione um modelo</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
 				</select>
 			</div>
 			
 			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="toner">
 				<label for="tonerImpressora" class="control-label">Toner</label>
-				<select id="tonerImpressora" class="form-control" th:field=*{marca}>
+				<select id="tonerImpressora" class="form-control" th:field=*{toner}>
 					<option value="">Selecione um toner</option>
 					<option th:each="toner : ${toners}" th:value="${toner.codigo}" th:text="${toner.modelo.nome}"></option>
 				</select>
 			</div>	
 			
-			<div class="col-sm-4 form-group" kuubuu:errortext="email">
-				<label for="emailImpressora" class="control-label">E-mail</label>
-				<input id="emailImpressora" type="text" class="form-control" th:field=*{email}/>
-			</div>
+			
 			
 		</div>
 		
@@ -111,6 +124,22 @@
 				<input id="enderecoIPImpressora" type="text" class="form-control" th:field=*{enderecoIP} disabled/>
 			</div>
 			
+			
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="nomeRede">
+				<label for="nomeRedeImpressora" class="control-label">Compartilhamento</label>
+				<input id="nomeRedeImpressora" type="text" class="form-control" th:field=*{nomeRede}/>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="numeroDeSerie">
+				<label for="numeroDeSerieImpressora" class="control-label">N/S</label>
+				<input id="numeroDeSerieImpressora" placeholder="Número de Série" type="text" class="form-control" th:field=*{numeroDeSerie}/>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			
 			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
 				<label for="statusImpressora" class="control-label">Status da Impressora</label>
 				<div>
@@ -123,18 +152,11 @@
 				</div>
 			</div>
 			
-			<div class="col-sm-2 form-group orc-required" kuubuu:errortext="numeroDeSerie">
-				<label for="numeroDeSerieImpressora" class="control-label">N/S</label>
-				<input id="numeroDeSerieImpressora" placeholder="Número de Série" type="text" class="form-control" th:field=*{numeroDeSerie}/>
+			
+			<div class="col-sm-4 form-group" kuubuu:errortext="email">
+				<label for="emailImpressora" class="control-label">E-mail</label>
+				<input id="emailImpressora" type="text" class="form-control" th:field=*{email}/>
 			</div>
-			
-			
-			
-			<div class="col-sm-2 form-group orc-required" kuubuu:errortext="nomeRede">
-				<label for="nomeRedeImpressora" class="control-label">Compartilhamento</label>
-				<input id="nomeRedeImpressora" type="text" class="form-control" th:field=*{nomeRede}/>
-			</div>
-			
 			
 		</div>
 		
@@ -146,13 +168,7 @@
 			</div>
 		</div>
 		
-		<div class="row">
-			
-			
-			
-			
-			
-		</div>
+		
 		
 		
 		<div class="form-group">
