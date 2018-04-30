@@ -13,6 +13,8 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/orcamento.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/orcamentolib/bootstrap-select.min.css}">
+	
 
 </head>
 <body>
@@ -25,14 +27,22 @@
 
 <script th:src="@{/layout/javascripts/vendors.min.js}"></script>
 <script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
+
+<script th:src="@{/javascripts/orcamentolib/bootstrap-select.min.js}"></script>
 <script th:src="@{/javascripts/orcamentolib/jquery.maskMoney.min.js}"></script>
 <script th:src="@{/javascripts/orcamentolib/jquery.mask.min.js}"></script>
-<script th:src="@{/javascripts/orcamentolib/jquery.inputmask.bundle.min.js}"></script>
+
+<!-- mascar para números inteiros -->
+<script th:src="@{/javascripts/orcamentolib/jquery.masknumber.min.js}"></script>
+
+
 <script th:src="@{/javascripts/orcamentolib/numeral.min.js}"></script>
 <script th:src="@{/javascripts/orcamentolib/pt-br.min.js}"></script>
-<script th:src="@{/javascripts/orcamentolib/jquery.matchHeight-min.js}"></script>
+<script th:src="@{/javascripts/orcamentolib/jquery.inputmask.bundle.min.js}"></script>
+
 
 <script th:src="@{/javascripts/pirelli.js}"></script>
+<script th:src="@{/javascripts/computador.js}"></script>
 <th:block layout:fragment="javascript-extra"></th:block>
 
 </body>

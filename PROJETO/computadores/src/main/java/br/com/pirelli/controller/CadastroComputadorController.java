@@ -1,8 +1,11 @@
 package br.com.pirelli.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.pirelli.filter.ComputadorFilter;
 import br.com.pirelli.model.Computador;
-import br.com.pirelli.model.Setor;
 import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoComputador;
+import br.com.pirelli.repository.Computadores;
 import br.com.pirelli.repository.Filiais;
+import br.com.pirelli.repository.Impressoras;
 import br.com.pirelli.repository.Marcas;
 import br.com.pirelli.repository.Modelos;
 import br.com.pirelli.repository.Programas;
@@ -32,6 +37,9 @@ public class CadastroComputadorController
 {
 	@Autowired
 	private CadastroComputadorService cadastroComputadorService;
+	
+	@Autowired
+	private Computadores computadores;
 	
 	@Autowired
 	private Filiais filiais;
@@ -51,6 +59,9 @@ public class CadastroComputadorController
 	@Autowired
 	private Programas programas;
 	
+	@Autowired
+	private Impressoras impressoras;
+	
 	@GetMapping("/novo")
 	public ModelAndView novo(Computador computador)
 	{
@@ -64,6 +75,7 @@ public class CadastroComputadorController
 		mv.addObject("modelos", modelos.findAll());
 		mv.addObject("setores", setores.findAll());
 		mv.addObject("programas", programas.findAll());
+		mv.addObject("impressoras", impressoras.findAll());
 		
 		return mv;
 	}
@@ -88,5 +100,18 @@ public class CadastroComputadorController
 		attributes.addFlashAttribute("mensagem", "Computador cadastrado com sucesso");
 		
 		return new ModelAndView("redirect:/computadores/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar(ComputadorFilter computadorFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	{
+		ModelAndView mv = new ModelAndView("computador/PesquisaComputadores");
+		
+		PageWrapper<Computador> pagina = new PageWrapper<>(computadores.filtro(computadorFilter, pageable), httpServletRequest);
+		
+		mv.addObject("pagina", pagina);
+		
+		return mv;
+		
 	}
 }

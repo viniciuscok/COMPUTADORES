@@ -32,8 +32,8 @@ public class Computador extends Equipamento
 	private So sistemaOperacional;
 	private TipoComputador tipoComputador;
 	private Usuario usuario;
-	//private List<Programa> programas;
-	//private List<Impressora> impressoras;
+	private List<Programa> programas;
+	private List<Impressora> impressoras;
 	
 	@NotBlank(message="O computador deve ser informado")
 	@Column(name="nome", nullable=false, unique=true)
@@ -105,14 +105,14 @@ public class Computador extends Equipamento
 	
 	@NotNull(message="O usuario deve ser informado")
 	@ManyToOne
-	@JoinColumn(name="codigo_usuario", nullable=false, unique=true)
+	@JoinColumn(name="codigo_usuario", nullable=false, unique=false)
 	public Usuario getUsuario() {
 		return usuario;
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	/*
+	
 	@ManyToMany
 	@JoinTable(name = "computador_programa", joinColumns = @JoinColumn(name = "codigo_computador")
 				, inverseJoinColumns = @JoinColumn(name = "codigo_programa"))	
@@ -123,7 +123,17 @@ public class Computador extends Equipamento
 		this.programas = programas;
 	}
 	
+	@ManyToMany
+	@JoinTable(name="computador_impressora", joinColumns = @JoinColumn(name = "codigo_computador")
+				, inverseJoinColumns = @JoinColumn(name = "codigo_impressora"))
+	public List<Impressora> getImpressoras() {
+		return impressoras;
+	}
+	public void setImpressoras(List<Impressora> impressoras) {
+		this.impressoras = impressoras;
+	}
 	
-	*/
+	
+	
 
 }

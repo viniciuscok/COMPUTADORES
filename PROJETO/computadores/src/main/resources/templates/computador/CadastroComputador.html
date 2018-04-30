@@ -16,14 +16,14 @@
 			<div class="col-sm-10">
 				<h1>Cadastro de Computador</h1>
 			</div>
-			<!--  
+			  
 			<div class="col-sm-2">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-default" th:href="@{/documentos}">
-						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Documento</span>
+					<a class="btn btn-default" th:href="@{/computadores}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Computadores</span>
 					</a>
 				</div>
-			</div>-->
+			</div>
 		</div>
 		
 	</div>
@@ -67,7 +67,8 @@
 				<div>
 					<th:block th:each="tipoComputador : ${tipoComputadores}">
 						<div class="radio  radio-inline">
-							<input th:id="|id_${tipoComputador}|" type="radio" th:value="${tipoComputador}" th:field="*{tipoComputador}"> 
+							<input th:id="|id_${tipoComputador}|" type="radio" th:value="${tipoComputador}" 
+								th:field="*{tipoComputador}" class="js-radio-tipo-computador"> 
 							<label th:for="|id_${tipoComputador}|" th:text="${tipoComputador.descricao}">Tipo de Computador</label>
 						</div>
 					</th:block>
@@ -123,13 +124,19 @@
 			</div>
 			
 			<div class="col-sm-2 form-group" kuubuu:errortext="memoria">
-				<label for="memoriaComputador" class="control-label">Memória</label>
-				<input id="memoriaComputador" type="text" class="form-control" th:field=*{memoria}/>
+				<label for="memoriaComputador" class="control-label js-inteiro">Memória</label>
+				<div class="input-group">
+					<input id="memoriaComputador" type="text" class="form-control" th:field=*{memoria}/>
+					<span class="input-group-addon" id="memoriaComputador">GB</span>
+				</div>
 			</div>
 			
 			<div class="col-sm-2 form-group" kuubuu:errortext="hd">
 				<label for="hdComputador" class="control-label">HD</label>
-				<input id="hdComputador" type="text" class="form-control" th:field=*{hd}/>
+				<div class="input-group">
+					<input id="hdComputador" type="text" class="form-control js-inteiro" th:field=*{hd}/>
+					<span class="input-group-addon" id="hdComputador">GB</span>
+				</div>
 			</div>
 			
 			<div class="col-sm-2 form-group" kuubuu:errortext="code">
@@ -149,21 +156,53 @@
 			
 		</div>	
 		<div class="row">
+			<div class="form-group  col-sm-4" >
+				<label for="nomePrograma" class="control-label">Programas</label>
+				<select id="nomePrograma" class="selectpicker form-control" multiple th:field=*{programas} data-actions-box="true"  
+						title="Selecione um programa" data-deselect-all-text="Desmarcar Todos" data-select-all-text="Selecione Todos"
+						data-selected-text-format="count" data-count-selected-text="{0} Itens selecionados" data-mobile="false"
+						data-size="false">
+  					<option th:each="programa : ${programas}" th:value="${programa.codigo}" th:text="${programa.nome}">tes</option>
+				</select>
+				
+				
+			</div>
+			
+			<div class="form-group  col-sm-4" >
+				<label for="nomeImpressora" class="control-label">Impressoras</label>
+				<select id="nomeImpressora" class="selectpicker form-control" multiple th:field=*{impressoras} data-actions-box="true"  
+						title="Selecione um programa" data-deselect-all-text="Desmarcar Todos" data-select-all-text="Selecione Todos"
+						data-selected-text-format="count" data-count-selected-text="{0} Itens selecionados" data-mobile="false"
+						data-size="false">
+  					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="${impressora.nomeRede}">tes</option>
+				</select>
+				
+				
+			</div>
+			
 			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
 				<label for="statusComputador" class="control-label">Status do Computador</label>
 				<div>
 					<th:block th:each=" status: ${statusComputadores}">
 						<div class="radio  radio-inline">
-							<input th:id="|id_${statusComputador}|" type="radio" th:value="${status}" th:field="*{status}"> 
-							<label th:for="|id_${statusComputador}|" th:text="${status.descricao}">Status do Computador</label>
+							<input th:id="|id_${status}|" type="radio" th:value="${status}" th:field="*{status}"> 
+							<label th:for="|id_${status}|" th:text="${status.descricao}">Status do Computador</label>
 						</div>
 					</th:block>
 				</div>
 			</div>
 		</div>
 		<!--  
+		<div class="col-sm-4 form-group orc-required" kuubuu:errortext="setor">
+				<label for="setorComputador" class="control-label">Setor</label>
+				<select id="setorComputador" class="form-control" th:field=*{setor}>
+					<option value="">Selecione um setor</option>
+					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
+				</select>
+			</div>-->
+		
 		<div class="row">
-			<div class="form-group  col-sm-6" >
+			<!--  <div class="form-group  col-sm-12" >
 				<label class="control-label">Programas</label> 
 				<div>
 					<th:block th:each="programa : ${programas}">
@@ -173,9 +212,13 @@
 	    				</div>
 	    			</th:block>
 				</div>
-			</div>
+			</div>-->
 		</div>
-		-->
+		
+		<div class="row">
+			
+		</div>
+		
 		<div class="row">
 			<div class="col-sm-12 form-group">
    				<label for="obsComputador">Observação</label>
