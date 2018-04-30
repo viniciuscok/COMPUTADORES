@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+	
+	<ui:define name="content">
+		
+		<h1 class="aw-page-title">Pesquisar Computadores</h1>
+		
+		<h:form id="frmComputador">
+			<p:messages id="msgComputador" autoUpdate="false" closable="true"/>
+			<p:toolbar>
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" icon="fa fa-search" outcome="/computador/PesquisaComputadores" 
+						update="tablePesquisaComputador" action="#{pesquisaComputadorBean.buscarTodosComputadores()}"/>
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" icon="fa fa-plus" outcome="/computador/CadastroComputador"
+						/>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<div class="ui-fluid">
+				<p:panelGrid columns="6" columnClasses="ui-grid-col-1,ui-grid-col-3,ui-grid-col-1,ui-grid-col-3,ui-grid-col-1,ui-grid-col-3"
+					layout="grid" styleClass="panelgridRetirarBorda">
+					
+					<p:outputLabel value="Nome" for="nomeComputador"/>
+					<p:inputText id="nomeComputador" value="#{pesquisaComputadorBean.computadorFilter.nome}"/>
+
+					<p:outputLabel value="Filial" for="filial"/>
+					<p:selectOneMenu id="filial" value="#{pesquisaComputadorBean.computadorFilter.filial}" autoWidth="auto">
+						<f:selectItem itemLabel="Selecione uma Filial"/>
+						<f:selectItems value="#{cadastroComputadorBean.filiais}" var="filial" 
+							itemValue="#{filial}" itemLabel="#{filial.numero}"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Setor" for="setor"/>
+					<p:selectOneMenu id="setor" value="#{pesquisaComputadorBean.computadorFilter.setor}" autoWidth="auto">
+						<f:selectItem itemLabel="Selecione um Setor"/>
+						<f:selectItems value="#{cadastroComputadorBean.setores}" var="setor" itemValue="#{setor}" 
+							itemLabel="#{setor.nome}"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Maquina" for="maquina"/>
+					<p:selectOneMenu id="maquina" value="#{pesquisaComputadorBean.computadorFilter.maquina}" autoWidth="auto">
+						<f:selectItem itemLabel="Selecione uma Maquina"/>
+						<f:selectItems value="#{cadastroComputadorBean.maquinas}" var="maquina" itemValue="#{maquina}"
+							itemLabel="#{maquina.nome}"/>
+					</p:selectOneMenu>
+					
+				</p:panelGrid> 
+			</div>
+			<div class="ui-fluid">
+				<p:panelGrid columns="3" columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4"
+					layout="grid" styleClass="panelgridRetirarBorda">
+					
+					<p:commandButton value="Buscar" action="#{pesquisaComputadorBean.buscarPeloNomeComputador()}" 
+						update="@form tablePesquisaComputador"/>
+					<p:commandButton value="Limpar" action="#{pesquisaComputadorBean.inicializar()}" 
+						update="@form tablePesquisaComputador"/>
+					<p:commandButton value="teste"/>
+
+				</p:panelGrid> 
+			</div>
+			<p:dataTable id="tablePesquisaComputador" value="#{pesquisaComputadorBean.computadores}" var="computador" 
+				emptyMessage="Não foi possível encotrar nenhum registro" paginator="true" paginatorPosition="bottom"
+				reflow="true" rows="10" paginatorAlwaysVisible="false">
+		        
+				<p:column headerText="Id" sortBy="#{computador.codigo}">
+					<h:outputText value="#{computador.codigo}" />
+				</p:column>
+				
+				<p:column headerText="Nome" sortBy="#{computador.nomeComputador}">
+					<h:outputText value="#{computador.nomeComputador}" />
+				</p:column>
+				
+				<p:column headerText="Usuário" sortBy="#{computador.usuario.nome}">
+					<h:outputText value="#{computador.usuario.nome}" />
+				</p:column>
+				
+				<p:column headerText="Impressora" sortBy="#{computador.impressoras.get(0).nomeRede}">
+					<h:outputText value="#{computador.impressora? 'Não instalada': computador.impressoras.get(0).nomeRede}" />
+				</p:column>
+				
+				<p:column headerText="Setor" sortBy="#{computador.setor.nome}">
+					<h:outputText value="#{computador.setor.nome}" />
+				</p:column>
+				
+				<p:column headerText="OBS" sortBy="#{computador.descricao}">
+					<h:outputText value="#{computador.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Maquina" sortBy="#{computador.maquina.nome}">
+					<h:outputText value="#{computador.maquinaTeste ? 'nao encontrado': computador.maquina.nome}" />
+				</p:column>
+				
+				<p:column headerText="Programa" sortBy="#{computador.programas.get(0).nome}">
+					<h:outputText value="#{computador.programa ? 'nao encontrado': computador.programas.get(0).nome}" />
+				</p:column>
+				
+				<p:column headerText="AÇÕES">
+					<p:button icon="fa fa-edit" title="Editar" outcome="/computador/CadastroComputador">
+						<f:param name="computador" value="#{computador.codigo}"></f:param>
+					</p:button>
+					<p:commandButton icon="fa fa-trash-o" title="Excluir" oncomplete="PF('excluirComputador').show()"
+							process="@this" update=":frmComputador:tablePesquisaComputador">
+						<f:setPropertyActionListener value="#{computador}" target="#{pesquisaComputadorBean.computadorSelecionado}"/>	
+					</p:commandButton>
+				</p:column>
+				
+			</p:dataTable>
+			
+			<p:confirmDialog id="dialogExcluirComputador" header="Excluir Computador" message="Tem certeza que deseja excluir o Computador?"
+					widgetVar="excluirComputador" responsive="true">
+				<p:button value="Não" onclick="PF('excluirComputador').hide(); return false;"/>	
+				<p:commandButton value="Sim" onclick="PF('excluirComputador').hide();" 
+					action="#{pesquisaComputadorBean.removerComputador()}" process="@this" update=":frmComputador:tablePesquisaComputador"/>
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

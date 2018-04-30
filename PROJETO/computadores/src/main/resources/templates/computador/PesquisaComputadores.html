@@ -50,8 +50,13 @@
 				<tr>
 					<th class="table-kuubuu-col-codigo">Código</th>
 					<th class="table-kuubuu-col-nome">Nome</th>
-					<th class="table-kuubuu-col-usuario">Usuário</th>
-					<th class="table-kuubuu-col-acoes"></th>
+					<th class="table-computador-col-tipo">Tipo</th>
+					<th class="table-computador-col-modelo">Modelo</th>
+					<th class="table-computador-col-so">SO</th>
+					<th class="table-computador-col-code">Code</th>
+					<th class="table-computador-col-impressora">Impressora</th>
+					<th class="table-computador-col-status">Status</th>
+					<th class="table-computador-col-acoes"></th>
 				</tr>
 			</thead>
 			
@@ -59,7 +64,13 @@
 				<tr th:each="computador : ${pagina.conteudo}">
 					<td class="text-center" th:text="${computador.codigo}">1</td>
 					<td th:text="${computador.nome}">1</td>
-					<td th:text="${computador.usuario.nome}">1</td>
+					<td th:text="${computador.tipoComputador.descricao}">1</td>
+					<td th:text="${computador.modelo.nome}">1</td>
+					<td th:text="${computador.sistemaOperacional.descricao}">1</td>
+					<td th:text="${computador.code}">1</td>
+					<td th:text="${computador.impressoras.get(0).nomeRede}">1</td>
+					<td th:text="${computador.status.descricao}">1</td>
+					
 					<td class="text-center">
 						<a class="btn  btn-link  btn-xs" title="Editar"> 
 							<i class="glyphicon glyphicon-pencil"></i>

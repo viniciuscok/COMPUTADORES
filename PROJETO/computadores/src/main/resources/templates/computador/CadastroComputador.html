@@ -174,7 +174,7 @@
 						title="Selecione um programa" data-deselect-all-text="Desmarcar Todos" data-select-all-text="Selecione Todos"
 						data-selected-text-format="count" data-count-selected-text="{0} Itens selecionados" data-mobile="false"
 						data-size="false">
-  					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="${impressora.nomeRede}">tes</option>
+  					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="|${impressora.nomeRede}-->${impressora.setor.nome}|">tes</option>
 				</select>
 				
 				
