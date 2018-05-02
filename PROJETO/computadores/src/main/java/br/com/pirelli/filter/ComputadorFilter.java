@@ -1,7 +1,9 @@
 package br.com.pirelli.filter;
 
 import br.com.pirelli.model.Impressora;
+import br.com.pirelli.model.Marca;
 import br.com.pirelli.model.Modelo;
+import br.com.pirelli.model.Setor;
 import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoComputador;
@@ -16,6 +18,8 @@ public class ComputadorFilter
 	private String code;
 	private Impressora impressora;
 	private Status status;
+	private Marca marca;
+	private Setor setor;
 
 	
 	
@@ -81,6 +85,22 @@ public class ComputadorFilter
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public Marca getMarca() {
+		return marca;
+	}
+
+	public void setMarca(Marca marca) {
+		this.marca = marca;
+	}
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
 	}
 	
 	

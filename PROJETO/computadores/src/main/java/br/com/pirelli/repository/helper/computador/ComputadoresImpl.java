@@ -60,7 +60,47 @@ public class ComputadoresImpl implements ComputadoresQueries
 				{
 					criteria.add(Restrictions.ilike("nome", computadorFilter.getNome(), MatchMode.ANYWHERE));
 				}
+				
+				if (computadorFilter.getTipoComputador() != null) {
+					criteria.add(Restrictions.eq("tipoComputador", computadorFilter.getTipoComputador()));
+				}
+				
+				if(isModeloPresente(computadorFilter))
+				{
+					criteria.add(Restrictions.eq("modelo", computadorFilter.getModelo()));
+				}
+				
+				if (computadorFilter.getSistemaOperacional() != null) {
+					criteria.add(Restrictions.eq("sistemaOperacional", computadorFilter.getSistemaOperacional()));
+				}
+				
+				if(computadorFilter.getStatus() != null)
+				{
+					criteria.add(Restrictions.eq("status", computadorFilter.getStatus()));
+				}
+				
+				if(isMarcaPresente(computadorFilter))
+				{
+					criteria.add(Restrictions.eq("marca", computadorFilter.getMarca()));
+				}
+				
+				if(isSetorPresente(computadorFilter))
+				{
+					criteria.add(Restrictions.eq("setor", computadorFilter.getSetor()));
+				}
 			}
-		}	
+		}
+		
+		private boolean isModeloPresente(ComputadorFilter computadorFilter) {
+			return computadorFilter.getModelo() != null && computadorFilter.getModelo().getCodigo() != null;
+		}
+		
+		private boolean isMarcaPresente(ComputadorFilter computadorFilter) {
+			return computadorFilter.getMarca() != null && computadorFilter.getMarca().getCodigo() != null;
+		}
+		
+		private boolean isSetorPresente(ComputadorFilter computadorFilter) {
+			return computadorFilter.getSetor() != null && computadorFilter.getSetor().getCodigo() != null;
+		}
 
 }

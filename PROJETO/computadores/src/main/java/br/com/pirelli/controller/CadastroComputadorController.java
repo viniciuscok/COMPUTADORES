@@ -106,6 +106,12 @@ public class CadastroComputadorController
 	public ModelAndView pesquisar(ComputadorFilter computadorFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("computador/PesquisaComputadores");
+		mv.addObject("tipoComputadores", TipoComputador.values());
+		mv.addObject("modelos", modelos.findAll());
+		mv.addObject("sistemas", So.values());
+		mv.addObject("statusComputadores", Status.values());
+		mv.addObject("marcas", marcas.findAll());
+		mv.addObject("setores", setores.findAll());
 		
 		PageWrapper<Computador> pagina = new PageWrapper<>(computadores.filtro(computadorFilter, pageable), httpServletRequest);
 		
