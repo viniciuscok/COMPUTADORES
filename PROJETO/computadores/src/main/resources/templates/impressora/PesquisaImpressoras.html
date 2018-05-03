@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu="http://vinicius.com.br">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Pesquisa de Impressoras</h1> 
+			</div>
+			
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/impressoras/nova}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Impressora</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<form method="GET" th:object="${impressoraFilter}" class="form-vertical  js-form-loading">
+		
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="numeroDeSerieImpressora" class="control-label">Número de Série</label>
+				<input id="numeroDeSerieImpressora" type="text" class="form-control" th:field=*{equipamento.numeroDeSerie}/>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="marcaImpressora" class="control-label">Marca</label>
+				<select id="marcaImpressora" class="form-control" th:field=*{marca}>
+					<option value="">Selecione uma marca</option>
+					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
+				</select>
+			</div>	
+			
+			<div class="col-sm-4 form-group">
+				<label for="modeloImpressora" class="control-label">Modelo</label>
+				<select id="modeloImpressora" class="form-control" th:field=*{modelo}>
+					<option value="">Selecione um modelo</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="setorImpressora" class="control-label">Setor</label>
+				<select id="setorImpressora" class="form-control" th:field=*{setor}>
+					<option value="">Selecione um setor</option>
+					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
+				</select>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
+				<label for="categoriaImpressora" class="control-label">Categoria</label>
+				<div>
+					<th:block th:each=" categoria: ${categorias}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${categoria}|" type="radio" th:value="${categoria}" th:field="*{categoriaImpressora}"> 
+							<label th:for="|id_${categoria}|" th:text="${categoria.descricao}">Categoria da Impressora</label>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			
+			<div class="col-sm-2 form-group ">
+				<label for="tipoImpressora" class="control-label">Tipo Impressora</label>
+				<div>
+					<th:block th:each=" tipoImpressora: ${tipoImpressoras}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${tipoImpressora}|" type="radio" th:value="${tipoImpressora}" th:field="*{tipoImpressora}"> 
+							<label th:for="|id_${tipoImpressora}|" th:text="${tipoImpressora.descricao}">tipoImpressora</label>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4 form-group" >
+				<label for="statusImpressora" class="control-label">Status da Impressora</label>
+				<div>
+					<th:block th:each=" status: ${statusImpressora}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${status}|" type="radio" th:value="${status}" th:field="*{status}"> 
+							<label th:for="|id_${status}|" th:text="${status.descricao}">Status da Impressora</label>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			
+			
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Pesquisar</button>
+		</div>
+	</form>	
+	<div class="table-responsive kuubuu-tabela-simples">
+		<table class="table  table-hover">
+			<thead>
+				<tr>
+					<th class="table-kuubuu-col-codigo">Código</th>
+					<th class="table-impressora-col-nome">N/S</th>
+					<th class="table-impressora-col-tipo">Tipo</th>
+					<th class="table-impressora-col-modelo">Modelo</th>
+					<th class="table-impressora-col-marca">Marca</th>
+					<th class="table-impressora-col-categoria">Categoria</th>
+					<th class="table-impressora-col-setor">Setor</th>
+					<th class="table-impressora-col-status">Status</th>
+					<th class="table-impressora-col-acoes"></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="impressora : ${pagina.conteudo}">
+					<td class="text-center" th:text="${impressora.codigo}">1</td>
+					<td th:text="${impressora.numeroDeSerie}">1</td>
+					<td th:text="${impressora.tipoImpressora.descricao}">1</td>
+					<td th:text="${impressora.modelo.nome}">1</td>
+					<td th:text="${impressora.marca.nome}">1</td>
+					<td th:text="${impressora.categoriaImpressora.descricao}">1</td>
+					<td th:text="${impressora.setor.nome}">1</td>
+					<td th:text="${impressora.status.descricao}">1</td>
+					
+					<td class="text-center">
+						<a class="btn  btn-link  btn-xs" title="Editar"> 
+							<i class="glyphicon glyphicon-pencil"></i>
+						</a>
+						<a class="btn  btn-link  btn-xs" title="Excluir">
+							<i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				<tr th:if="${pagina.vazia}">
+					<td colspan="3">Nenhuma impressora encontrada</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<kuubuu:pagination page="${pagina}"/>
+	
+</div>
+
+</section>
+</body>
+</html>

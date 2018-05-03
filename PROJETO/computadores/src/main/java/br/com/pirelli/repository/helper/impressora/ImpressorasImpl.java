@@ -5,19 +5,14 @@ import javax.persistence.PersistenceContext;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-import org.thymeleaf.util.StringUtils;
 
-import br.com.pirelli.filter.ComputadorFilter;
 import br.com.pirelli.filter.ImpressoraFilter;
-import br.com.pirelli.model.Computador;
 import br.com.pirelli.model.Impressora;
 import br.com.pirelli.repository.PaginacaoUtil;
 
@@ -58,10 +53,7 @@ public class ImpressorasImpl implements ImpressorasQueries
 		{
 			if (impressoraFilter != null) 
 			{
-				if (!StringUtils.isEmpty(impressoraFilter.getNumeroDeSerie())) 
-				{
-					criteria.add(Restrictions.ilike("numeroDeSerie", impressoraFilter.getNumeroDeSerie(), MatchMode.ANYWHERE));
-				}
+				
 			}
 		}	
 

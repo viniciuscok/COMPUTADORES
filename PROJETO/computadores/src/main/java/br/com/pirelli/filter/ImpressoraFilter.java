@@ -1,6 +1,7 @@
 package br.com.pirelli.filter;
 
 import br.com.pirelli.model.CategoriaImpressora;
+import br.com.pirelli.model.Equipamento;
 import br.com.pirelli.model.Marca;
 import br.com.pirelli.model.Modelo;
 import br.com.pirelli.model.Setor;
@@ -10,7 +11,7 @@ import br.com.pirelli.model.TipoImpressora;
 public class ImpressoraFilter 
 {
 	private Long codigo;
-	private String numeroDeSerie;
+	private Equipamento equipamento;
 	private Status status;
 	private Modelo modelo;
 	private Marca marca;
@@ -25,11 +26,13 @@ public class ImpressoraFilter
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getNumeroDeSerie() {
-		return numeroDeSerie;
+	
+	
+	public Equipamento getEquipamento() {
+		return equipamento;
 	}
-	public void setNumeroDeSerie(String numeroDeSerie) {
-		this.numeroDeSerie = numeroDeSerie;
+	public void setEquipamento(Equipamento equipamento) {
+		this.equipamento = equipamento;
 	}
 	public Status getStatus() {
 		return status;

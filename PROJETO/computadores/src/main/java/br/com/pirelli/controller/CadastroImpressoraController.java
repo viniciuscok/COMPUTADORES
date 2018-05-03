@@ -1,8 +1,11 @@
 package br.com.pirelli.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,17 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.pirelli.model.Impressora;
+import br.com.pirelli.filter.ImpressoraFilter;
 import br.com.pirelli.model.CategoriaImpressora;
+import br.com.pirelli.model.Impressora;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoImpressora;
 import br.com.pirelli.repository.Filiais;
+import br.com.pirelli.repository.Impressoras;
 import br.com.pirelli.repository.Marcas;
 import br.com.pirelli.repository.Modelos;
 import br.com.pirelli.repository.Setores;
 import br.com.pirelli.repository.Toners;
 import br.com.pirelli.service.CadastroImpressoraService;
-import br.com.pirelli.service.exception.ComputadorJaCadastradoException;
 import br.com.pirelli.service.exception.ImpressoraJaExisteException;
 
 @Controller
@@ -45,6 +49,9 @@ public class CadastroImpressoraController
 	
 	@Autowired
 	private Setores setores;
+	
+	@Autowired
+	private Impressoras impressoras;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Impressora impressora)
@@ -82,6 +89,25 @@ public class CadastroImpressoraController
 		attributes.addFlashAttribute("mensagem", "Impressora cadastrada com sucesso");
 		
 		return new ModelAndView("redirect:/impressoras/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar(ImpressoraFilter impressoraFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	{
+		ModelAndView mv = new ModelAndView("impressora/PesquisaImpressoras");
+		mv.addObject("categorias", CategoriaImpressora.values());
+		mv.addObject("modelos", modelos.findAll());
+		//mv.addObject("sistemas", So.values());
+		mv.addObject("statusImpressoras", Status.values());
+		mv.addObject("marcas", marcas.findAll());
+		mv.addObject("setores", setores.findAll());
+		
+		PageWrapper<Impressora> pagina = new PageWrapper<>(impressoras.filtro(impressoraFilter, pageable), httpServletRequest);
+		
+		mv.addObject("pagina", pagina);
+		
+		return mv;
+		
 	}
 	
 	
