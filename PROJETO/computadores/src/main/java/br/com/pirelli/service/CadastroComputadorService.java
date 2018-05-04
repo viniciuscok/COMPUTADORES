@@ -20,12 +20,12 @@ public class CadastroComputadorService
 	{
 		Optional<Computador> optional = computadores.findByNomeStartingWithIgnoreCase(computador.getNome());
 		
-		if(optional.isPresent())
+		if(optional.isPresent() && computador.getCodigo() == null)
 		{
 			throw new ComputadorJaCadastradoException("Computador já cadastrado");
 		}
 		
-		return computadores.saveAndFlush(computador);
+		return computadores.save(computador);
 	}
 
 }

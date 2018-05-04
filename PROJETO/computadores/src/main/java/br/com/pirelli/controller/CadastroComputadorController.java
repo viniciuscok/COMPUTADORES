@@ -81,7 +81,7 @@ public class CadastroComputadorController
 		return mv;
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping(value= {"/novo", "{\\d+}"})
 	public ModelAndView salvar(@Valid Computador computador, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -123,7 +123,7 @@ public class CadastroComputadorController
 	}
 	
 	@GetMapping("/{codigo}")
-	public ModelAndView editaar(@PathVariable("codigo") Computador computador)
+	public ModelAndView editar(@PathVariable("codigo") Computador computador)
 	{
 		ModelAndView mv = novo(computador);
 		mv.addObject(computador);

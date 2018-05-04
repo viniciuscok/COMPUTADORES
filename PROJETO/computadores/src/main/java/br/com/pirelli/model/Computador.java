@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -142,7 +143,11 @@ public class Computador extends Equipamento
 		this.impressoras = impressoras;
 	}
 	
-	
+	@Transient
+	public boolean isNovo()
+	{
+		return this.getCodigo() == null;
+	}
 	
 
 }
