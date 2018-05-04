@@ -36,13 +36,13 @@
 		<div class="row">
 			<div class="col-sm-4 form-group">
 				<label for="numeroDeSerieImpressora" class="control-label">Número de Série</label>
-				<input id="numeroDeSerieImpressora" type="text" class="form-control" th:field=*{equipamento.numeroDeSerie}/>
+				<input id="numeroDeSerieImpressora" type="text" class="form-control" th:field=*{numeroDeSerie}/>
 			</div>
 			
 			<div class="col-sm-4 form-group">
 				<label for="marcaImpressora" class="control-label">Marca</label>
 				<select id="marcaImpressora" class="form-control" th:field=*{marca}>
-					<option value="">Selecione uma marca</option>
+					<option value="">Todas as Marcas</option>
 					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
 				</select>
 			</div>	
@@ -50,7 +50,7 @@
 			<div class="col-sm-4 form-group">
 				<label for="modeloImpressora" class="control-label">Modelo</label>
 				<select id="modeloImpressora" class="form-control" th:field=*{modelo}>
-					<option value="">Selecione um modelo</option>
+					<option value="">Todos os Modelos</option>
 					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
 				</select>
 			</div>
@@ -60,7 +60,7 @@
 			<div class="col-sm-4 form-group">
 				<label for="setorImpressora" class="control-label">Setor</label>
 				<select id="setorImpressora" class="form-control" th:field=*{setor}>
-					<option value="">Selecione um setor</option>
+					<option value="">Todos os Setores</option>
 					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
 				</select>
 			</div>

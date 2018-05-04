@@ -97,8 +97,8 @@ public class CadastroImpressoraController
 		ModelAndView mv = new ModelAndView("impressora/PesquisaImpressoras");
 		mv.addObject("categorias", CategoriaImpressora.values());
 		mv.addObject("modelos", modelos.findAll());
-		//mv.addObject("sistemas", So.values());
-		mv.addObject("statusImpressoras", Status.values());
+		mv.addObject("tipoImpressoras", TipoImpressora.values());
+		mv.addObject("statusImpressora", Status.values());
 		mv.addObject("marcas", marcas.findAll());
 		mv.addObject("setores", setores.findAll());
 		

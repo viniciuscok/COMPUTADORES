@@ -15,7 +15,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -26,7 +25,7 @@ public abstract class Equipamento implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	private Long codigo;
-	private String numeroDeSerie;
+	//private String numeroDeSerie;
 	private String enderecoIP;
 	private String obs;
 	private Status status;
@@ -45,14 +44,14 @@ public abstract class Equipamento implements Serializable
 		this.codigo = codigo;
 	}
 	
-	@NotBlank(message="O número de série deve ser informado")
-	@Column(name="numero_serie", nullable = false, unique=false)
-	public String getnumeroDeSerie() {
-		return numeroDeSerie;
-	}
-	public void setnumeroDeSerie(String numeroDeSerie) {
-		this.numeroDeSerie = numeroDeSerie;
-	}
+	//@NotBlank(message="O número de série deve ser informado")
+	//@Column(name="numero_serie", nullable = false, unique=false)
+	//public String getnumeroDeSerie() {
+	//	return numeroDeSerie;
+	//}
+	//public void setnumeroDeSerie(String numeroDeSerie) {
+	//	this.numeroDeSerie = numeroDeSerie;
+	//}
 	
 	@Column(name="endereco_ip", nullable=true, unique=true)
 	public String getEnderecoIP() {

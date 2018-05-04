@@ -29,6 +29,7 @@ public class Computador extends Equipamento
 	private String processador;
 	private String code;
 	private String bemPatrimonial;
+	private String numeroDeSerie;
 	private So sistemaOperacional;
 	private TipoComputador tipoComputador;
 	private Usuario usuario;
@@ -84,6 +85,14 @@ public class Computador extends Equipamento
 		this.bemPatrimonial = bemPatrimonial;
 	}
 	
+	@NotBlank(message="O número de série deve ser informado")
+	@Column(name="numero_serie", nullable = false, unique=false)
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
+	}
 	@Enumerated(EnumType.STRING)
 	@Column(name="sistema_operacional", nullable=true)
 	public So getSistemaOperacional() {

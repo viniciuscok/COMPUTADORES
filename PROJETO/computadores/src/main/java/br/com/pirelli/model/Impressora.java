@@ -21,6 +21,7 @@ public class Impressora extends Equipamento
 	private static final long serialVersionUID = 1L;
 	private String nomeRede;
 	private String email;
+	private String numeroDeSerie;
 	private TipoImpressora tipoImpressora;
 	private CategoriaImpressora categoriaImpressora;
 	private Toner toner;
@@ -43,6 +44,14 @@ public class Impressora extends Equipamento
 		this.email = email;
 	}
 	
+	@NotBlank(message="O número de série deve ser informado")
+	@Column(name="numero_serie", nullable = false, unique=false)
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
+	}
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
+	}
 	@Enumerated(EnumType.STRING)
 	public TipoImpressora getTipoImpressora() {
 		return tipoImpressora;
