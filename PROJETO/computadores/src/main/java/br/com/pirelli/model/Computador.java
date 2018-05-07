@@ -37,6 +37,7 @@ public class Computador extends Equipamento
 	private List<Programa> programas;
 	private List<Impressora> impressoras;
 	
+	
 	@NotBlank(message="O computador deve ser informado")
 	@Column(name="nome", nullable=false, unique=true)
 	public String getNome() {

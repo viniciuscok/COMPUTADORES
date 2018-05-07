@@ -53,7 +53,7 @@ public abstract class Equipamento implements Serializable
 	//	this.numeroDeSerie = numeroDeSerie;
 	//}
 	
-	@Column(name="endereco_ip", nullable=true, unique=true)
+	@Column(name="endereco_ip", nullable=true, unique=false)
 	public String getEnderecoIP() {
 		return enderecoIP;
 	}
