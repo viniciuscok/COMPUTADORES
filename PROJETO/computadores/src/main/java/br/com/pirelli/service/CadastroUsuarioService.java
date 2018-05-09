@@ -18,7 +18,7 @@ public class CadastroUsuarioService
 	public Usuario salvar(Usuario usuario)
 	{
 		Optional<Usuario> optional = usuarios.findByNomeStartingWithIgnoreCase(usuario.getNome());
-		if(optional.isPresent())
+		if(optional.isPresent() && usuario.getCodigo() == null)
 		{
 			throw new UsuarioJaCadastradoException("Usuário já cadastrado");
 		}

@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,7 +44,7 @@ public class CadastroModeloController
 		return mv;
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping(value= {"/novo", "{\\d+}"})
 	public ModelAndView salvar(@Valid Modelo modelo, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -76,6 +77,15 @@ public class CadastroModeloController
 		
 		return mv;
 		
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo") Modelo modelo)
+	{
+		ModelAndView mv = novo(modelo);
+		mv.addObject(modelo);
+		
+		return mv;
 	}
 
 }

@@ -9,12 +9,14 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.UsuarioFilter;
+import br.com.pirelli.model.Maquina;
 import br.com.pirelli.model.Usuario;
 import br.com.pirelli.repository.Usuarios;
 import br.com.pirelli.service.CadastroUsuarioService;
@@ -39,7 +41,7 @@ public class CadastroUsuarioController
 		return mv;
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping(value= {"/novo", "{\\d+}"})
 	public ModelAndView salvar(@Valid Usuario usuario, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -70,6 +72,15 @@ public class CadastroUsuarioController
 		PageWrapper<Usuario> pagina = new PageWrapper<>(usuarios.findByNome(usuarioFilter.getNome(), pageable), httpServletRequest);
 		
 		mv.addObject("pagina", pagina);
+		
+		return mv;
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo") Usuario usuario)
+	{
+		ModelAndView mv = novo(usuario);
+		mv.addObject(usuario);
 		
 		return mv;
 	}

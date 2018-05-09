@@ -14,13 +14,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Pesquisa de Usuários</h1> 
+				<h1>Pesquisa de Toners</h1> 
 			</div>
 			
 			<div class="col-sm-2">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-default" th:href="@{/usuarios/novo}">
-						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Usuário</span>
+					<a class="btn btn-default" th:href="@{/toners/novo}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Toner</span>
 					</a>
 				</div>
 			</div>
@@ -31,13 +31,17 @@
 
 <div class="container-fluid">
 	
-	<form method="GET" th:object="${usuarioFilter}" class="form-vertical  js-form-loading">
+	<form method="GET" th:object="${tonerFilter}" class="form-vertical  js-form-loading">
 		
 		<div class="row">
-			<div class="col-sm-12 form-group orc-required">
-				<label for="nomeUsuario" class="control-label">Nome</label>
-				<input id="nomeUsuario" type="text" class="form-control" th:field=*{nome}/>
+			<div class="col-sm-6 form-group" >
+				<label for="modeloToner" class="control-label">Modelo</label>
+				<select id="modeloToner" class="form-control" th:field="*{modelo}">
+					<option value="">Seleciona todos os modelo</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}"></option>
+				</select>
 			</div>
+			
 		</div>
 		
 		<div class="form-group">
@@ -49,17 +53,22 @@
 			<thead>
 				<tr>
 					<th class="table-kuubuu-col-codigo">Código</th>
-					<th class="table-kuubuu-col-nome">Nome</th>
+					<th class="table-toner-col-modelo">Modelo</th>
+					<th class="table-toner-col-marca">Marca</th>
+					<th class="table-toner-col-email">E-mail</th>
 					<th class="table-kuubuu-col-acoes"></th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr th:each="usuario : ${pagina.conteudo}">
-					<td class="text-center" th:text="${usuario.codigo}">1</td>
-					<td th:text="${usuario.nome}">1</td>
+				<tr th:each="toner : ${pagina.conteudo}">
+					<td class="text-center" th:text="${toner.codigo}">1</td>
+					<td th:text="${toner.modelo.nome}">1</td>
+					<td th:text="${toner.marca.nome}">1</td>
+					<td th:text="${toner.email}">1</td>
+					
 					<td class="text-center">
-						<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{usuarios/{codigo}(codigo=${usuario.codigo})}"> 
+						<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/toners/{codigo}(codigo=${toner.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>
 						<a class="btn  btn-link  btn-xs" title="Excluir">
@@ -68,7 +77,7 @@
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="3">Nenhum usuário encontrado</td>
+					<td colspan="6">Nenhum toner encontrado</td>
 				</tr>
 			</tbody>
 		</table>

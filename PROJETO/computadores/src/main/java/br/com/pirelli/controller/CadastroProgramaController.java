@@ -9,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,7 +38,7 @@ public class CadastroProgramaController
 		return mv;
 	}
 	
-	@PostMapping("/novo")
+	@PostMapping(value= {"/novo", "{\\d+}"})
 	public ModelAndView novo(@Valid Programa programa, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -68,6 +69,14 @@ public class CadastroProgramaController
 		
 		mv.addObject("pagina", pagina);
 		
+		return mv;
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo") Programa programa)
+	{
+		ModelAndView mv = novo(programa);
+		mv.addObject(programa);
 		return mv;
 	}
 }

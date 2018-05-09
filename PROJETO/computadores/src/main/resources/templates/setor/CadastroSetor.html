@@ -33,9 +33,12 @@
 	
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
-	<form method="post" th:object="${setor}" class="form-vertical  js-form-loading">
+	<form method="post" th:object="${setor}" class="form-vertical  js-form-loading"
+		th:action="${setor.novo} ? @{/setores/novo} : @{/setores/{codigo}(codigo=${setor.codigo})}">
 		
 		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field=*{codigo}>
 		
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="nome">

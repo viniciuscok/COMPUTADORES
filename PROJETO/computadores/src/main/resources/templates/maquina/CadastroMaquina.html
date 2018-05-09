@@ -33,9 +33,12 @@
 	
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
-	<form method="post" th:object="${maquina}" class="form-vertical  js-form-loading">
+	<form method="post" th:object="${maquina}" class="form-vertical  js-form-loading"
+		th:action="${maquina.nova} ? @{/maquinas/nova} : @{/maquinas/{codigo}(codigo=${maquina.codigo})}">
 		
 		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field="*{codigo}">
 		
 		<div class="row">
 			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="nome">
@@ -43,7 +46,7 @@
 				<input id="nomeMaquina" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 			
-			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="sigma">
+			<div class="col-sm-6 form-group">
 				<label for="sigmaMaquina" class="control-label">Sigma</label>
 				<input id="sigmaMaquina" type="text" class="form-control" th:field=*{sigma}/>
 			</div>
@@ -51,7 +54,15 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="computador">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="setor">
+				<label for="setorMaquina" class="control-label">Setor</label>
+				<select id="setorMaquina" class="form-control" th:field="*{setor}">
+					<option value="">Selecione um setor</option>
+					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">
+				</select>
+			</div>
+		
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="computador">
 				<label for="computadorMaquina" class="control-label">Computador</label>
 				<select id="computadorMaquina" class="form-control" th:field="*{computador}">
 					<option value="">Selecione um computador</option>
@@ -59,12 +70,22 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="bemPatrimonial">
-				<label for="bpMaquina" class="control-label">BP</label>
-				<input id="bpMaquina" type="text" class="form-control" th:field=*{bemPatrimonial}/>
+			<div class="col-sm-4 form-group">
+				<label for="impressoraMaquina" class="control-label">Impressora</label>
+				<select id="impressoraMaquina" class="form-control" th:field="*{impressora}">
+					<option value="">Selecione uma Impressora</option>
+					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="${impressora.modelo.nome}">
+				</select>
+			</div>			
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="iniMaquina">Inicialização</label>
+  				<textarea class="form-control" id="iniMaquina" rows="3" placeholder="Copie e cole o arquivo de inicialização da Máquina" th:field="*{iniMaquina}"></textarea>
+				
 			</div>
-			
-			
 		</div>
 		
 		<div class="row">

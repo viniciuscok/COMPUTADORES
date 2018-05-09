@@ -20,7 +20,7 @@ public class CadastroTipoModeloService
 	{
 		Optional<TipoModelo> optional = tipoModelos.findByNomeStartingWithIgnoreCase(tipoModelo.getNome());
 		
-		if(optional.isPresent())
+		if(optional.isPresent() && tipoModelo.getCodigo() == null)
 		{
 			throw new TipoModeloJaCadastradoException("Tipo do Modelo já cadastrado");
 		}

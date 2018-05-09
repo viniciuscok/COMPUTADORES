@@ -20,8 +20,9 @@ public class CadastroMaquinaService
 	public Maquina salvar(Maquina maquina)
 	{
 		Optional<Maquina> optional = maquinas.findByNomeStartingWithIgnoreCase(maquina.getNome());
-		if(optional.isPresent())
+		if(optional.isPresent() && maquina.getCodigo() == null)
 		{
+			System.out.println("entrou no if");
 			throw new MaquinaJaCadastradaException("Maquina já cadastrada");
 		}
 		return maquinas.save(maquina);

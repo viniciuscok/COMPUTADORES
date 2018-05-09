@@ -18,7 +18,7 @@ public class CadastroTonerService
 	public Toner salvar(Toner toner)
 	{
 		Optional<Toner> optional = toners.findByModeloAndMarca(toner.getModelo(), toner.getMarca());
-		if(optional.isPresent())
+		if(optional.isPresent() && toner.getCodigo() == null)
 		{
 			throw new TonerJaCadastradoException("Toner já cadastrado");
 		}

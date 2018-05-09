@@ -9,12 +9,14 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.MarcaFilter;
+import br.com.pirelli.model.Maquina;
 import br.com.pirelli.model.Marca;
 import br.com.pirelli.repository.Marcas;
 import br.com.pirelli.service.CadastroMarcaService;
@@ -37,7 +39,7 @@ public class CadastroMarcaController
 		return mv;
 	}
 
-	@PostMapping("/nova")
+	@PostMapping(value= {"/nova", "{\\d+}"})
 	public ModelAndView salvar(@Valid Marca marca, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -67,6 +69,15 @@ public class CadastroMarcaController
 		PageWrapper<Marca> pagina = new PageWrapper<>(marcas.findByNome(marcaFilter.getNome(), pageable), httpServletRequest);
 		
 		mv.addObject("pagina", pagina);
+		
+		return mv;
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo") Marca marca)
+	{
+		ModelAndView mv = nova(marca);
+		mv.addObject(marca);
 		
 		return mv;
 	}

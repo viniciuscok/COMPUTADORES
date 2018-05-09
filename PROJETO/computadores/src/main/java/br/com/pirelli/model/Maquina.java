@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -24,9 +27,11 @@ public class Maquina implements Serializable
 	private Long codigo;
 	private String nome;
 	private String sigma;
-	private String bemPatrimonial;
+	private String iniMaquina;
 	private String obs;
 	private Computador computador;
+	private Impressora impressora;
+	private Setor setor;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -55,12 +60,12 @@ public class Maquina implements Serializable
 		this.sigma = sigma;
 	}
 	
-	@Column(name="bem_patrimonial", nullable=true, unique=false)
-	public String getBemPatrimonial() {
-		return bemPatrimonial;
+	@Column(name="ini_maquina", nullable=true, unique=false)
+	public String getIniMaquina() {
+		return iniMaquina;
 	}
-	public void setBemPatrimonial(String bemPatrimonial) {
-		this.bemPatrimonial = bemPatrimonial;
+	public void setIniMaquina(String iniMaquina) {
+		this.iniMaquina = iniMaquina;
 	}
 	
 	@Column(name="obs")
@@ -81,6 +86,24 @@ public class Maquina implements Serializable
 		this.computador = computador;
 	}
 	
+	@OneToOne
+	@JoinColumn(name="codigo_impressora", nullable=true, unique=false)
+	public Impressora getImpressora() {
+		return impressora;
+	}
+	public void setImpressora(Impressora impressora) {
+		this.impressora = impressora;
+	}
+	
+	@NotNull(message="O setor deve ser informado.")
+	@ManyToOne
+	@JoinColumn(name="codigo_setor", nullable=false, unique=false)
+	public Setor getSetor() {
+		return setor;
+	}
+	public void setSetor(Setor setor) {
+		this.setor = setor;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -105,8 +128,11 @@ public class Maquina implements Serializable
 		return true;
 	}
 	
-	
-	
+	@Transient
+	public boolean isNova()
+	{
+		return this.getCodigo() == null;
+	}
 	
 
 }

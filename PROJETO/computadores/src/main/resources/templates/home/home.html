@@ -21,10 +21,10 @@
 
 				<div class="aw-box">
 					<div class="aw-box__icon">
-						<i class="fa  fa-bank  fa-3x"></i>
+						<i class="fa  fa-desktop  fa-3x"></i>
 					</div>
-					<div class="aw-box__value">R$983.433,20</div>
-					<div class="aw-box__title">Faturamento total</div>
+					<div class="aw-box__value" th:text="${totalDesktops}">300</div>
+					<div class="aw-box__title">Total de Computadores</div>
 				</div>
 
 			</div>
@@ -33,10 +33,10 @@
 
 				<div class="aw-box">
 					<div class="aw-box__icon">
-						<i class="fa  fa-usd  fa-3x"></i>
+						<i class="fa  fa-laptop  fa-3x"></i>
 					</div>
-					<div class="aw-box__value">R$343.542,59</div>
-					<div class="aw-box__title">Faturamento no ano</div>
+					<div class="aw-box__value" th:text="${totalNotebooks}">400</div>
+					<div class="aw-box__title">Total de Notebooks</div>
 				</div>
 
 			</div>
@@ -45,7 +45,7 @@
 
 				<div class="aw-box">
 					<div class="aw-box__icon">
-						<i class="fa  fa-heartbeat  fa-3x"></i>
+						<i class="fa  far fa-print  fa-3x"></i>
 					</div>
 					<div class="aw-box__value">R$40.233,40</div>
 					<div class="aw-box__title">Faturamento no mês</div>
@@ -61,8 +61,8 @@
 					<div class="aw-box__icon">
 						<i class="fa  fa-users  fa-3x"></i>
 					</div>
-					<div class="aw-box__value">1.298</div>
-					<div class="aw-box__title">Total de clientes</div>
+					<div class="aw-box__value" th:text="${usuarios}">1.298</div>
+					<div class="aw-box__title">Total de Usuários</div>
 				</div>
 
 			</div>

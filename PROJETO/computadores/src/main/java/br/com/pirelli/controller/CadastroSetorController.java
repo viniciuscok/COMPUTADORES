@@ -9,12 +9,14 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.SetorFilter;
+import br.com.pirelli.model.Maquina;
 import br.com.pirelli.model.Setor;
 import br.com.pirelli.repository.Setores;
 import br.com.pirelli.service.CadastroSetorService;
@@ -38,7 +40,7 @@ public class CadastroSetorController
 		return mv;
 	}
 
-	@PostMapping("/novo")
+	@PostMapping(value= {"/novo", "{\\d+}"})
 	public ModelAndView salvar(@Valid Setor setor, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -68,6 +70,15 @@ public class CadastroSetorController
 		PageWrapper<Setor> pagina = new PageWrapper<>(setores.findByNome(setorFilter.getNome(), pageable), httpServletRequest);
 		
 		mv.addObject("pagina", pagina);
+		
+		return mv;
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable("codigo") Setor setor)
+	{
+		ModelAndView mv = novo(setor);
+		mv.addObject(setor);
 		
 		return mv;
 	}

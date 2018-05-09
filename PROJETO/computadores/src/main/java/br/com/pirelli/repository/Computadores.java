@@ -13,11 +13,19 @@ import br.com.pirelli.repository.helper.computador.ComputadoresQueries;
 @Controller
 public interface Computadores extends JpaRepository<Computador, Long>, ComputadoresQueries
 {
-	//String nomePC = "touch";
+	
 	public Optional<Computador> findByNomeStartingWithIgnoreCase(String nome);
 
-	//@Query(value="SELECT nome,codigo FROM Computador where tipo_computador=nomePC", 
-	//		nativeQuery=true)
-	//public List<Computador> buscarComputador();
+	@Query(value="select count(*) from computador where tipo_computador = 'notebook'" , 
+			nativeQuery=true)
+	public Long buscarNotebook();
+	
+	@Query(value="select count(*) from computador where tipo_computador = 'desktop'" , 
+			nativeQuery=true)
+	public Long buscarDesktop();
+	
+	@Query(value="select count(*) from computador where tipo_computador = 'touch'" , 
+			nativeQuery=true)
+	public Long buscarTouch();
 
 }

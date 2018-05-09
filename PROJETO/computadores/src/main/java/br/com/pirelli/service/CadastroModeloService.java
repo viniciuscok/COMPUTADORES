@@ -19,12 +19,12 @@ public class CadastroModeloService
 	{
 		Optional<Modelo> optional = modelos.findByNomeAndTipoModelo(modelo.getNome(), modelo.getTipoModelo());
 		
-		if(optional.isPresent())
+		if(optional.isPresent() && modelo.getCodigo() == null)
 		{
 			throw new ModeloJacadastradoException("Modelo já cadastrado para esse equipamento");
 		}
 		
-		return modelos.saveAndFlush(modelo);
+		return modelos.save(modelo);
 	}
 
 }

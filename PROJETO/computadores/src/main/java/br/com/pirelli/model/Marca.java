@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -68,6 +69,12 @@ public class Marca implements Serializable
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+	
+	@Transient
+	public boolean isNova()
+	{
+		return this.getCodigo() == null;
 	}
 	
 	

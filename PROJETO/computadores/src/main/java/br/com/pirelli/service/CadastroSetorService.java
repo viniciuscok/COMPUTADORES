@@ -19,7 +19,7 @@ public class CadastroSetorService
 	public Setor salvar(Setor setor)
 	{
 		Optional<Setor> optional = setores.findByNomeStartingWithIgnoreCase(setor.getNome());
-		if(optional.isPresent())
+		if(optional.isPresent() && setor.getCodigo() == null)
 		{
 			throw new SetorJaCadastradoException("Setor já cadastrado");
 		}

@@ -19,7 +19,7 @@ public class CadastroProgramaService
 	{
 		Optional<Programa> optional = programas.findByNomeStartingWithIgnoreCase(programa.getNome());
 		
-		if(optional.isPresent())
+		if(optional.isPresent() && programa.getCodigo() == null)
 		{
 			throw new ProgramaJaCadastradoException("Programa já cadastro");
 		}

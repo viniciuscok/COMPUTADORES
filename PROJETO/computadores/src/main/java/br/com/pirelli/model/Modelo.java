@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -84,5 +85,9 @@ public class Modelo implements Serializable
 		return true;
 	}
 	
-	
+	@Transient
+	public boolean isNovo()
+	{
+		return this.getCodigo() == null;
+	}
 }
