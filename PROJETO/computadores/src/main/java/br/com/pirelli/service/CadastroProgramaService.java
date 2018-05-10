@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.pirelli.model.Programa;
 import br.com.pirelli.repository.Programas;
@@ -15,6 +16,7 @@ public class CadastroProgramaService
 	@Autowired
 	private Programas programas;
 	
+	@Transactional
 	public Programa salvar(Programa programa)
 	{
 		Optional<Programa> optional = programas.findByNomeStartingWithIgnoreCase(programa.getNome());
@@ -25,6 +27,12 @@ public class CadastroProgramaService
 		}
 		
 		return programas.saveAndFlush(programa);
+	}
+	
+	@Transactional
+	public void excluir(Long codigo)
+	{
+		programas.deleteById(codigo);
 	}
 
 }
