@@ -37,7 +37,7 @@ public class Toner implements Serializable
 		this.codigo = codigo;
 	}
 	
-	@Email(message="E-mail inválido")
+	@Email(message="E-mail inválido.")
 	@Column(name="email", nullable=true, unique=false)
 	public String getEmail() {
 		return email;
@@ -54,7 +54,7 @@ public class Toner implements Serializable
 		this.obs = obs;
 	}
 	
-	@NotNull(message="Favor informar a filial")
+	@NotNull(message="Favor informar a filial.")
 	@ManyToOne
 	@JoinColumn(name="codigo_filial", nullable=false, unique=false)
 	public Filial getFilial() {
@@ -64,7 +64,7 @@ public class Toner implements Serializable
 		this.filial = filial;
 	}
 	
-	@NotNull(message="Favor informar o modelo")
+	@NotNull(message="Favor informar o modelo.")
 	@ManyToOne
 	@JoinColumn(name="codigo_modelo", nullable=false, unique=true)
 	public Modelo getModelo() {
@@ -74,7 +74,7 @@ public class Toner implements Serializable
 		this.modelo = modelo;
 	}
 	
-	@NotNull(message="Favor informar a marca")
+	@NotNull(message="Favor informar a marca.")
 	@ManyToOne
 	@JoinColumn(name="codigo_marca", nullable=false, unique=false)
 	public Marca getMarca() {

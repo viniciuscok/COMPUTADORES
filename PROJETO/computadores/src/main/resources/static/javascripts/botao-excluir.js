@@ -1,30 +1,45 @@
 $(function()
 {
+	
 	var excluirBtn = $('.js-exclusao-btn');
+	if (window.location.search.indexOf('excluido') > -1) {
+		swal('Pronto!', 'Excluído com sucesso!', 'success');
+	}
 	
 	excluirBtn.on('click', function onExcluirClicado(evento){
 		event.preventDefault();
 		var botaoClicado = $(evento.currentTarget);
 		console.log('botao clicado', botaoClicado);
 		var url = botaoClicado.data('url');
-		console.log('url para analise', url);
 		var objeto = botaoClicado.data('objeto');
-		console.log('objeto para analise', objeto);
-		
 		swal({
-			title:'tem Certeza?',
-			text: 'excluir "'+objeto+'"? Voçê não poderá recuperar depois',
+			title:'Tem Certeza?',
+			text: 'Excluir "'+objeto+'"? Voçê não poderá recuperar depois.',
+			cancelButtonText:'Cancelar',
 			showCancelButton: true,
 			confirmButtonColor: '#DD6B55',
-			confirmButtonText: 'Sim, exclua agora',
-			closeOnConfirm: true
-		}, onExcluirConfirmado.bind(url));
+			confirmButtonText: 'Sim, excluir agora.',
+			closeOnConfirm: false
+		}, function onExcluirConfirmado(){
+			$.ajax({
+				url: botaoClicado.data('url'),
+				method: 'DELETE',
+				success: function onExcluidoSucesso(){
+					var urlAtual = window.location.href;
+					var separador = urlAtual.indexOf('?') > -1 ? '&' : '?';
+					var novaUrl = urlAtual.indexOf('excluido') > -1 ? urlAtual : urlAtual + separador + 'excluido';
+					
+					window.location = novaUrl;
+				},
+				error: function onErroExcluir(e){
+					swal('Oops!', e.reponseText, 'error');
+				},
+				
+			});
+		});
 			
 	});
 	
-	function onExcluirConfirmado(url)
-	{
-		console.log('url', url);
-	}
+	
 		
 });

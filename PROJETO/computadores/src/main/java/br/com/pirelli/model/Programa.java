@@ -30,7 +30,7 @@ public class Programa implements Serializable
 		this.codigo = codigo;
 	}
 	
-	@NotBlank(message = "O programa deve ser Informado")
+	@NotBlank(message = "O programa deve ser Informado.")
 	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;

@@ -22,6 +22,7 @@ import br.com.pirelli.filter.ProgramaFilter;
 import br.com.pirelli.model.Programa;
 import br.com.pirelli.repository.Programas;
 import br.com.pirelli.service.CadastroProgramaService;
+import br.com.pirelli.service.exception.ImpossivelExcluirProgramaException;
 import br.com.pirelli.service.exception.ProgramaJaCadastradoException;
 
 @Controller
@@ -51,14 +52,23 @@ public class CadastroProgramaController
 		
 		try
 		{
-			cadastroProgramaService.salvar(programa);
+			if(programa.getCodigo() == null)
+			{
+				cadastroProgramaService.salvar(programa);
+				attributes.addFlashAttribute("mensagem", "Programa salvo com sucesso.");
+			}else
+			{
+				cadastroProgramaService.salvar(programa);
+				attributes.addFlashAttribute("mensagem", "Programa editado com sucesso.");
+			}
+			
 		}catch(ProgramaJaCadastradoException e)
 		{
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
 			return novo(programa);
 		}
 		
-		attributes.addFlashAttribute("mensagem", "Programa cadastrado com sucesso");
+		
 		
 		return new ModelAndView("redirect:/programas/novo");
 	}
@@ -84,10 +94,18 @@ public class CadastroProgramaController
 	}
 	
 	@DeleteMapping("/{codigo}")
-	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("codigo") Long codigo)
+	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("codigo") Programa programa)
 	{
-		cadastroProgramaService.excluir(codigo);
+		try
+		{
+			cadastroProgramaService.excluir(programa);
+		}catch(ImpossivelExcluirProgramaException e)
+		{
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+		
 		
 		return ResponseEntity.ok().build();
 	}
+	
 }

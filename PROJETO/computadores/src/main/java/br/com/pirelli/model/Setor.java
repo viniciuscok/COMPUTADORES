@@ -32,7 +32,7 @@ public class Setor implements Serializable
 	}
 	
 	@NotBlank(message="O Setor deve ser informado")
-	@Column(name="nome", nullable=false, unique=true)
+	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;
 	}

@@ -31,7 +31,7 @@ public class Marca implements Serializable
 		this.codigo = codigo;
 	}
 	
-	@NotBlank(message="A marca deve ser informada")
+	@NotBlank(message="A marca deve ser informada.")
 	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;

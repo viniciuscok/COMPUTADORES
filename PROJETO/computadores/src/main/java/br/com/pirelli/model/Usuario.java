@@ -31,7 +31,7 @@ public class Usuario implements Serializable
 		this.codigo = codigo;
 	}
 	
-	@NotBlank(message="O usuário deve ser informado")
+	@NotBlank(message="O usuário deve ser informado.")
 	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;

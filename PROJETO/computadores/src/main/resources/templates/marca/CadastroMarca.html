@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Marca</h1>
+				<h1 th:if="${marca.nova}">Cadastro de Marca</h1>
+				<h1 th:unless="${marca.nova}" th:text="|Edição da Marca ${marca.nome}.|"></h1>
 			</div>
 			  
 			<div class="col-sm-2">

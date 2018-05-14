@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -30,8 +31,8 @@ public class Filial implements Serializable
 		this.codigo = codigo;
 	}
 	
-	@NotBlank(message="A filial deve ser informado")
-	@Column(name="nome", nullable=false, unique=true)
+	@NotBlank(message="A filial deve ser informada.")
+	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;
 	}
@@ -70,6 +71,10 @@ public class Filial implements Serializable
 		return true;
 	}
 	
-	
+	@Transient
+	public boolean isNova()
+	{
+		return this.getCodigo() == null;
+	}
 
 }

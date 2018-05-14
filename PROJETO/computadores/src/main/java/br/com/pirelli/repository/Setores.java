@@ -1,5 +1,6 @@
 package br.com.pirelli.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -19,4 +20,8 @@ public interface Setores extends JpaRepository<Setor, Long>
 			countQuery = "SELECT count(*) FROM Setor WHERE nome like ?1% order by nome ASC",
 		    nativeQuery = true)
 	Page<Setor> findByNome(String nome, Pageable pageable);
+	
+	@Query(value="SELECT * FROM Setor order by nome ASC",
+			nativeQuery=true)
+	public List<Setor> setorOrdemCrescente();
 }

@@ -1,5 +1,6 @@
 package br.com.pirelli.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -19,4 +20,8 @@ public interface TipoModelos extends JpaRepository<TipoModelo, Long>
 			countQuery="SELECT count(*) FROM Tipo_Modelo WHERE nome like ?1% order by nome ASC",
 			nativeQuery=true)
 	Page<TipoModelo> findByNome(String nome, Pageable pageable);
+	
+	@Query(value="SELECT * FROM tipo_modelo ORDER BY(nome) ASC",
+			nativeQuery=true)
+	public List<TipoModelo> tipoModeloOrdemCrescente();
 }

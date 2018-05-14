@@ -15,7 +15,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Impressora</h1>
+				<h1 th:if="${impressora.nova}">Cadastro de Impressora</h1>
+				<h1 th:unless="${impressora.nova}" th:text="|Edição da Impressora do Modelo ${impressora.modelo.nome}.|">Cadastro de Impressora</h1>
 			</div>
 			  
 			<div class="col-sm-2">
@@ -69,7 +70,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="categoriaImpressora">
 				<label for="categoriaImpressora" class="control-label">Categoria</label>
 				<div>
 					<th:block th:each=" categoria: ${categorias}">

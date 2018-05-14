@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Filial</h1>
+				<h1 th:if="${filial.nova}">Cadastro de Filial</h1>
+				<h1 th:unless="${filial.nova}" th:text="|Edição da filial ${filial.nome}|"></h1>
 			</div>
 			 
 			<div class="col-sm-2">
@@ -33,9 +34,12 @@
 	
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
-	<form method="post" th:object="${filial}" class="form-vertical  js-form-loading">
+	<form method="post" th:object="${filial}" class="form-vertical  js-form-loading"
+		th:action="${filial.nova} ? @{/filiais/nova} : @{/filiais/{codigo}(codigo=${filial.codigo})}">
 		
 		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field=*{codigo}>
 		
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="nome">

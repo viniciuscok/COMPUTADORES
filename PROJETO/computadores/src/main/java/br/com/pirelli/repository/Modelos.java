@@ -25,4 +25,14 @@ public interface Modelos extends JpaRepository<Modelo, Long>
 	@Query(value="SELECT * FROM Modelo m inner join m.TipoModelotipo_modelo as tp on m.codigo_tipo_modelo = tp.codigo where tp.nome = ?1", 
 			nativeQuery=true)
 	public List<Modelo> filtro(String nome);
+	
+	@Query(value="select m.* from modelo m inner join tipo_modelo t on m.codigo_tipo_modelo = t.codigo where t.nome = 'toner' order by(m.nome) asc",
+			nativeQuery=true)
+	public List<Modelo> buscarModeloTonerOrdemCrescente();
+	
+	@Query(value="select m.* from modelo m inner join tipo_modelo t on m.codigo_tipo_modelo = t.codigo where t.nome = 'impressora' order by(m.nome) asc",
+			nativeQuery=true)
+	public List<Modelo> buscarModeloImpressoraOrdemCrescente();
+	
+	
 }

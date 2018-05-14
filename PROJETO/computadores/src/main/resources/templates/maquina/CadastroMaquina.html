@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Maquina</h1>
+				<h1 th:if="${maquina.nova}">Cadastro de Maquina</h1>
+				<h1 th:unless="${maquina.nova}" th:text="|Edição da máquina ${maquina.nome}.|"></h1>
 			</div>
 			 
 			<div class="col-sm-2">

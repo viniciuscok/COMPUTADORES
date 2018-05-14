@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Tipo de Modelo</h1>
+				<h1 th:if="${tipoModelo.novo}">Cadastro de Tipo de Modelo</h1>
+				<h1 th:unless="${tipoModelo.novo}" th:text="|Edição da Categoria ${tipoModelo.nome}.|">Cadastro de Tipo de Modelo</h1>
 			</div>
 			 
 			<div class="col-sm-2">

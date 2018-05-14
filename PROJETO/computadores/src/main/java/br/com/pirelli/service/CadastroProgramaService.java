@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.pirelli.model.Programa;
 import br.com.pirelli.repository.Programas;
+import br.com.pirelli.service.exception.ImpossivelExcluirProgramaException;
 import br.com.pirelli.service.exception.ProgramaJaCadastradoException;
 
 @Service
@@ -30,9 +31,17 @@ public class CadastroProgramaService
 	}
 	
 	@Transactional
-	public void excluir(Long codigo)
+	public void excluir(Programa programa)
 	{
-		programas.deleteById(codigo);
+		try
+		{
+			programas.delete(programa);
+			programas.flush();
+		}catch(RuntimeException e)
+		{
+			throw new ImpossivelExcluirProgramaException("O programa não pode ser removido, pois existe um computador com e");
+		}
+		
 	}
 
 }

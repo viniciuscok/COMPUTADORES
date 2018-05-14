@@ -3,7 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:kuubuu="http://vinicius.com.br">
+	xmlns:kuubuu="http://vinicius.com.br"
+	xmlns:data="http://www.thymeleaf.org/extras/data">
 
 <head>
 	<title>Computadores</title>
@@ -142,10 +143,12 @@
 					<td th:text="${computador.status.descricao}">1</td>
 					
 					<td class="text-center">
-						<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/computadores/{codigo}(codigo=${computador.codigo})}"> 
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/computadores/{codigo}(codigo=${computador.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>
-						<a class="btn  btn-link  btn-xs" title="Excluir">
+						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
+							data:url="@{/computadores/{codigo}(codigo=${computador.codigo})}"
+							data:objeto="${computador.nome}">
 							<i class="glyphicon glyphicon-remove"></i>
 						</a>
 					</td>

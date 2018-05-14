@@ -1,5 +1,6 @@
 package br.com.pirelli.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -19,4 +20,8 @@ public interface Marcas extends JpaRepository<Marca, Long>
 			countQuery="SELECT count(*) FROM Marca WHERE nome like ?1% order by nome ASC", 
 			nativeQuery=true)
 	Page<Marca> findByNome(String nome, Pageable pageable);
+	
+	@Query(value="select * from Marca order by(nome) asc",
+			nativeQuery=true)
+	public List<Marca> marcaOrdemCrescente();
 }

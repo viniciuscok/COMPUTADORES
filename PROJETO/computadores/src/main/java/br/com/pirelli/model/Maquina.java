@@ -76,7 +76,7 @@ public class Maquina implements Serializable
 		this.obs = obs;
 	}
 	
-	@NotNull(message="O computador deve ser informado")
+	@NotNull(message="O computador configurado na máquina deve ser informado.")
 	@OneToOne
 	@JoinColumn(name="codigo_computador", nullable=false, unique=false)
 	public Computador getComputador() {
@@ -132,6 +132,12 @@ public class Maquina implements Serializable
 	public boolean isNova()
 	{
 		return this.getCodigo() == null;
+	}
+	
+	@Transient
+	public boolean isSemImpressora()
+	{
+		return this.getImpressora() == null;
 	}
 	
 

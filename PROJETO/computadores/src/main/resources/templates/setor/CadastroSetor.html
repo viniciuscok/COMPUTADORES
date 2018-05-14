@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Setor</h1>
+				<h1 th:if="${setor.novo}">Cadastro de Setor</h1>
+				<h1 th:unless="${setor.novo}" th:text="|Ediçao do setor ${setor.nome}.|"></h1>
 			</div>
 			  
 			<div class="col-sm-2">

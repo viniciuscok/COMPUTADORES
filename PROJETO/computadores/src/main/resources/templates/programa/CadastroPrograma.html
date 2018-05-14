@@ -14,7 +14,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Cadastro de Programa</h1>
+				<h1 th:if="${programa.novo}">Cadastro de Programa</h1>
+				<h1 th:unless="${programa.novo}" th:text="|Edição do Programa ${programa.nome}.|"></h1>
 			</div>
 			 
 			<div class="col-sm-2">
