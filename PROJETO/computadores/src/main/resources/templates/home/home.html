@@ -22,7 +22,9 @@
 				<div class="aw-box">
 					<div class="aw-box__icon">
 						<i class="fa  fa-desktop  fa-4x"></i><br>
-						<a th:href="@{/impressoras}"><i class="fa  fa-plus-square fa-1x text-danger"></i></a>
+						<a th:href="@{/computadores/novo}"><i class="fa  fa-plus-square fa-1x text-success"></i></a>
+						<a th:href="@{/computadores}"><i class="fa  far fa-search fa-1x text-danger"></i></a>
+						
 					</div>
 					<div class="aw-box__value" th:text="${totalDesktops}">300</div>
 					<div class="aw-box__title">Total de Desktop</div>
@@ -49,7 +51,7 @@
 						<i class="fa  fa-truck  fa-3x"></i>
 					</div>
 					<div class="aw-box__value">3.344</div>
-					<div class="aw-box__title">Estoque total</div>
+					<div class="aw-box__title">Touch</div>
 				</div>
 
 			</div>
@@ -60,7 +62,9 @@
 
 				<div class="aw-box">
 					<div class="aw-box__icon">
-						<i class="fa  fa-users  fa-3x"></i>
+						<i class="fa  fa-users  fa-4x"></i><br>
+						<a th:href="@{/usuarios/novo}"><i class="fa  fa-plus-square fa-1x text-success"></i></a>
+						<a th:href="@{/usuarios}"><i class="fa  far fa-search fa-1x text-danger"></i></a>
 					</div>
 					<div class="aw-box__value" th:text="${usuarios}">1.298</div>
 					<div class="aw-box__title">Total de Usuários</div>
@@ -74,7 +78,7 @@
 					<div class="aw-box__icon">
 						<i class="fa  far fa-print  fa-3x"></i>
 					</div>
-					<div class="aw-box__value">R$40.233,40</div>
+					<div class="aw-box__value">5</div>
 					<div class="aw-box__title">Total Impressora Térmica</div>
 				</div>
 
@@ -84,7 +88,9 @@
 
 				<div class="aw-box">
 					<div class="aw-box__icon">
-						<i class="fa  fa-archive fa-3x"></i>
+						<i class="fa  fa-archive fa-4x"></i><br>
+						<a th:href="@{/impressoras/novo}"><i class="fa  fa-plus-square fa-1x text-success"></i></a>
+						<a th:href="@{/impressoras}"><i class="fa  far fa-search fa-1x text-danger"></i></a>
 					</div>
 					<div class="aw-box__value">123</div>
 					<div class="aw-box__title">Total Impressora de Escritório</div>
@@ -94,7 +100,7 @@
 
 			
 		</div>
-
+<!--
 		<div class="row col-sm-12">
 			<div class="aw-box text-center">
 				<div class="aw-box__title">Cadastro</div>
@@ -113,7 +119,7 @@
 			</div>
 			
 		</div>
-		<!--  <div class="col-sm-6">
+		  <div class="col-sm-6">
 				<a th:href="@{/impressoras/novo}" class="btn btn-success">
 					<i class="fa  far fa-print  fa-3x"></i><br>Cadastro de Impressora</a>
 			</div>-->
