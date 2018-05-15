@@ -34,5 +34,7 @@ public interface Modelos extends JpaRepository<Modelo, Long>
 			nativeQuery=true)
 	public List<Modelo> buscarModeloImpressoraOrdemCrescente();
 	
-	
+	@Query(value="select m.* from modelo m inner join tipo_modelo t on m.codigo_tipo_modelo = t.codigo where t.nome = ?1 order by(m.nome) asc",
+			nativeQuery=true)
+	public List<Modelo> teste(String nome);
 }

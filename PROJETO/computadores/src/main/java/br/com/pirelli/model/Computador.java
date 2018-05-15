@@ -87,7 +87,7 @@ public class Computador extends Equipamento
 		this.bemPatrimonial = bemPatrimonial;
 	}
 	
-	@NotBlank(message="O número de série deve ser informado")
+	//@NotBlank(message="O número de série deve ser informado")
 	@Column(name="numero_serie", nullable = false, unique=false)
 	public String getNumeroDeSerie() {
 		return numeroDeSerie;
@@ -95,6 +95,8 @@ public class Computador extends Equipamento
 	public void setNumeroDeSerie(String numeroDeSerie) {
 		this.numeroDeSerie = numeroDeSerie;
 	}
+	
+	@NotNull(message="O sistema operacional deve ser informado.")
 	@Enumerated(EnumType.STRING)
 	@Column(name="sistema_operacional", nullable=true)
 	public So getSistemaOperacional() {
@@ -104,7 +106,7 @@ public class Computador extends Equipamento
 		this.sistemaOperacional = sistemaOperacional;
 	}
 	
-	@NotNull(message="O tipo de computador deve ser informado")
+	@NotNull(message="O tipo do computador deve ser informado.")
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_computador", nullable=false)
 	public TipoComputador getTipoComputador() {

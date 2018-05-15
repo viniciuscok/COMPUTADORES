@@ -3,7 +3,8 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:kuubuu="">
+	xmlns:kuubuu=""
+	xmlns:data="http://www.thymeleaf.org/extras/data">
 
 <head>
 	<title>Computadores</title>
@@ -71,7 +72,8 @@
 					<th:block th:each="tipoComputador : ${tipoComputadores}">
 						<div class="radio  radio-inline">
 							<input th:id="|id_${tipoComputador}|" type="radio" th:value="${tipoComputador}" 
-								th:field="*{tipoComputador}" class="js-radio-tipo-computador"> 
+								th:field="*{tipoComputador}" class="js-radio-tipo-computador js-tipoComputador"
+								data:tipo="${tipoComputador.tipo}"> 
 							<label th:for="|id_${tipoComputador}|" th:text="${tipoComputador.descricao}">Tipo de Computador</label>
 						</div>
 					</th:block>
@@ -147,7 +149,7 @@
 				<input id="codeComputador" type="text" class="form-control" th:field=*{code}/>
 			</div>
 			
-			<div class="col-sm-2 form-group" kuubuu:errortext="numeroDeSerie">
+			<div class="col-sm-2 form-group">
 				<label for="numeroSerieComputador" class="control-label">Número de Série</label>
 				<input id="numeroSerieComputador" type="text" class="form-control" th:field=*{numeroDeSerie}/>
 			</div>
@@ -192,6 +194,7 @@
 							<label th:for="|id_${status}|" th:text="${status.descricao}">Status do Computador</label>
 						</div>
 					</th:block>
+					
 				</div>
 			</div>
 		</div>
@@ -232,7 +235,7 @@
 		
 		
 		<div class="form-group">
-			<button class="btn  btn-primary" type="submit">Salvar</button>
+			<button id="computadorSalvar" class="btn  btn-primary" type="submit">Salvar</button>
 			<!--  <a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>-->
 		</div>
 

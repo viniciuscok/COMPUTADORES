@@ -1,4 +1,74 @@
 var Computador = Computador || {};
+
+Computador.MaskNumber = (function() {
+	
+	function MaskNumber() {
+		this.decimal = $('.js-decimal');
+		this.numeroInteiro = $('.js-numero-inteiro');
+	}
+	
+	MaskNumber.prototype.enable = function() {
+		this.numeroInteiro.maskNumber({ integer: true, thousands: '.' });
+	}
+	
+	return MaskNumber;
+	
+}());
+
+Computador.TipoComputador = (function() {
+	function TipoComputador(){
+		this.tipo = $('.js-tipoComputador');
+		this.comboModelo = $('#modeloComputador');
+		this.enderecoIP = $('#ipComputador');
+		this.enviar = $('#computadorSalvar');
+	}
+	
+	TipoComputador.prototype.iniciar = function() {
+		
+		this.tipo.on('change', onTipoComputadorAlterado.bind(this));
+	}
+	
+	function onTipoComputadorAlterado(evento) {
+		var computadorSelecionado = $(evento.currentTarget);
+		if(computadorSelecionado.is(':checked'))
+		{
+			
+			this.comboModelo.removeAttr('disabled');
+			
+		}else
+			{
+				console.log('teste',evento);
+			}
+		
+		
+		
+		//var resposta = $.ajax({
+		//	url: this.modelo.data('url'),
+		//	method: 'GET',
+		//	contentType: 'application/json',
+		//	data: {'nome': computadorSelecionado.data('tipo')}
+		//});
+			
+		}
+	
+	return TipoComputador;
+	
+}());
+
+$(function() {
+	var maskNumber = new Computador.MaskNumber();
+	maskNumber.enable();
+	
+	var tipoComputador = new Computador.TipoComputador();
+	tipoComputador.iniciar();
+	
+	
+	
+	//var comboCidade = new Brewer.ComboCidade(comboEstado);
+	//comboCidade.iniciar();
+	
+});
+
 /*
 Computador.MaskMoney = (function() {
 	

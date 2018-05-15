@@ -1,11 +1,14 @@
 package br.com.pirelli.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -14,12 +17,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.ComputadorFilter;
 import br.com.pirelli.model.Computador;
+import br.com.pirelli.model.Modelo;
 import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoComputador;
@@ -108,7 +113,7 @@ public class CadastroComputadorController
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(ComputadorFilter computadorFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	public ModelAndView pesquisar(ComputadorFilter computadorFilter, BindingResult result, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("computador/PesquisaComputadores");
 		mv.addObject("tipoComputadores", TipoComputador.values());
@@ -147,5 +152,11 @@ public class CadastroComputadorController
 		}
 		
 		return ResponseEntity.ok().build();
+	}
+	
+	@RequestMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })
+	public @ResponseBody List<Modelo> pesquisar(@RequestParam(name="nome", defaultValue="oi") String nomeModelo) {
+		
+		return modelos.teste(nomeModelo);
 	}
 }

@@ -43,7 +43,7 @@
 			<div class="col-sm-4 form-group">
 				<label for="marcaComputador" class="control-label">Marca</label>
 				<select id="marcaComputador" class="form-control" th:field=*{marca}>
-					<option value="">Selecione uma marca</option>
+					<option value="">Todas as Marcas</option>
 					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
 				</select>
 			</div>	
@@ -51,7 +51,7 @@
 			<div class="col-sm-4 form-group">
 				<label for="modeloComputador" class="control-label">Modelo</label>
 				<select id="modeloComputador" class="form-control" th:field=*{modelo}>
-					<option value="">Selecione um modelo</option>
+					<option value="">Todos os Modelos</option>
 					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
 				</select>
 			</div>
@@ -61,7 +61,7 @@
 			<div class="col-sm-4 form-group">
 				<label for="setorComputador" class="control-label">Setor</label>
 				<select id="setorComputador" class="form-control" th:field=*{setor}>
-					<option value="">Selecione um setor</option>
+					<option value="">Todos os Setores</option>
 					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
 				</select>
 			</div>
@@ -69,7 +69,7 @@
 			<div class="col-sm-4 form-group">
 				<label for="soComputador" class="control-label">Sistema Operacional</label>
 				<select id="soComputador" class="form-control" th:field=*{sistemaOperacional}>
-					<option value="">Selecione um sistema</option>
+					<option value="">Todos os Sistemas</option>
 					<option th:each="sistemaOperacional : ${sistemas}" th:value="${sistemaOperacional}" 
 						th:text="${sistemaOperacional.descricao}">So
 					</option>
@@ -86,6 +86,10 @@
 							<label th:for="|id_${tipoComputador}|" th:text="${tipoComputador.descricao}">Tipo de Computador</label>
 						</div>
 					</th:block>
+					<div class="radio  radio-inline">
+		    			<input id="computadorTipo" type="radio" th:checked="*{tipoComputador} == null" name="tipoComputador"/>
+		    			<label for="computadorTipo" >Todos</label>
+	    			</div>
 				</div>
 			</div>
 			
@@ -102,6 +106,10 @@
 							<label th:for="|id_${status}|" th:text="${status.descricao}">Status do Computador</label>
 						</div>
 					</th:block>
+					<div class="radio  radio-inline">
+		    			<input id="computadorStatus" type="radio" th:checked="*{status} == null" name="status"/>
+		    			<label for="computadorStatus" >Todos</label>
+	    			</div>
 				</div>
 			</div>
 			

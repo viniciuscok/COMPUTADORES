@@ -69,6 +69,7 @@ public abstract class Equipamento implements Serializable
 		this.obs = obs;
 	}
 	
+	@NotNull(message="O status do computador deve ser Informado.")
 	@Enumerated(EnumType.STRING)
 	@Column(name="status", nullable=false, unique=false)
 	public Status getStatus() {
@@ -78,7 +79,7 @@ public abstract class Equipamento implements Serializable
 		this.status = status;
 	}
 	
-	@NotNull(message="A filial deve ser informada")
+	@NotNull(message="A filial deve ser informada.")
 	@ManyToOne
 	@JoinColumn(name="codigo_filial", nullable=false, unique=false)
 	public Filial getFilial() {
