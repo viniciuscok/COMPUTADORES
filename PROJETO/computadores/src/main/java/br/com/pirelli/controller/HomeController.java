@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.pirelli.repository.Computadores;
+import br.com.pirelli.repository.Impressoras;
 import br.com.pirelli.repository.Usuarios;
 
 @Controller
@@ -18,6 +19,9 @@ public class HomeController
 	@Autowired
 	private Computadores computadores;
 	
+	@Autowired
+	private Impressoras impressoras;
+	
 	@GetMapping("/")
 	public ModelAndView novo()
 	{
@@ -26,6 +30,8 @@ public class HomeController
 		mv.addObject("totalNotebooks", computadores.buscarNotebook());
 		mv.addObject("totalDesktops", computadores.buscarDesktop());
 		mv.addObject("totalTouchs", computadores.buscarTouch());
+		mv.addObject("totalImpTermicas", impressoras.impressoraTermica());
+		mv.addObject("totalImpEscritorio", impressoras.impressoraEscritorio());
 		return mv;
 	}
 

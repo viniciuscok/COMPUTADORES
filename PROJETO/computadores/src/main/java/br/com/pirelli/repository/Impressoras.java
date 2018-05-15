@@ -21,5 +21,13 @@ public interface Impressoras extends JpaRepository<Impressora, Long>, Impressora
 			"			where e.tipo_equipamento = 'impressora' and i.categoria_impressora = 'impressora_termica' order by(i.codigo) asc",
 			nativeQuery=true)
 	public List<Impressora> impressoraTermicaOrdemCrescente();
+	
+	@Query(value="select count(*) from impressora where categoria_impressora = 'IMPRESSORA_TERMICA'",
+			nativeQuery=true)
+	public Long impressoraTermica();
+	
+	@Query(value="select count(*) from impressora where categoria_impressora = 'IMPRESSORA_ESCRITORIO'",
+			nativeQuery=true)
+	public Long impressoraEscritorio();
 
 }
