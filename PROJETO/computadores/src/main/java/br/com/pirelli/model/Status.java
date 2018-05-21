@@ -3,6 +3,7 @@ package br.com.pirelli.model;
 public enum Status 
 {
 	ATIVO("Ativo"),
+	CHAMADO("Chamado"),
 	DESATIVADO("Desativado"),
 	MANUTENCAO("Manutenção");
 	

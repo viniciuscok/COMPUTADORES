@@ -35,7 +35,8 @@
 	
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
-	<form method="post" th:object="${impressora}" class="form-vertical  js-form-loading">
+	<form id="formcadastroimpressora" method="post" th:object="${impressora}" class="form-vertical  js-form-loading"
+		th:action="${impressora.nova} ? @{/impressoras/nova} : @{/impressoras/{codigo}(codigo=${impressora.codigo})}">
 		
 		<th:block th:include="fragments/ErroValidacao"></th:block>
 		

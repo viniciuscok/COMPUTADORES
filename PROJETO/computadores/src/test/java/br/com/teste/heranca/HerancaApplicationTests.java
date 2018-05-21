@@ -1,4 +1,4 @@
-package br.com.teste.heranca;
+/*package br.com.teste.heranca;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,3 +14,4 @@ public class HerancaApplicationTests {
 	}
 
 }
+*/

@@ -13,10 +13,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import br.com.pirelli.validation.AtributoConfirmacao;
+
+@AtributoConfirmacao(atributo="senha", atributoConfirmacao="confirmacaoSenha", message="Senha não confere")
 @Entity
 @Table(name="login")
 public class Login implements Serializable
@@ -30,6 +35,8 @@ public class Login implements Serializable
 	private String senha;
 	private Boolean ativo;
 	private LocalDate dataNascimento;
+	@Transient
+	private String confirmacaoSenha;
 	private List<Grupo> grupos;
 	
 	@Id
@@ -83,7 +90,7 @@ public class Login implements Serializable
 	}
 	
 	
-	@NotNull(message = "Selecione pelo menos um grupo")
+	@Size(min=1 ,message = "Selecione pelo menos um grupo")
 	@ManyToMany
 	@JoinTable(name = "login_grupo", joinColumns = @JoinColumn(name = "codigo_usuario")
 				, inverseJoinColumns = @JoinColumn(name = "codigo_login"))
@@ -94,6 +101,12 @@ public class Login implements Serializable
 		this.grupos = grupos;
 	}
 	
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,6 +131,10 @@ public class Login implements Serializable
 		return true;
 	}
 	
-	
+	@Transient
+	public boolean isNovo()
+	{
+		return this.codigo == null;
+	}
 
 }

@@ -69,6 +69,24 @@ $(function() {
 	
 });
 
+$( document ).ready(function() {
+	var radios = document.getElementsByName('tipoComputador');
+
+	for (var i = 0, length = radios.length; i < length; i++)
+	{
+	 if (radios[i].checked)
+	 {
+		 $('#modeloComputador').prop('disabled', false)
+	  break;
+	 }
+	}
+});
+
+$('#formcadastroimpressora').submit(function(){
+	console.log("teste");
+	$('#enderecoIPImpressora').prop('disabled', false);
+})
+
 /*
 Computador.MaskMoney = (function() {
 	

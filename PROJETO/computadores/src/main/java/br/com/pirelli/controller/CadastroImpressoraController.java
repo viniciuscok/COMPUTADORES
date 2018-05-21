@@ -107,7 +107,7 @@ public class CadastroImpressoraController
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar(ImpressoraFilter impressoraFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	public ModelAndView pesquisar(ImpressoraFilter impressoraFilter, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("impressora/PesquisaImpressoras");
 		mv.addObject("categorias", CategoriaImpressora.values());
