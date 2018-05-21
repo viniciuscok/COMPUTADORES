@@ -14,14 +14,14 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1 th:if="${filial.nova}">Cadastro de Filial</h1>
-				<h1 th:unless="${filial.nova}" th:text="|Edição da filial ${filial.nome}|"></h1>
+				<h1 th:if="${permissao.nova}">Cadastro de permissao</h1>
+				<h1 th:unless="${permissao.nova}" th:text="|Edição da permissao ${permissao.nome}|"></h1>
 			</div>
 			 
 			<div class="col-sm-2">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-default" th:href="@{/filiais}">
-						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Filiais</span>
+					<a class="btn btn-default" th:href="@{/permissoes}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Permissoes</span>
 					</a>
 				</div>
 			</div>
@@ -34,8 +34,8 @@
 	
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
-	<form method="post" th:object="${filial}" class="form-vertical  js-form-loading"
-		th:action="${filial.nova} ? @{/filiais/nova} : @{/filiais/{codigo}(codigo=${filial.codigo})}">
+	<form method="post" th:object="${permissao}" class="form-vertical  js-form-loading"
+		th:action="${permissao.nova} ? @{/permissoes/nova} : @{/permissoes/{codigo}(codigo=${permissao.codigo})}">
 		
 		<th:block th:include="fragments/ErroValidacao"></th:block>
 		
@@ -43,16 +43,8 @@
 		
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="nome">
-				<label for="nomeFilial" class="control-label">Nome</label>
-				<input id="nomeFilial" type="text" class="form-control" th:field=*{nome}/>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-12 form-group">
-   				<label for="obsFilial">Observação</label>
-  				<textarea class="form-control" id="obsFilial" rows="3" th:field="*{obs}"></textarea>
-				
+				<label for="nomePermissao" class="control-label">Nome</label>
+				<input id="nomePermissao" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 		</div>
 		

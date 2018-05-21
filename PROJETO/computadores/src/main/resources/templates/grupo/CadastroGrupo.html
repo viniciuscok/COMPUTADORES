@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu="">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1 th:if="${grupo.novo}">Cadastro de Grupo</h1>
+				<h1 th:unless="${grupo.novo}" th:text="|Edição do grupo ${grupo.nome}|"></h1>
+			</div>
+			 
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/grupos}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Grupos</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${grupo}" class="form-vertical  js-form-loading"
+		th:action="${grupo.novo} ? @{/grupos/novo} : @{/grupos/{codigo}(codigo=${grupo.codigo})}">
+		
+		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field=*{codigo}>
+		
+		<div class="row">
+			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="nome">
+				<label for="nomeGrupo" class="control-label">Nome</label>
+				<input id="nomeGrupo" type="text" class="form-control" th:field=*{nome}/>
+			</div>
+			
+			<div class="form-group col-sm-6 orc-required" kuubuu:errortext="permissoes">
+				<label for="nomePermissao" class="control-label">Permissões</label>
+				<select id="nomePermissao" class="selectpicker form-control" multiple th:field=*{permissoes} data-actions-box="true"  
+						title="Selecione uma Permissão" data-deselect-all-text="Desmarcar Todos" data-select-all-text="Selecione Todos"
+						data-selected-text-format="count" data-count-selected-text="{0} Itens selecionados" data-mobile="false"
+						data-size="false">
+  					<option th:each="permissao : ${permissoes}" th:value="${permissao.codigo}" th:text="${permissao.nome}">tes</option>
+				</select>
+				
+				
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Salvar</button>
+			<!--  <a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>-->
+		</div>
+
+	</form>
+</div>
+
+</section>
+</body>
+</html>

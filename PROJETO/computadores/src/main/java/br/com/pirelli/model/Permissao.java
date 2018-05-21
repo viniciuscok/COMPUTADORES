@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="permissao")
@@ -66,6 +67,11 @@ public class Permissao implements Serializable
 		return true;
 	}
 	
+	@Transient
+	public boolean isNova()
+	{
+		return this.codigo == null;
+	}
 	
 
 }
