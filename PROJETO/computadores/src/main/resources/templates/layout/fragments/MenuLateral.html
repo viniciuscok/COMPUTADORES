@@ -30,9 +30,6 @@
 						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/impressoras/novo}>
 							<a th:href="@{/impressoras/novo}">Impressora</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/logins/novo}>
-							<a th:href="@{/logins/novo}">Login</a>
-						</li>
 						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/maquinas/nova}>
 							<a th:href="@{/maquinas/nova}">Máquina</a>
 						</li>
@@ -99,24 +96,23 @@
 					</ul>
 				</li>
 
-				<li class="aw-menu__item  is-expanded"><a href="#"> <i
-						class="fa  fa-fw  fa-file-text"></i><span>Páginas comuns</span> <i
+				<li class="aw-menu__item">
+					<a href="#"> <i
+						class="fa  fa-fw  fa fa-cog"></i><span>Configurações</span> <i
 						class="aw-menu__navigation-icon  fa"></i>
-				</a>
+					</a>
 
-					<ul class="aw-menu__list  aw-menu__list--sublist">
+					<ul class="aw-menu__list  aw-menu__list--sublist" kuubuu:menu=@{/logins/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" ><a
+							th:href="@{/logins/novo}">Login</a>
+						</li>
 						<li class="aw-menu__item  aw-menu__item--link"><a
-							href="pagina-vazia.html">Página vazia</a></li>
+							th:href="@{/grupos/novo}">Grupo</a>
+						</li>
 						<li class="aw-menu__item  aw-menu__item--link"><a
-							href="login.html">Login</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a
-							href="esqueceu-a-senha.html">Esqueceu a senha</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a
-							href="403.html">403</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a
-							href="404.html">404</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a
-							href="500.html">500</a></li>
+							th:href="@{/permissoes/nova}">Permissao</a>
+						</li>
+						
 					</ul></li>
 			</ul>
 		</nav>

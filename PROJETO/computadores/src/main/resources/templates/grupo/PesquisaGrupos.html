@@ -15,13 +15,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Pesquisa de Filial</h1> 
+				<h1>Pesquisa de Grupos</h1> 
 			</div>
 			
 			<div class="col-sm-2">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-default" th:href="@{/filiais/nova}">
-						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Filial</span>
+					<a class="btn btn-default" th:href="@{/grupos/novo}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Grupo</span>
 					</a>
 				</div>
 			</div>
@@ -32,12 +32,12 @@
 
 <div class="container-fluid">
 	
-	<form method="GET" th:object="${filialFilter}" class="form-vertical  js-form-loading">
+	<form method="GET" th:object="${grupoFilter}" class="form-vertical  js-form-loading">
 		
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required">
-				<label for="nomeFilial" class="control-label">Nome</label>
-				<input id="nomeFilial" type="text" class="form-control" th:field=*{nome}/>
+				<label for="nomeGrupo" class="control-label">Nome</label>
+				<input id="nomeGrupo" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 		</div>
 		
@@ -51,27 +51,32 @@
 				<tr>
 					<th class="table-kuubuu-col-codigo">Código</th>
 					<th class="table-kuubuu-col-nome">Nome</th>
+					<th class="table-kuubuu-col-nome">Permissões</th>
 					<th class="table-kuubuu-col-acoes"></th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr th:each="filial : ${pagina.conteudo}">
-					<td class="text-center" th:text="${filial.codigo}">1</td>
-					<td th:text="${filial.nome}">1</td>
+				<tr th:each="grupo : ${pagina.conteudo}">
+					<td class="text-center" th:text="${grupo.codigo}">1</td>
+					<td th:text="${grupo.nome}">1</td>
+					<td> 
+						<span th:each="permissao : ${grupo.permissoes}" 
+							th:text="|${permissao.nome}${permissaoStat.last ? '' : ', '}|"></span>
+					</td>
 					<td class="text-center">
-						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/filiais/{codigo}(codigo=${filial.codigo})}"> 
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/grupos/{codigo}(codigo=${grupo.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>
 						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
-							data:url="@{/filiais/{codigo}(codigo=${filial.codigo})}"
-							data:objeto=${filial.nome}>
+							data:url="@{/grupos/{codigo}(codigo=${grupo.codigo})}"
+							data:objeto=${grupo.nome}>
 							<i class="glyphicon glyphicon-remove"></i>
 						</a>
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="3">Nenhuma filial encontrada</td>
+					<td colspan="3">Nenhum grupo encontrado</td>
 				</tr>
 			</tbody>
 		</table>

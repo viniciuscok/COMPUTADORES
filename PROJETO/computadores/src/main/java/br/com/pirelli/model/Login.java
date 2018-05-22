@@ -35,7 +35,6 @@ public class Login implements Serializable
 	private String senha;
 	private Boolean ativo;
 	private LocalDate dataNascimento;
-	@Transient
 	private String confirmacaoSenha;
 	private List<Grupo> grupos;
 	
@@ -92,8 +91,8 @@ public class Login implements Serializable
 	
 	@Size(min=1 ,message = "Selecione pelo menos um grupo")
 	@ManyToMany
-	@JoinTable(name = "login_grupo", joinColumns = @JoinColumn(name = "codigo_usuario")
-				, inverseJoinColumns = @JoinColumn(name = "codigo_login"))
+	@JoinTable(name = "login_grupo", joinColumns = @JoinColumn(name = "codigo_login")
+				, inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}
@@ -101,6 +100,7 @@ public class Login implements Serializable
 		this.grupos = grupos;
 	}
 	
+	@Transient
 	public String getConfirmacaoSenha() {
 		return confirmacaoSenha;
 	}
