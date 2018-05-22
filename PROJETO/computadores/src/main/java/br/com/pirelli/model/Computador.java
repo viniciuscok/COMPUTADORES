@@ -79,7 +79,7 @@ public class Computador extends Equipamento
 		this.code = code;
 	}
 	
-	@Column(name="bem_patrimonial", nullable=true, unique=true)
+	@Column(name="bem_patrimonial", nullable=true, unique=false)
 	public String getBemPatrimonial() {
 		return bemPatrimonial;
 	}

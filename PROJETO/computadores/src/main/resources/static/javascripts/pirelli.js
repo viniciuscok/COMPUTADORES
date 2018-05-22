@@ -1,6 +1,6 @@
-var Computador = Computador || {};
+var Pirelli = Pirelli || {};
 
-Computador.MaskDate = (function() {
+Pirelli.MaskDate = (function() {
 	
 	function MaskDate() {
 		this.inputDate = $('.js-date');
@@ -19,9 +19,27 @@ Computador.MaskDate = (function() {
 	
 }());
 
+Pirelli.MaskNumber = (function() {
+	
+	function MaskNumber() {
+		this.decimal = $('.js-decimal');
+		this.numeroInteiro = $('.js-numero-inteiro');
+	}
+	
+	MaskNumber.prototype.enable = function() {
+		this.numeroInteiro.maskNumber({ integer: true, thousands: '.' });
+	}
+	
+	return MaskNumber;
+	
+}());
+
 $(function() {
 	
-	var maskDate = new Computador.MaskDate();
+	var maskDate = new Pirelli.MaskDate();
 	maskDate.enable();
+	
+	var maskNumber = new Pirelli.MaskNumber();
+	maskNumber.enable();
 	
 });

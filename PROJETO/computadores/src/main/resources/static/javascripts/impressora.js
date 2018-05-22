@@ -24,3 +24,21 @@ $(function()
 	});
 	
 });
+
+$( document ).ready(function() {
+	var radios = document.getElementsByName('tipoImpressora');
+
+	for (var i = 0, length = radios.length; i < length; i++)
+	{
+	 if (radios[i].checked)
+	 {
+		 $('#enderecoIPImpressora').prop('disabled', false)
+	  break;
+	 }
+	}
+});
+
+$('#formcadastroimpressora').submit(function(){
+	console.log("teste");
+	$('#enderecoIPImpressora').prop('disabled', false);
+})

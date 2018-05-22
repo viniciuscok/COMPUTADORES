@@ -66,19 +66,23 @@
 				</select>
 			</div>
 			
-			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
+			<div class="col-sm-4 form-group">
 				<label for="categoriaImpressora" class="control-label">Categoria</label>
 				<div>
-					<th:block th:each=" categoria: ${categorias}">
+					<th:block th:each=" categoriaImpressora: ${categorias}">
 						<div class="radio  radio-inline">
-							<input th:id="|id_${categoria}|" type="radio" th:value="${categoria}" th:field="*{categoriaImpressora}"> 
-							<label th:for="|id_${categoria}|" th:text="${categoria.descricao}">Categoria da Impressora</label>
+							<input th:id="|id_${categoriaImpressora}|" type="radio" th:value="${categoriaImpressora}" th:field="*{categoriaImpressora}"> 
+							<label th:for="|id_${categoriaImpressora}|" th:text="${categoriaImpressora.descricao}">Categoria da Impressora</label>
 						</div>
 					</th:block>
+					<div class="radio  radio-inline">
+		    			<input id="impressoraCategoria" type="radio" th:checked="*{categoriaImpressora} == null" name="categoriaImpressora"/>
+		    			<label for="impressoraCategoria" >Todas</label>
+	    			</div>
 				</div>
 			</div>
 			
-			<div class="col-sm-2 form-group ">
+			<div class="col-sm-4 form-group ">
 				<label for="tipoImpressora" class="control-label">Tipo Impressora</label>
 				<div>
 					<th:block th:each=" tipoImpressora: ${tipoImpressoras}">
@@ -87,6 +91,10 @@
 							<label th:for="|id_${tipoImpressora}|" th:text="${tipoImpressora.descricao}">tipoImpressora</label>
 						</div>
 					</th:block>
+					<div class="radio  radio-inline">
+		    			<input id="impressoraTipo" type="radio" th:checked="*{tipoImpressora} == null" name="tipoImpressora"/>
+		    			<label for="impressoraTipo" >Todos</label>
+	    			</div>
 				</div>
 			</div>
 			
@@ -103,6 +111,10 @@
 							<label th:for="|id_${status}|" th:text="${status.descricao}">Status da Impressora</label>
 						</div>
 					</th:block>
+					<div class="radio  radio-inline">
+		    			<input id="impressoraStatus" type="radio" th:checked="*{status} == null" name="status"/>
+		    			<label for="impressoraStatus" >Todos</label>
+	    			</div>
 				</div>
 			</div>
 			

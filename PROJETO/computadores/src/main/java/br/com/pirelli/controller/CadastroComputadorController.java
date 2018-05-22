@@ -82,7 +82,7 @@ public class CadastroComputadorController
 		mv.addObject("filiais", filiais.findAll());
 		mv.addObject("usuarios", usuarios.findAll());
 		mv.addObject("marcas", marcas.findAll());
-		mv.addObject("modelos", modelos.findAll());
+		mv.addObject("modelos", modelos.modeloComputadorOrdemCrescentePorTipo());
 		mv.addObject("setores", setores.findAll());
 		mv.addObject("programas", programas.findAll());
 		mv.addObject("impressoras", impressoras.findAll());
@@ -117,7 +117,7 @@ public class CadastroComputadorController
 	{
 		ModelAndView mv = new ModelAndView("computador/PesquisaComputadores");
 		mv.addObject("tipoComputadores", TipoComputador.values());
-		mv.addObject("modelos", modelos.findAll());
+		mv.addObject("modelos", modelos.modeloComputadorOrdemCrescentePorTipo());
 		mv.addObject("sistemas", So.values());
 		mv.addObject("statusComputadores", Status.values());
 		mv.addObject("marcas", marcas.findAll());
