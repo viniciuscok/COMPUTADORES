@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.Email;
@@ -19,11 +20,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import br.com.pirelli.validation.AtributoConfirmacao;
 
 @AtributoConfirmacao(atributo="senha", atributoConfirmacao="confirmacaoSenha", message="Senha não confere")
 @Entity
 @Table(name="login")
+@DynamicUpdate
 public class Login implements Serializable
 {
 
@@ -107,6 +111,12 @@ public class Login implements Serializable
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
 	}
+	
+	@PreUpdate
+	private void preUpdate() {
+		this.confirmacaoSenha = senha;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

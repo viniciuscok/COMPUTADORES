@@ -28,4 +28,6 @@ public interface Logins extends JpaRepository<Login, Long>
 			countQuery = "SELECT count(*) FROM Login WHERE nome like ?1% order by nome ASC",
 		    nativeQuery = true)
 	public Page<Login> findByNome(String nome, Pageable pageable);
+
+	public List<Login> findByCodigoIn(Long[] codigos);
 }

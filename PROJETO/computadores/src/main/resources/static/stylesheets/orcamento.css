@@ -53,6 +53,11 @@
 	
 }
 
+/* Colunas - Pesquisa de usuários */
+.table-login-col-status {
+	width: 30px;
+}
+
 /*
 ######################################
 # CUSTOMIZAÇÃO DE COMPONENTES

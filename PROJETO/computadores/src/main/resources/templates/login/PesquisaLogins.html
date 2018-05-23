@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu="http://vinicius.com.br"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Pesquisa de Logins</h1> 
+			</div>
+			
+			<div class="col-sm-2">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/logins/novo}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Login</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<form method="GET" th:object="${loginFilter}" class="form-vertical  js-form-loading">
+		
+		<div class="row">
+			<div class="col-sm-6 form-group">
+				<label for="nomeLogin" class="control-label">Nome</label>
+				<input id="nomeLogin" type="text" class="form-control" th:field=*{nome}/>
+			</div>
+			<div class="col-sm-6 form-group">
+				<label for="emailLogin" class="control-label">E-mail</label>
+				<input id="emailLogin" type="text" class="form-control" th:field=*{email}/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Pesquisar</button>
+		</div>
+	</form>	
+	
+	<div class="aw-datatable-toolbar">
+		<button class="btn btn-default btn-xs js-status-btn disabled" data:status="ATIVAR" data:url="@{/logins/status}">
+			<span>Ativar</span>
+		</button>
+		
+		<button class="btn btn-default btn-xs js-status-btn disabled" data:status="DESATIVAR" data:url="@{/logins/status}">
+			<span>Desativar</span>
+		</button>
+	</div>
+	
+	<div class="table-responsive kuubuu-tabela-simples">
+		<table class="table  table-hover">
+			<thead>
+				<tr>
+					<th class="table-login-col-status">
+	           			<div class="checkbox  aw-checkbox-no-margin">
+	           				<input type="checkbox" class="js-selecao-todos"/>
+	           				<label></label>
+	           			</div>
+	            	</th>
+					<th class="table-kuubuu-col-codigo">Código</th>
+					<th class="table-kuubuu-col-nome">Nome</th>
+					<th class="table-kuubuu-col-nome">E-mail</th>
+					<th class="table-kuubuu-col-nome">Grupos</th>
+					<th class="table-kuubuu-col-nome">Status</th>
+					<th class="table-kuubuu-col-acoes"></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="login : ${pagina.conteudo}">
+					<td>
+						<div class="checkbox  aw-checkbox-no-margin" th:if="${#authentication.name != login.email}">
+            				<input type="checkbox" class="js-selecao" data:codigo="${login.codigo}">
+            				<label></label>
+            			</div>
+					</td>
+					<td class="text-center" th:text="${login.codigo}">1</td>
+					<td th:text="${login.nome}">1</td>
+					<td th:text="${login.email}">1</td>
+					<td>
+							<span th:each="grupo : ${login.grupos}" th:text="|${grupo.nome}${grupoStat.last ? '' : ', '}|"></span>
+					</td>
+					<td>
+						<th:block th:if="${login.ativo}">
+							<span class="label  label-success">Ativo</span>
+						</th:block>
+						<th:block th:if="${not login.ativo}">
+							<span class="label  label-danger">Inativo</span>
+						</th:block>
+					</td>
+					<td class="text-center">
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/logins/{codigo}(codigo=${login.codigo})}"> 
+							<i class="glyphicon glyphicon-pencil"></i>
+						</a>
+						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" th:if="${#authentication.name != login.email}" title="Excluir" href="#"
+							data:url="@{/logins/{codigo}(codigo=${login.codigo})}"
+							data:objeto=${login.nome}>
+							<i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				<tr th:if="${pagina.vazia}">
+					<td colspan="7">Nenhum login encontrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<kuubuu:pagination page="${pagina}"/>
+	
+</div>
+
+</section>
+</body>
+</html>

@@ -27,7 +27,7 @@ public class CadastroLoginService
 	{
 		Optional<Login> emailPresente = logins.findByEmailStartingWithIgnoreCase(login.getEmail());
 		
-		if(emailPresente.isPresent())
+		if(login.getCodigo() == null && emailPresente.isPresent())
 		{
 			throw new EmailLoginJaCadastradoException("E-mail já cadastrado");
 		}
@@ -51,6 +51,11 @@ public class CadastroLoginService
 		}
 		return logins.save(login);
 		
+	}
+	
+	@Transactional
+	public void alterarStatus(Long[] codigos, StatusLogin statusLogin) {
+		statusLogin.executar(codigos, logins);
 	}
 
 }
