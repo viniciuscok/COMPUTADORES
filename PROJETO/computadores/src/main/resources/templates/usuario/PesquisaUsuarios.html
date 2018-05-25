@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
 	xmlns:kuubuu="http://vinicius.com.br"
-	xmlns:data="http://www.thymeleaf.org/extras/data">
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Computadores</title>
@@ -18,7 +19,7 @@
 				<h1>Pesquisa de Usuários</h1> 
 			</div>
 			
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize-url="/usuarios/novo">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/usuarios/novo}">
 						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Usuário</span>

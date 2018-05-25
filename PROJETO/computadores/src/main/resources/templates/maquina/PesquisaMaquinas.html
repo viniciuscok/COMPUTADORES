@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
 	xmlns:kuubuu="http://vinicius.com.br"
-	xmlns:data="http://www.thymeleaf.org/extras/data">
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Computadores</title>
@@ -18,7 +19,7 @@
 				<h1>Pesquisa de Máquinas</h1> 
 			</div>
 			
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_MAQUINA')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/maquinas/nova}">
 						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Maquina</span>
@@ -69,7 +70,7 @@
 					<th class="table-maquina-col-computador">Computador</th>
 					<th class="table-maquina-col-impressora">Impressora</th>
 					<th class="table-maquina-col-setor">Setor</th>
-					<th class="table-maquina-col-acoes"></th>
+					<th class="table-maquina-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_MAQUINA')"></th>
 				</tr>
 			</thead>
 			
@@ -82,7 +83,7 @@
 					<td th:text="${maquina.semImpressora} ? 'Não possui impressora' : ${maquina.impressora.modelo.nome}"></td>
 					<td th:text="${maquina.setor.nome}">1</td>
 					
-					<td class="text-center">
+					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_MAQUINA')">
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/maquinas/{codigo}(codigo=${maquina.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>

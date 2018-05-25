@@ -15,102 +15,105 @@
 						class="fa  fa-fw  fa-home"></i><span>Home</span></a>
 				</li>
 
-				<li class="aw-menu__item" >
+				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_CADASTRAR')">
 					<a href="#"> <i class="fa fa-fw fa-user-plus"></i><span>Cadastros</span> <i
 						class="aw-menu__navigation-icon  fa"></i>
 					</a>
 
 					<ul class="aw-menu__list  aw-menu__list--sublist">
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/computadores/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/computadores/novo} sec:authorize-url="/computadores/novo">
 							<a th:href="@{/computadores/novo}">Computador</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/filiais/nova}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/filiais/nova} sec:authorize-url="/filiais/nova">
 							<a th:href="@{/filiais/nova}">Filial</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/impressoras/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/impressoras/novo} sec:authorize-url="/impressoras/novo">
 							<a th:href="@{/impressoras/novo}">Impressora</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/maquinas/nova}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/maquinas/nova} sec:authorize-url="/maquinas/nova">
 							<a th:href="@{/maquinas/nova}">Máquina</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/marcas/nova}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/marcas/nova} sec:authorize-url="/marcas/nova">
 							<a th:href="@{/marcas/nova}">Marca</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/modelos/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/modelos/novo} sec:authorize-url="/modelos/novo">
 							<a th:href="@{/modelos/novo}">Modelo</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/programas/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/programas/novo} sec:authorize-url="/programas/novo">
 							<a th:href="@{/programas/novo}">Programa</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/setores/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/setores/novo} sec:authorize-url="/setores/novo">
 							<a th:href="@{/setores/novo}">Setor</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/tipomodelos/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/tipomodelos/novo} sec:authorize-url="/tipomodelos/novo">
 							<a th:href="@{/tipomodelos/novo}">Tipo Modelo</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/toners/novo}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/toners/novo} sec:authorize-url="/toners/novo">
 							<a th:href="@{/toners/novo}">Toner</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/usuarios/novo} sec:authorize="hasRole('ROLE_CADASTRAR_COMPUTADOR')">
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/usuarios/novo} sec:authorize-url="/usuarios/novo">
 							<a th:href="@{/usuarios/novo}">Usuario</a>
 						</li>
 					</ul>
 				</li>
 				
-				<li class="aw-menu__item">
+				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_BUSCAR')">
 					<a href="#"> <i class="fa fa-fw fa-search"></i><span>Buscar</span> <i
 						class="aw-menu__navigation-icon  fa"></i>
 					</a>
 
 					<ul class="aw-menu__list  aw-menu__list--sublist">
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/computadores}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/computadores} sec:authorize-url="/computadores">
 							<a th:href="@{/computadores}">Computadores</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/filiais}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/filiais} sec:authorize-url="/filiais">
 							<a th:href="@{/filiais}">Filiais</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/impressoras}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/impressoras} sec:authorize-url="/impressoras">
 							<a th:href="@{/impressoras}">Impressoras</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/maquinas}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/maquinas} sec:authorize-url="/maquinas">
 							<a th:href="@{/maquinas}">Maquinas</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/marcas}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/marcas} sec:authorize-url="/marcas">
 							<a th:href="@{/marcas}">Marcas</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/modelos}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/modelos} sec:authorize-url="/modelos">
 							<a th:href="@{/modelos}">Modelos</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/programas}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/programas} sec:authorize-url="/programas">
 							<a th:href="@{/programas}">Programas</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/setores}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/setores} sec:authorize-url="/setores">
 							<a th:href="@{/setores}">Setores</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/tipomodelos}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/tipomodelos} sec:authorize-url="/tipomodelos">
 							<a th:href="@{/tipomodelos}">Tipo de Modelos</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/usuarios}>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/toners} sec:authorize-url="/toners">
+							<a th:href="@{/toners}">Toners</a>
+						</li>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/usuarios} sec:authorize-url="/usuarios">
 							<a th:href="@{/usuarios}">Usuários</a>
 						</li>
 					</ul>
 				</li>
 
-				<li class="aw-menu__item">
+				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_CONFIGURACOES')">
 					<a href="#"> <i
 						class="fa  fa-fw  fa fa-cog"></i><span>Configurações</span> <i
 						class="aw-menu__navigation-icon  fa"></i>
 					</a>
 
-					<ul class="aw-menu__list  aw-menu__list--sublist" kuubuu:menu=@{/logins/novo}>
+					<ul class="aw-menu__list  aw-menu__list--sublist" kuubuu:menu=@{/logins/novo} sec:authorize-url="/logins/novo">
 						<li class="aw-menu__item  aw-menu__item--link" ><a
 							th:href="@{/logins/novo}">Login</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link"><a
-							th:href="@{/grupos/novo}">Grupo</a>
+						<li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/grupos/novo">
+							<a	th:href="@{/grupos/novo}">Grupo</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link"><a
-							th:href="@{/permissoes/nova}">Permissao</a>
+						<li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/permissoes/nova">
+							<a th:href="@{/permissoes/nova}">Permissao</a>
 						</li>
 						
 					</ul></li>

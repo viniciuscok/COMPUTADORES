@@ -3,7 +3,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:kuubuu="">
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Cadastro de Login</title>
@@ -20,7 +21,7 @@
 				<h1 th:unless="${login.novo}" th:text="|Edição do Login ${login.nome}.|">Cadastro de Impressora</h1>
 			</div>
 			  
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_LOGIN')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/logins}">
 						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Logins</span>
@@ -53,7 +54,7 @@
 					<label for="email" class="control-label">E-mail</label>
 					<input type="text" class="form-control" id="email" th:field="*{email}"/>
 				</div>
-				<div class="form-group  col-sm-3">
+				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataNascimento">
 					<label for="dataNascimento" class="control-label">Data de nascimento</label>
 					<input type="text" class="form-control js-date" id="dataNascimento" th:field="*{dataNascimento}"/>
 				</div>

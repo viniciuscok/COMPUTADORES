@@ -15,6 +15,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -142,6 +143,29 @@ public abstract class Equipamento implements Serializable
 		return true;
 	}
 	
+	@Transient
+	public boolean isAtivo()
+	{
+		return this.getStatus() == Status.ATIVO;
+	}
+	
+	@Transient
+	public boolean isDesativado()
+	{
+		return this.getStatus() == Status.DESATIVADO;
+	}
+	
+	@Transient
+	public boolean isChamado()
+	{
+		return this.getStatus() == Status.CHAMADO;
+	}
+	
+	@Transient
+	public boolean isManutencao()
+	{
+		return this.getStatus() == Status.MANUTENCAO;
+	}
 	
 	
 }

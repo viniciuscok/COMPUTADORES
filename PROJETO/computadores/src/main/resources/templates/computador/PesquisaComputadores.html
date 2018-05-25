@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
 	xmlns:kuubuu="http://vinicius.com.br"
-	xmlns:data="http://www.thymeleaf.org/extras/data">
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Computadores</title>
@@ -18,7 +19,7 @@
 				<h1>Pesquisa de Computadores</h1> 
 			</div>
 			
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_COMPUTADOR')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/computadores/novo}">
 						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Computador</span>
@@ -132,7 +133,7 @@
 					<th class="table-computador-col-code">Code</th>
 					<th class="table-computador-col-impressora">Impressora</th>
 					<th class="table-computador-col-status">Status</th>
-					<th class="table-computador-col-acoes"></th>
+					<th class="table-computador-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_COMPUTADOR')"></th>
 				</tr>
 			</thead>
 			
@@ -148,9 +149,22 @@
 						<span th:each="impressora : ${computador.impressoras}" 
 							th:text="|${impressora.nomeRede}-->${impressora.setor.nome}${impressoraStat.last ? '' : ', '}|"></span>
 					</td>
-					<td th:text="${computador.status.descricao}">1</td>
-					
-					<td class="text-center">
+					<!-- <td th:text="${computador.status.descricao}">1</td> -->
+					<td>	
+						<th:block th:if="${computador.ativo}">
+							<span class="label  label-success" th:text="${computador.status.descricao}">Ativo</span>
+						</th:block>
+						<th:block th:if="${computador.desativado}">
+							<span class="label  label-danger" th:text="${computador.status.descricao}">Ativo</span>
+						</th:block>
+						<th:block th:if="${computador.chamado}">
+							<span class="label  label-warning" th:text="${computador.status.descricao}">Ativo</span>
+						</th:block>
+						<th:block th:if="${computador.manutencao}">
+							<span class="label  label-info" th:text="${computador.status.descricao}">Ativo</span>
+						</th:block>
+					</td>
+					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_COMPUTADOR')">
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/computadores/{codigo}(codigo=${computador.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>
@@ -162,7 +176,7 @@
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="3">Nenhum computador encontrado</td>
+					<td colspan="9">Nenhum computador encontrado</td>
 				</tr>
 			</tbody>
 		</table>

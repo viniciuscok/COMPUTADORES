@@ -84,6 +84,7 @@ public class Login implements Serializable
 		this.ativo = ativo;
 	}
 	
+	@NotNull(message="Data de Nascimento deve ser informada")
 	@Column(name="data_nascimento", nullable=false, unique=false)
 	public LocalDate getDataNascimento() {
 		return dataNascimento;

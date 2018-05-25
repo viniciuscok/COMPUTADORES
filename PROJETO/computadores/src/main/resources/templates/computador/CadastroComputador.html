@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
 	xmlns:kuubuu=""
-	xmlns:data="http://www.thymeleaf.org/extras/data">
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Computadores</title>
@@ -19,7 +20,7 @@
 				<h1 th:unless="${computador.novo}" th:text="|Edição do computador ${computador.nome}|">Cadastro de Computador</h1>
 			</div>
 			  
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_COMPUTADOR')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/computadores}">
 						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Computadores</span>

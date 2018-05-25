@@ -4,7 +4,8 @@
 	xmlns:data="http://www.thymeleaf.org/extras/data"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:kuubuu="">
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Computadores</title>
@@ -19,7 +20,7 @@
 				<h1 th:unless="${impressora.nova}" th:text="|Edição da Impressora do Modelo ${impressora.modelo.nome}.|">Cadastro de Impressora</h1>
 			</div>
 			  
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_IMPRESSORA')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/impressoras}">
 						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Impressora</span>

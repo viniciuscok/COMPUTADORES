@@ -4,7 +4,8 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
 	xmlns:kuubuu="http://vinicius.com.br"
-	xmlns:data="http://www.thymeleaf.org/extras/data">
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Computadores</title>
@@ -18,7 +19,7 @@
 				<h1>Pesquisa de Grupos</h1> 
 			</div>
 			
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_GRUPO')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/grupos/novo}">
 						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Grupo</span>
@@ -52,7 +53,7 @@
 					<th class="table-kuubuu-col-codigo">Código</th>
 					<th class="table-kuubuu-col-nome">Nome</th>
 					<th class="table-kuubuu-col-nome">Permissões</th>
-					<th class="table-kuubuu-col-acoes"></th>
+					<th class="table-kuubuu-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_GRUPO')"></th>
 				</tr>
 			</thead>
 			
@@ -64,7 +65,7 @@
 						<span th:each="permissao : ${grupo.permissoes}" 
 							th:text="|${permissao.nome}${permissaoStat.last ? '' : ', '}|"></span>
 					</td>
-					<td class="text-center">
+					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_GRUPO')">
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/grupos/{codigo}(codigo=${grupo.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>
@@ -76,7 +77,7 @@
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="3">Nenhum grupo encontrado</td>
+					<td colspan="4">Nenhum grupo encontrado</td>
 				</tr>
 			</tbody>
 		</table>

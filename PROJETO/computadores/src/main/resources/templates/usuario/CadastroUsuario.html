@@ -3,7 +3,10 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layout/LayoutPadrao}"
-	xmlns:kuubuu="">
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	
+	<!-- sec:authentication="hasRole('CADASTRAR_USUARIO')" -->
 
 <head>
 	<title>Computadores</title>
@@ -18,7 +21,7 @@
 				<h1 th:unless="${usuario.novo}" th:text="|Edição do usuário ${usuario.nome}">Cadastro de Usuario</h1>
 			</div>
 			 
-			<div class="col-sm-2">
+			<div class="col-sm-2" sec:authorize-url="/usuarios">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/usuarios}">
 						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Usuários</span>
