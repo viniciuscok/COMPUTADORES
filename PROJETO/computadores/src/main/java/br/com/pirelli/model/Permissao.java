@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="permissao")
@@ -29,6 +30,7 @@ public class Permissao implements Serializable
 		this.codigo = codigo;
 	}
 	
+	@NotBlank(message="O nome deve ser informado")
 	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;

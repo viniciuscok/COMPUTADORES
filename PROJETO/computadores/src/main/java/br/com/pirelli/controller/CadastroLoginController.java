@@ -1,42 +1,31 @@
 package br.com.pirelli.controller;
 
-import java.util.Arrays;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
-import br.com.pirelli.filter.GrupoFilter;
 import br.com.pirelli.filter.LoginFilter;
-import br.com.pirelli.model.Grupo;
 import br.com.pirelli.model.Login;
-import br.com.pirelli.model.Status;
 import br.com.pirelli.repository.Grupos;
 import br.com.pirelli.repository.Logins;
 import br.com.pirelli.service.CadastroLoginService;
 import br.com.pirelli.service.StatusLogin;
 import br.com.pirelli.service.exception.EmailLoginJaCadastradoException;
-import br.com.pirelli.service.exception.ImpossivelExcluirGrupoException;
 import br.com.pirelli.service.exception.SenhaLoginObrigatoriaException;
 
 @Controller

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1 th:if="${os.nova}">Ordem de Serviço</h1>
+				<h1 th:unless="${os.nova}" th:text="|Edição da os ${os.codigo}|"></h1>
+			</div>
+			 
+			<div class="col-sm-2" > <!--  sec:authorize="hasRole('ROLE_PESQUISAR_FILIAL')">-->
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" ><!--  th:href="@{/os}">-->
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar de Os</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${os}" class="form-vertical  js-form-loading"
+		th:action="${os.nova} ? @{/os/nova} : @{/os/{codigo}(codigo=${os.codigo})}">
+		
+		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field=*{codigo}>
+		
+		<div class="row">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="descricao">
+				<label for="descricaoOs" class="control-label">Descrição</label>
+				<input id="descricaoOs" type="text" class="form-control" th:field=*{descricao}/>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="tipoEquipamento">
+				<label for="tipoEquipamento" class="control-label">Tipo de Equipamento</label>
+				<div>
+					<th:block th:each=" tipoEquipamento: ${tipoEquipamentos}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${tipoEquipamento}|" type="radio" th:value="${tipoEquipamento}" th:field="*{tipoEquipamento}"> 
+							<label th:for="|id_${tipoEquipamento}|" th:text="${tipoEquipamento.descricao}">Categoria da Impressora</label>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="equipamento">
+				<label for="equipamentoOs" class="control-label">Equipamento</label>
+				<select id="equipamentoOs" class="form-control" th:field=*{equipamento}>
+					<option value="">Selecione um equipamento</option>
+					<option th:each="computador : ${computadores}" th:value="${equipamento.codigo}" th:text="${computador.nome}"></option>
+				</select>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsOs">Observação</label>
+  				<textarea class="form-control" id="obsOs" rows="3" th:field="*{obs}"></textarea>
+				
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Salvar</button>
+			<!--  <a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>-->
+		</div>
+
+	</form>
+</div>
+
+</section>
+</body>
+</html>

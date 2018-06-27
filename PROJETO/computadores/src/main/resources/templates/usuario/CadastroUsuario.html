@@ -21,7 +21,7 @@
 				<h1 th:unless="${usuario.novo}" th:text="|Edição do usuário ${usuario.nome}">Cadastro de Usuario</h1>
 			</div>
 			 
-			<div class="col-sm-2" sec:authorize-url="/usuarios">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_USUARIO')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/usuarios}">
 						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Usuários</span>

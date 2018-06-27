@@ -16,13 +16,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1>Pesquisa de Programas</h1> 
+				<h1>Pesquisa de Filial</h1> 
 			</div>
 			
-			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_PROGRAMA')">
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_FILIAL')">
 				<div class="aw-page-header-controls">
-					<a class="btn btn-default" th:href="@{/programas/novo}">
-						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Programa</span>
+					<a class="btn btn-default" th:href="@{/filiais/nova}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Filial</span>
 					</a>
 				</div>
 			</div>
@@ -33,12 +33,12 @@
 
 <div class="container-fluid">
 	
-	<form method="GET" th:object="${programaFilter}" class="form-vertical  js-form-loading">
+	<form method="GET" th:object="${filialFilter}" class="form-vertical  js-form-loading">
 		
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required">
-				<label for="nomePrograma" class="control-label">Nome</label>
-				<input id="nomePrograma" type="text" class="form-control" th:field=*{nome}/>
+				<label for="nomeFilial" class="control-label">Nome</label>
+				<input id="nomeFilial" type="text" class="form-control" th:field=*{nome}/>
 			</div>
 		</div>
 		
@@ -52,27 +52,27 @@
 				<tr>
 					<th class="table-kuubuu-col-codigo">Código</th>
 					<th class="table-kuubuu-col-nome">Nome</th>
-					<th class="table-kuubuu-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_PROGRAMA')"></th>
+					<th class="table-kuubuu-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_FILIAL')"></th>
 				</tr>
 			</thead>
 			
 			<tbody>
-				<tr th:each="programa : ${pagina.conteudo}">
-					<td class="text-center" th:text="${programa.codigo}">1</td>
-					<td th:text="${programa.nome}">1</td>
-					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_PROGRAMA')">
-						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/programas/{codigo}(codigo=${programa.codigo})}"> 
+				<tr th:each="filial : ${pagina.conteudo}">
+					<td class="text-center" th:text="${filial.codigo}">1</td>
+					<td th:text="${filial.nome}">1</td>
+					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_FILIAL')">
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/filiais/{codigo}(codigo=${filial.codigo})}"> 
 							<i class="glyphicon glyphicon-pencil"></i>
 						</a>
-						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir"  href="#" 
-							data:url="@{/programas/{codigo}(codigo=${programa.codigo})}"
-							data:objeto="${programa.nome}">
+						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
+							data:url="@{/filiais/{codigo}(codigo=${filial.codigo})}"
+							data:objeto=${filial.nome}>
 							<i class="glyphicon glyphicon-remove"></i>
 						</a>
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="3">Nenhum programa encontrado</td>
+					<td colspan="3">Nenhuma filial encontrada</td>
 				</tr>
 			</tbody>
 		</table>

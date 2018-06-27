@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="grupo")
@@ -34,6 +36,7 @@ public class Grupo implements Serializable
 		this.codigo = codigo;
 	}
 	
+	@NotBlank(message="O nome do grupo deve ser informado.")
 	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;
@@ -42,6 +45,7 @@ public class Grupo implements Serializable
 		this.nome = nome;
 	}
 	
+	@NotNull(message="Uma permissão deve ser informada.")
 	@ManyToMany
 	@JoinTable(name="grupo_permissao", 
 		joinColumns = @JoinColumn(name="codigo_grupo"), 

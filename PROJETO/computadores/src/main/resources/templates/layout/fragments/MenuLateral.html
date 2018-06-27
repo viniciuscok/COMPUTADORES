@@ -105,14 +105,14 @@
 						class="aw-menu__navigation-icon  fa"></i>
 					</a>
 
-					<ul class="aw-menu__list  aw-menu__list--sublist" kuubuu:menu=@{/logins/novo} sec:authorize-url="/logins/novo">
-						<li class="aw-menu__item  aw-menu__item--link" ><a
+					<ul class="aw-menu__list  aw-menu__list--sublist" >
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/logins/novo} sec:authorize-url="/logins/novo"><a
 							th:href="@{/logins/novo}">Login</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/grupos/novo">
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/grupos/novo} sec:authorize-url="/grupos/novo">
 							<a	th:href="@{/grupos/novo}">Grupo</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" sec:authorize-url="/permissoes/nova">
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/permissoes/nova} sec:authorize-url="/permissoes/nova">
 							<a th:href="@{/permissoes/nova}">Permissao</a>
 						</li>
 						

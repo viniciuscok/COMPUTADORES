@@ -40,7 +40,7 @@
 		th:action="${impressora.nova} ? @{/impressoras/nova} : @{/impressoras/{codigo}(codigo=${impressora.codigo})}">
 		
 		<th:block th:include="fragments/ErroValidacao"></th:block>
-		
+		<input type="hidden" th:field=*{codigo}>
 		<div class="row">
 			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="filial">
 				<label for="filialImpressora" class="control-label">Filial</label>

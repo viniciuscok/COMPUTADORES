@@ -136,6 +136,7 @@
 					<th class="table-impressora-col-modelo">Modelo</th>
 					<th class="table-impressora-col-marca">Marca</th>
 					<th class="table-impressora-col-categoria">Categoria</th>
+					<th class="table-impressora-col-email">E-mail</th>
 					<th class="table-impressora-col-setor">Setor</th>
 					<th class="table-impressora-col-status">Status</th>
 					<th class="table-impressora-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_IMPRESSORA')"></th>
@@ -150,6 +151,7 @@
 					<td th:text="${impressora.modelo.nome}">1</td>
 					<td th:text="${impressora.marca.nome}">1</td>
 					<td th:text="${impressora.categoriaImpressora.descricao}">1</td>
+					<td th:text="${impressora.email}">1</td>
 					<td th:text="${impressora.setor.nome}">1</td>
 					<!-- <td th:text="${impressora.status.descricao}">1</td> -->
 					<td>	
