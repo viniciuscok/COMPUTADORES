@@ -26,6 +26,7 @@ public class CadastroComputadorService
 		{
 			throw new ComputadorJaCadastradoException("Computador já cadastrado");
 		}
+		if(computador.getCodigo())
 		
 		return computadores.save(computador);
 	}

@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="grupo")
@@ -45,7 +46,7 @@ public class Grupo implements Serializable
 		this.nome = nome;
 	}
 	
-	@NotNull(message="Uma permissão deve ser informada.")
+	@Size(min=1, message="Uma permissão deve ser informada.")
 	@ManyToMany
 	@JoinTable(name="grupo_permissao", 
 		joinColumns = @JoinColumn(name="codigo_grupo"), 
