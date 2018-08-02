@@ -88,6 +88,10 @@ public class ComputadoresImpl implements ComputadoresQueries
 				{
 					criteria.add(Restrictions.eq("setor", computadorFilter.getSetor()));
 				}
+				if(isUsuarioPresente(computadorFilter))
+				{
+					criteria.add(Restrictions.eq("usuario", computadorFilter.getUsuario()));
+				}
 			}
 		}
 		
@@ -101,6 +105,10 @@ public class ComputadoresImpl implements ComputadoresQueries
 		
 		private boolean isSetorPresente(ComputadorFilter computadorFilter) {
 			return computadorFilter.getSetor() != null && computadorFilter.getSetor().getCodigo() != null;
+		}
+		
+		private boolean isUsuarioPresente(ComputadorFilter computadorFilter) {
+			return computadorFilter.getUsuario() != null && computadorFilter.getUsuario().getCodigo() != null;
 		}
 
 }

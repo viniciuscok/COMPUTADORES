@@ -32,6 +32,7 @@ Pirelli.TipoComputador = (function() {
 		var computadorSelecionado = $(evento.currentTarget);
 		if(computadorSelecionado.is(':checked'))
 		{
+			console.log(computadorSelecionado);
 			
 			this.comboModelo.removeAttr('disabled');
 			

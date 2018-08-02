@@ -99,6 +99,14 @@
 		
 		<div class="row">
 			<div class="col-sm-4 form-group">
+				<label for="usuarioComputador" class="control-label">Usuário</label>
+				<select id="usuarioComputador" class="form-control" th:field=*{usuario}>
+					<option value="">Todos os Usuários</option>
+					<option th:each="usuario : ${usuarios}" th:value="${usuario.codigo}" th:text="${usuario.nome}">usuario</option>
+				</select>
+			</div>
+			
+			<div class="col-sm-4 form-group">
 				<label for="statusComputador" class="control-label">Status do Computador</label>
 				<div>
 					<th:block th:each=" status: ${statusComputadores}">

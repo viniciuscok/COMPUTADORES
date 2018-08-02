@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu="http://vinicius.com.br"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Pesquisa de Os para Computadores</h1> 
+			</div>
+			
+			<div class="col-sm-2"> <!--  sec:authorize="hasRole('ROLE_CADASTRAR_FILIAL')">-->
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/oscomputadores/nova}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Os</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<form method="GET" th:object="${osComputadorFilter}" class="form-vertical  js-form-loading">
+		
+		<div class="row">
+			<div class="col-sm-2 form-group">
+				<label for="codigoOsComptador" class="control-label">Código</label>
+				<input id="codigoOsComputador" type="text" class="form-control" th:field=*{codigo}/>
+			</div>
+			<div class="form-group col-sm-5">
+				<label for="computadorOsComputador" class="control-label">Computador</label>
+				<select id="computadorOsComputador" class="form-control" th:field="*{computador}">
+					<option value="">Selecione o computador</option>
+					<option th:each="computador : ${computadores}" th:value="${computador.codigo}" th:text="${computador.nome}">
+				</select>
+			</div>
+			<!--  <div class="form-group col-sm-4">
+				<label for="loginEntradaOsComputador" class="control-label">Abertura da Os</label>
+				<input type="text" class="form-control" id="loginEntradaOsComputador" th:field="*{loginEntrada.email}"/> 
+					
+			</div>
+			<div class="form-group col-sm-4">
+				<label for="loginSaidaOsComputador" class="control-label">Fechamento da os</label>
+				<input type="text" class="form-control" id="loginSaidaOsComputador" th:field="*{loginSaida.email}"/> 					
+			</div>-->
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-4">
+				<label for="tipoManutencaoOsComputador" class="control-label">Tipo Manutencao</label>
+				<select id="tipoManutencaoOsComputador" class="form-control" th:field="*{tipoManutencao}">
+					<option value="">Selecione o tipo da manutenção</option>
+					<option th:each="tipoManutencao : ${tipoManutencao}" th:value="${tipoManutencao}" th:text="${tipoManutencao.descricao}">
+				</select>
+			</div>
+			<div class="form-group col-sm-4">
+				<label for="statusManutencaoOsComputador" class="control-label">Status Manutencao</label>
+				<select id="statusManutencaoOsComputador" class="form-control" th:field="*{statusManutencao}">
+					<option value="">Selecione o tipo da manutenção</option>
+					<option th:each="statusManutencao : ${statusManutencao}" th:value="${statusManutencao}" th:text="${statusManutencao.descricao}">
+				</select>
+			</div>
+			
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Pesquisar</button>
+		</div>
+	</form>	
+	<div class="table-responsive kuubuu-tabela-simples">
+		<table class="table  table-hover">
+			<thead>
+				<tr>
+					<th class="table-kuubuu-col-codigo">Código</th>
+					<th class="table-kuubuu-col-nome">Descrição</th>
+					<th class="table-kuubuu-col-nome">Data de Entrada</th>
+					<th class="table-kuubuu-col-nome">Usuário de Abertura</th>
+					<th class="table-kuubuu-col-nome">Status</th>
+					<th class="table-kuubuu-col-acoes"></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="osComputador : ${pagina.conteudo}">
+					<td class="text-center" th:text="${osComputador.codigo}">1</td>
+					<td th:text="${osComputador.descricao}"></td>
+					<td th:text="${osComputador.dataEntrada}"></td>
+					<td th:text="${osComputador.loginEntrada.email}">1</td>
+					<td>
+						<th:block th:if="${osComputador.ManutencaoAberto}">
+							<span class="label label-warning" th:text="${osComputador.statusManutencao.descricao}">em aberto</span>
+						</th:block>
+					<td class="text-center">
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"> 
+							<i class="glyphicon glyphicon-pencil"></i>
+						</a>
+						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
+							data:url="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"
+							data:objeto=${osComputador.descricao}>
+							<i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				<tr th:if="${pagina.vazia}">
+					<td colspan="3">Nenhuma os encontrada</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<kuubuu:pagination page="${pagina}"/>
+	
+</div>
+
+</section>
+</body>
+</html>

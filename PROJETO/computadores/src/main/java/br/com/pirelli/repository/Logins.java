@@ -30,4 +30,7 @@ public interface Logins extends JpaRepository<Login, Long>
 	public Page<Login> findByNome(String nome, Pageable pageable);
 
 	public List<Login> findByCodigoIn(Long[] codigos);
+	
+	@Query(value="select * from login where email = ?1", nativeQuery=true)
+	public Login buscarCodigoPorEmail(String email);
 }

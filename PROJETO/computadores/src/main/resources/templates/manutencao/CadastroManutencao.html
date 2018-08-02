@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1 th:if="${manutencao.nova}">Manutenção de Computador</h1>
+				<h1 th:unless="${manutencao.nova}" th:text="|Edição da os ${manutencao.codigo}|"></h1>
+			</div>
+			 
+			<div class="col-sm-2" > <!--  sec:authorize="hasRole('ROLE_PESQUISAR_FILIAL')">-->
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/manutencoes}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar de Manutenção</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${manutencao}" class="form-vertical  js-form-loading"
+		th:action="${manutencao.nova} ? @{/manutencoes/nova} : @{/manutencoes/{codigo}(codigo=${manutencao.codigo})}">
+		
+		  <th:block th:include="fragments/ErroValidacao"></th:block> 
+		
+		<input type="hidden" th:field=*{codigo}>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="descricao">
+				<label for="descricaoManutencao" class="control-label">Descrição do Problema</label>
+				<textarea class="form-control" id="descricaoManutencao" rows="3" th:field="*{descricao}"></textarea>
+			</div>
+		</div>
+		
+		<div class="row">
+			<th:block th:if="${not manutencao.nova}">
+				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataEntrada">
+					<label for="dataEntradaManutencao" class="control-label">Entrada</label>
+					<input type="text" class="form-control js-date" id="dataEntradaManutencao" disabled th:field="*{dataEntrada}"/>
+				</div>
+				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataFechamento">
+					<label for="dataFechamentoManutencao" class="control-label">Término da Os</label>
+					<input type="text" class="form-control js-date" id="dataFechamentoManutencao" disabled th:field="*{dataFechamento}"/>
+				</div>
+				<div class="form-group col-sm-3 orc-required" kuubuu:errortext="loginEntrada">
+					<label for="loginEntradaManutencao" class="control-label">Abertura de os</label>
+					<select id="loginEntradaManutencao" class="form-control" disabled th:field=*{loginEntrada}>
+						<option value="">Selecione um Usuário</option>
+						<option th:each="login : ${logins}" th:value="${login.codigo}" th:text="${login.email}">
+					</select> 
+						
+				</div>
+				<div class="form-group col-sm-3 orc-required" kuubuu:errortext="loginSaida">
+					<label for="loginSaidaManutencao" class="control-label">Fechamento de os</label>
+					<select id="loginSaidaManutencao" class="form-control" disabled th:field=*{loginSaida}>
+						<option value="">Selecione um Usuário de saida</option>
+						<option th:each="login : ${logins}" th:value="${login.codigo}" th:text="${login.email}">
+					</select>  					
+				</div>
+			</th:block>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="equipamento">
+				<label for="equipamentoManutencao" class="control-label">N/S ou WK</label>
+				<input class="form-control" id="equipamentoManutencao" th:field=*{equipamento}>
+			</div>
+			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="tipoManutencao">
+				<label for="tipoManutencao" class="control-label">Tipo Manutencao</label>
+				<select id="tipoManutencao" class="form-control" th:field="*{tipoManutencao}">
+					<option value="">Selecione o tipo da manutenção</option>
+					<option th:each="tipoManutencao : ${tipoManutencao}" th:value="${tipoManutencao}" th:label="${tipoManutencao.descricao}">
+				</select>
+			</div>
+			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="statusManutencao">
+				<label for="statusManutencao" class="control-label">Status Manutencao</label>
+				<select id="statusManutencao" class="form-control" th:field="*{statusManutencao}">
+					<option value="">Selecione o tipo da manutenção</option>
+					<option th:each="statusManutencao : ${statusManutencao}" th:value="${statusManutencao}" th:label="${statusManutencao.descricao}">
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<th:block th:if="${not manutencao.nova}">
+				<div class="col-sm-12 form-group orc-required" kuubuu:errortext="solucao">
+	   				<label for="solucaoManutencao">Solução do Problema</label>
+	  				<textarea class="form-control" id="solucaoManutencao" rows="3" th:field="*{solucao}"></textarea>
+					
+				</div>
+			</th:block>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsManutencao">Observação</label>
+  				<textarea class="form-control" id="obsManutencao" rows="3" th:field="*{obs}"></textarea>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<button class="btn  btn-primary" type="submit">Salvar</button>
+				<th:block th:if="${not manutencao.nova}">
+					<button class="btn  btn-primary" type="submit">FinalizarOs</button>
+				</th:block>
+				
+				<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
+		</div>
+		</div>
+	<!--
+		<div class="row">	 
+			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="tipoEquipamento">
+				<label for="tipoEquipamento" class="control-label">Tipo de Equipamento</label>
+				<div>
+					<th:block th:each=" tipoEquipamento: ${tipoEquipamentos}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${tipoEquipamento}|" type="radio" th:value="${tipoEquipamento}" th:field="*{tipoEquipamento}"> 
+							<label th:for="|id_${tipoEquipamento}|" th:text="${tipoEquipamento.descricao}">Categoria da Impressora</label>
+						</div>
+					</th:block>
+				</div>
+			</div>
+			
+			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="computador">
+				<label for="computadorOs" class="control-label">computador</label>
+				<select id="computadorOs" class="form-control" th:field=*{computador}>
+					<option value="">Selecione um Computador</option>
+					<option th:each="computador : ${computadores}" th:value="${computador.codigo}" th:text="${computador.nome}"></option>
+				</select>
+			</div>
+			
+		</div>
+		
+		
+		
+		
+		
+-->
+	</form>
+</div> 
+
+
+</section>
+</body>
+</html>

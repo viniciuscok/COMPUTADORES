@@ -100,14 +100,23 @@ public class CadastroComputadorController
 		
 		try
 		{
-			cadastroComputadorService.salvar(computador);
+			if(computador.getCodigo() == null)
+			{
+				cadastroComputadorService.salvar(computador);
+				attributes.addFlashAttribute("mensagem", "Computador cadastrado com sucesso");
+			}else
+			{
+				cadastroComputadorService.salvar(computador);
+				attributes.addFlashAttribute("mensagem", "Computador editado com sucesso");
+			}
+			
 		}catch(ComputadorJaCadastradoException e)
 		{
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
 			return novo(computador);
 		}
 		
-		attributes.addFlashAttribute("mensagem", "Computador cadastrado com sucesso");
+		
 		
 		return new ModelAndView("redirect:/computadores/novo");
 	}
@@ -122,6 +131,7 @@ public class CadastroComputadorController
 		mv.addObject("statusComputadores", Status.values());
 		mv.addObject("marcas", marcas.findAll());
 		mv.addObject("setores", setores.findAll());
+		mv.addObject("usuarios", usuarios.findAll());
 		
 		PageWrapper<Computador> pagina = new PageWrapper<>(computadores.filtro(computadorFilter, pageable), httpServletRequest);
 		

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 
 import br.com.pirelli.model.Computador;
+import br.com.pirelli.model.Status;
 import br.com.pirelli.repository.helper.computador.ComputadoresQueries;
 
 @Controller
@@ -15,6 +16,14 @@ public interface Computadores extends JpaRepository<Computador, Long>, Computado
 {
 	
 	public Optional<Computador> findByNomeStartingWithIgnoreCase(String nome);
+	
+	//public Optional<Computador> findByNomeAndStatus(String nome, Status status);
+	
+	//public Optional<Computador> findByNomeAndCodigo(String nome, Long codigo);
+	
+	//public Long countByNome(String nome);
+	
+	//public Long countByStatus(Status status);
 
 	@Query(value="select count(*) from computador where tipo_computador = 'notebook'" , 
 			nativeQuery=true)

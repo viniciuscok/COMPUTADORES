@@ -7,6 +7,7 @@ import br.com.pirelli.model.Setor;
 import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoComputador;
+import br.com.pirelli.model.Usuario;
 
 public class ComputadorFilter 
 {
@@ -20,6 +21,7 @@ public class ComputadorFilter
 	private Status status;
 	private Marca marca;
 	private Setor setor;
+	private Usuario usuario;
 
 	
 	
@@ -101,6 +103,14 @@ public class ComputadorFilter
 
 	public void setSetor(Setor setor) {
 		this.setor = setor;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

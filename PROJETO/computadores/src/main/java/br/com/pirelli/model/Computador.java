@@ -39,7 +39,7 @@ public class Computador extends Equipamento
 	
 	
 	@NotBlank(message="O computador deve ser informado")
-	@Column(name="nome", nullable=false, unique=true)
+	@Column(name="nome", nullable=false, unique=false)
 	public String getNome() {
 		return nome;
 	}

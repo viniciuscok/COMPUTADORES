@@ -192,7 +192,7 @@
 					<th:block th:each=" status: ${statusComputadores}">
 						<div class="radio  radio-inline">
 							<input th:id="|id_${status}|" type="radio" th:value="${status}" th:field="*{status}"> 
-							<label th:for="|id_${status}|" th:text="${status.descricao}">Status do Computador</label>
+							<label th:for="|id_${status}|" th:text="${status.descricao}" >Status do Computador</label>
 						</div>
 					</th:block>
 					
