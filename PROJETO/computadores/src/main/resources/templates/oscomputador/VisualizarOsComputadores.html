@@ -15,8 +15,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-10">
-				<h1 th:if="${osComputador.nova}">Manutenção de Computador</h1>
-				<h1 th:unless="${osComputador.nova}" th:text="|Edição da os ${osComputador.codigo}|"></h1>
+				<h1>Visualizar Os Computador</h1>
 			</div>
 			 
 			<div class="col-sm-2" > <!--  sec:authorize="hasRole('ROLE_PESQUISAR_FILIAL')">-->
@@ -45,7 +44,7 @@
 		<div class="row">
 			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="descricao">
 				<label for="descricaoOsComputador" class="control-label">Descrição do Problema</label>
-				<textarea class="form-control" id="descricaoOsComputador" rows="3" th:field="*{descricao}"></textarea>
+				<span><textarea class="form-control" id="descricaoOsComputador" rows="3" th:field="*{descricao}"></textarea></span>
 			</div>
 		</div>
 		
@@ -129,7 +128,7 @@
 				
 			</div>
 		</div>
-		<div class="row">
+		<!--<div class="row">
 			<div class="form-group">
 				<button class="btn  btn-primary" type="submit">Salvar</button>
 				<th:block th:if="${not osComputador.nova}">
@@ -138,7 +137,7 @@
 				
 				<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
 		</div>
-		</div>
+		</div> -->
 	<!--
 		<div class="row">	 
 			<div class="col-sm-6 form-group orc-required" kuubuu:errortext="tipoEquipamento">

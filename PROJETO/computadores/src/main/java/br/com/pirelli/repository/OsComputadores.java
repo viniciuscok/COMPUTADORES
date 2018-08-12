@@ -9,5 +9,6 @@ import br.com.pirelli.repository.helper.oscomputador.OsComputadoresQueries;
 @Repository
 public interface OsComputadores extends JpaRepository<OsComputador, Long>, OsComputadoresQueries
 {
+	
 
 }

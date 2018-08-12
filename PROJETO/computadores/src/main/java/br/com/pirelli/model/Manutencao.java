@@ -3,6 +3,8 @@ package br.com.pirelli.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -23,6 +25,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @Entity
@@ -34,8 +37,8 @@ public abstract class Manutencao implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	private Long codigo;
-	private LocalDate dataEntrada;
-	private LocalDate dataFechamento;
+	private LocalDateTime dataEntrada;
+	private LocalDateTime dataFechamento;
 	private String descricao;
 	//private String equipamento;
 	private String solucao;
@@ -47,12 +50,14 @@ public abstract class Manutencao implements Serializable
 	
 	public Manutencao() 
 	{
+		//LocalDate data = LocalDate.now();
+		//LocalTime hora = LocalTime.now();
 		statusManutencao = StatusManutencao.ABERTO;
-		this.dataEntrada = LocalDate.now();
+		this.dataEntrada = LocalDateTime.now();
 		if(this.codigo != null )
 		{
-			this.dataFechamento = LocalDate.now();
-			this.dataEntrada = this.getDataEntrada();
+			//this.dataFechamento = LocalDateTime.now(fusoHorarioDeSaoPaulo);
+			//this.dataEntrada = this.getDataEntrada();
 		}
 		//if(UsuarioAutenticado() != null)
 		//{
@@ -74,19 +79,19 @@ public abstract class Manutencao implements Serializable
 	
 	//@NotNull(message="A data da entrada deve ser informada")
 	@Column(name="data_entrada")
-	public LocalDate getDataEntrada() {
+	public LocalDateTime getDataEntrada() {
 		return dataEntrada;
 	}
-	public void setDataEntrada(LocalDate dataEntrada) {
+	public void setDataEntrada(LocalDateTime dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
 	
 	//@NotNull(message="A data de fechamento da os deve ser informada")
 	@Column(name="data_fechamento")
-	public LocalDate getDataFechamento() {
+	public LocalDateTime getDataFechamento() {
 		return dataFechamento;
 	}
-	public void setDataFechamento(LocalDate dataFechamento) {
+	public void setDataFechamento(LocalDateTime dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
 	
@@ -216,6 +221,17 @@ public abstract class Manutencao implements Serializable
 		return this.statusManutencao.equals(StatusManutencao.ABERTO);
 	}
 	
+	@Transient
+	public boolean isManutencaoSemSolucao()
+	{
+		return this.statusManutencao.equals(StatusManutencao.SEMSOLUCAO);
+	}
+	
+	@Transient
+	public boolean isManutencaoFechada()
+	{
+		return this.statusManutencao.equals(StatusManutencao.FECHADO);
+	}
 	
 	
 

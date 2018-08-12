@@ -37,6 +37,7 @@ public class CadastroOsComputadorService
 		{
 			Login emailUsuarioEntrada = logins.buscarCodigoPorEmail(osComputador.UsuarioAutenticado());
 			osComputador.setLoginEntrada(emailUsuarioEntrada);
+			osComputador.setLoginSaida(null);
 			osComputador.setStatusManutencao(StatusManutencao.ABERTO);
 			osComputador.getComputador().setStatus(Status.MANUTENCAO);
 		}
@@ -50,8 +51,11 @@ public class CadastroOsComputadorService
 			Login emailusuarioSaida = logins.buscarCodigoPorEmail(osComputador.UsuarioAutenticado());
 			//osComputador.getLoginEntrada();
 			//osComputador.setDataFechamento(new LocalDate().now().no4);
+			osComputador.setLoginEntrada(osComputador.getLoginEntrada());
 			osComputador.setLoginSaida(emailusuarioSaida);
 			osComputador.getComputador().setStatus(Status.ATIVO);
+			
+			System.out.println("Login entrada" + osComputador.getLoginEntrada()+"\n\nLogin saída"+osComputador.getLoginSaida());
 		}
 		
 		if(osComputador.getCodigo() != null && StatusManutencao.SEMSOLUCAO.equals(osComputador.getStatusManutencao()))
@@ -59,8 +63,11 @@ public class CadastroOsComputadorService
 			Login emailusuarioSaida = logins.buscarCodigoPorEmail(osComputador.UsuarioAutenticado());
 			//osComputador.getLoginEntrada();
 			osComputador.setLoginSaida(emailusuarioSaida);
+			osComputador.setLoginEntrada(osComputador.getLoginEntrada());
 			osComputador.getComputador().setStatus(Status.DESATIVADO);
 		}
+		
+		//osComputador.setLoginEntrada(osComputador.getLoginEntrada());
 		return osComputadores.save(osComputador);
 	}
 

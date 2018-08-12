@@ -3,6 +3,7 @@ package br.com.pirelli.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -86,7 +87,7 @@ public class CadastroOsComputadorController
 	@GetMapping
 	public ModelAndView pesquisar(OsComputadorFilter osComputadorFilter, BindingResult result, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest )
 	{
-		ModelAndView mv = new ModelAndView("osComputador/PesquisaOsComputadores");
+		ModelAndView mv = new ModelAndView("oscomputador/PesquisaOsComputadores");
 		mv.addObject("tipoManutencao", TipoManutencao.values());
 		mv.addObject("statusManutencao", StatusManutencao.values());
 		mv.addObject("computadores", computadores.computadorOrdemCrescente());
@@ -102,6 +103,15 @@ public class CadastroOsComputadorController
 	public ModelAndView editar(@PathVariable("codigo") OsComputador osComputador)
 	{
 		ModelAndView mv = nova(osComputador);
+		mv.addObject(osComputador);
+		
+		return mv;
+	}
+	
+	@GetMapping("/visualizar/{codigo}")
+	public ModelAndView visualizar(@PathVariable("codigo") OsComputador osComputador)
+	{
+		ModelAndView mv = new ModelAndView("oscomputador/VisualizarOsComputadores");
 		mv.addObject(osComputador);
 		
 		return mv;

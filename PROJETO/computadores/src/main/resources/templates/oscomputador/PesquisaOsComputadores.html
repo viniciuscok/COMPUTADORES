@@ -88,7 +88,7 @@
 					<th class="table-kuubuu-col-nome">Data de Entrada</th>
 					<th class="table-kuubuu-col-nome">Usuário de Abertura</th>
 					<th class="table-kuubuu-col-nome">Status</th>
-					<th class="table-kuubuu-col-acoes"></th>
+					<th class="table-kuubuu-col-acoess"></th>
 				</tr>
 			</thead>
 			
@@ -99,8 +99,14 @@
 					<td th:text="${osComputador.dataEntrada}"></td>
 					<td th:text="${osComputador.loginEntrada.email}">1</td>
 					<td>
-						<th:block th:if="${osComputador.ManutencaoAberto}">
+						<th:block th:if="${osComputador.manutencaoAberto}">
 							<span class="label label-warning" th:text="${osComputador.statusManutencao.descricao}">em aberto</span>
+						</th:block>
+						<th:block th:if="${osComputador.manutencaoSemSolucao}">
+							<span class="label label-info" th:text="${osComputador.statusManutencao.descricao}">sem solução</span>
+						</th:block>
+						<th:block th:if="${osComputador.manutencaoFechada}">
+							<span class="label label-danger" th:text="${osComputador.statusManutencao.descricao}">Fechado</span>
 						</th:block>
 					<td class="text-center">
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"> 
@@ -110,6 +116,9 @@
 							data:url="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"
 							data:objeto=${osComputador.descricao}>
 							<i class="glyphicon glyphicon-remove"></i>
+						</a>
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/oscomputadores/visualizar/{codigo}(codigo=${osComputador.codigo})}"> 
+							<i class="glyphicon glyphicon-eye-open"></i>
 						</a>
 					</td>
 				</tr>
