@@ -54,21 +54,25 @@
 				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataEntrada">
 					<label for="dataEntrada" class="control-label">Data de Entrada</label>
 					<span class="form-control" id="dataEntrada" th:text="${osComputador.dataEntrada}"></span>
+					<input type="hidden" th:field="*{dataEntrada}" th:value="${dataEntrada}"/>
 					<!--  <input type="text" class="form-control js-date" id="dataEntrada" disabled th:field="*{dataEntrada}"/>-->
 				</div>
 				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataFechamento">
 					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
 					<span class="form-control" id="dataFechamento" th:text="${osComputador.dataFechamento}"></span>
+					<input type="hidden" th:field="*{dataFechamento}" th:value="${dataFechamento}"/>
 					<!--<input type="text" class="form-control js-date" id="dataFechamento" disabled th:field="*{dataFechamento}"/>-->
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="loginEntradaOsComputador" class="control-label">Usuário de Abertura</label>
 					<span class="form-control" id="loginEntradaOsComputador" th:text="${osComputador.loginEntrada.email}"></span>
+					<input type="hidden" th:field="*{loginEntrada}" th:value="${loginEntrada}"/>
 					<!--  <input type="text" class="form-control" id="loginEntradaOsComputador" th:field="*{loginEntrada}">-->
 				</div>
 				<div class="form-group col-sm-3">
-					<label for="loginSaidaOsComputador" class="control-label">Usuário de Abertura</label>
-					<span class="form-control" id="loginSaidaOsComputador" th:text="${osComputador.loginSaida}"></span>
+					<label for="loginSaidaOsComputador" class="control-label">Usuário de Fechamento</label>
+					<span class="form-control" id="loginSaidaOsComputador" th:text="${osComputador.loginSaida}" ></span>
+					<input type="hidden" th:field="*{loginSaida}" th:value="${loginSaida}"/>
 					<!--<input type="text" class="form-control" id="loginSaidaOsComputador" th:field="*{loginSaida}">-->
 				</div>
 				<!-- <div class="form-group col-sm-3 orc-required" kuubuu:errortext="loginEntrada">

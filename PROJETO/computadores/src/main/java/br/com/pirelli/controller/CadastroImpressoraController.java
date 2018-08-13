@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.ImpressoraFilter;
 import br.com.pirelli.model.CategoriaImpressora;
-import br.com.pirelli.model.Filial;
 import br.com.pirelli.model.Impressora;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoImpressora;

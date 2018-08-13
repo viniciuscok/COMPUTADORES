@@ -3,12 +3,10 @@ package br.com.pirelli.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +20,6 @@ import br.com.pirelli.model.OsComputador;
 import br.com.pirelli.model.StatusManutencao;
 import br.com.pirelli.model.TipoManutencao;
 import br.com.pirelli.repository.Computadores;
-import br.com.pirelli.repository.Logins;
 import br.com.pirelli.repository.OsComputadores;
 import br.com.pirelli.service.CadastroOsComputadorService;
 import br.com.pirelli.service.exception.NomeFilialJaCadastradoException;
@@ -39,9 +36,6 @@ public class CadastroOsComputadorController
 	
 	@Autowired
 	private OsComputadores osComputadores;
-	
-	@Autowired
-	private Logins logins;
 	
 	@GetMapping("/nova")
 	public ModelAndView nova(OsComputador osComputador)

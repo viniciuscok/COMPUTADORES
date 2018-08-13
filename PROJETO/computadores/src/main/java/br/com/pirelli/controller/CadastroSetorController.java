@@ -19,12 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.SetorFilter;
-import br.com.pirelli.model.Maquina;
-import br.com.pirelli.model.Programa;
 import br.com.pirelli.model.Setor;
 import br.com.pirelli.repository.Setores;
 import br.com.pirelli.service.CadastroSetorService;
-import br.com.pirelli.service.exception.ImpossivelExcluirProgramaException;
 import br.com.pirelli.service.exception.ImpossivelExcluirSetorException;
 import br.com.pirelli.service.exception.SetorJaCadastradoException;
 

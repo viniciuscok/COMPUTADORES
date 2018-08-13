@@ -18,14 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.pirelli.filter.FilialFilter;
 import br.com.pirelli.filter.PermissaoFilter;
-import br.com.pirelli.model.Filial;
 import br.com.pirelli.model.Permissao;
 import br.com.pirelli.repository.Permissoes;
 import br.com.pirelli.service.CadastroPermissaoService;
 import br.com.pirelli.service.exception.ImpossivelExcluirFilialException;
-import br.com.pirelli.service.exception.NomeFilialJaCadastradoException;
 import br.com.pirelli.service.exception.NomePermissaoJaCadastradoException;
 
 @Controller

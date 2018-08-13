@@ -19,12 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.UsuarioFilter;
-import br.com.pirelli.model.Maquina;
-import br.com.pirelli.model.Modelo;
 import br.com.pirelli.model.Usuario;
 import br.com.pirelli.repository.Usuarios;
 import br.com.pirelli.service.CadastroUsuarioService;
-import br.com.pirelli.service.exception.ImpossivelEcluirModeloException;
 import br.com.pirelli.service.exception.ImpossivelExcluirUsuarioException;
 import br.com.pirelli.service.exception.UsuarioJaCadastradoException;
 

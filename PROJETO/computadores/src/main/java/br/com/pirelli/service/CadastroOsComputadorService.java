@@ -1,10 +1,13 @@
 package br.com.pirelli.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import br.com.pirelli.model.Login;
 import br.com.pirelli.model.OsComputador;
@@ -37,7 +40,7 @@ public class CadastroOsComputadorService
 		{
 			Login emailUsuarioEntrada = logins.buscarCodigoPorEmail(osComputador.UsuarioAutenticado());
 			osComputador.setLoginEntrada(emailUsuarioEntrada);
-			osComputador.setLoginSaida(null);
+			//osComputador.setLoginSaida(null);
 			osComputador.setStatusManutencao(StatusManutencao.ABERTO);
 			osComputador.getComputador().setStatus(Status.MANUTENCAO);
 		}
@@ -48,10 +51,10 @@ public class CadastroOsComputadorService
 		
 		if(osComputador.getCodigo() != null && StatusManutencao.FECHADO.equals(osComputador.getStatusManutencao()))
 		{
+			//buscar usuário logado no sistema
 			Login emailusuarioSaida = logins.buscarCodigoPorEmail(osComputador.UsuarioAutenticado());
-			//osComputador.getLoginEntrada();
-			//osComputador.setDataFechamento(new LocalDate().now().no4);
-			osComputador.setLoginEntrada(osComputador.getLoginEntrada());
+			
+			osComputador.setDataFechamento(LocalDateTime.now());
 			osComputador.setLoginSaida(emailusuarioSaida);
 			osComputador.getComputador().setStatus(Status.ATIVO);
 			
@@ -62,8 +65,9 @@ public class CadastroOsComputadorService
 		{
 			Login emailusuarioSaida = logins.buscarCodigoPorEmail(osComputador.UsuarioAutenticado());
 			//osComputador.getLoginEntrada();
+			osComputador.setDataFechamento(LocalDateTime.now());
 			osComputador.setLoginSaida(emailusuarioSaida);
-			osComputador.setLoginEntrada(osComputador.getLoginEntrada());
+			//osComputador.setLoginEntrada(osComputador.getLoginEntrada());
 			osComputador.getComputador().setStatus(Status.DESATIVADO);
 		}
 		
