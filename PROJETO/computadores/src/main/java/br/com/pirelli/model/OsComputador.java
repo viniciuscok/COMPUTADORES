@@ -17,7 +17,6 @@ public class OsComputador extends Manutencao
 	private static final long serialVersionUID = 1L;
 	
 	private Computador computador;
-	private Computador status;
 	
 	@NotNull(message="O computador deve ser informado.")
 	@ManyToOne

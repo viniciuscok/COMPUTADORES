@@ -99,13 +99,13 @@
 					</ul>
 				</li>
 				
-				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_BUSCAR')">
+				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_OSCOMPUTADOR')">
 					<a href="#"> <i class="fa fa-fw fa-wrench"></i><span>Manutenção</span> <i
 						class="aw-menu__navigation-icon  fa"></i>
 					</a>
 					<ul class="aw-menu__list  aw-menu__list--sublist">
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/oscomputadores/nova} sec:authorize-url="/computadores">
-							<a th:href="@{/oscomputadores/nova}">Manutenção</a>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/oscomputadores} sec:authorize-url="/oscomputadores">
+							<a th:href="@{/oscomputadores}">Manutenção</a>
 						</li>
 					</ul>	
 				</li>

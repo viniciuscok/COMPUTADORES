@@ -19,7 +19,7 @@
 				<h1 th:unless="${osComputador.nova}" th:text="|Edição da os ${osComputador.codigo}|"></h1>
 			</div>
 			 
-			<div class="col-sm-2" > <!--  sec:authorize="hasRole('ROLE_PESQUISAR_FILIAL')">-->
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_OSCOMPUTADOR')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/oscomputadores}">
 						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar de Os</span>

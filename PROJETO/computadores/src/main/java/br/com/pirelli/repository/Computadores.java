@@ -41,4 +41,8 @@ public interface Computadores extends JpaRepository<Computador, Long>, Computado
 			nativeQuery=true)
 	public List<Computador> computadorOrdemCrescente();
 
+	@Query(value="select * from equipamento e inner join computador c on e.codigo = c.codigo "
+			+ "where e.tipo_equipamento = 'computador' and e.status in('ATIVO','MANUTENCAO') order by(c.nome) asc",
+			nativeQuery=true)
+	public List<Computador> buscarComputadoresEmUsoOrdemCrescente();
 }

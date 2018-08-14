@@ -19,7 +19,7 @@
 				<h1>Pesquisa de Os para Computadores</h1> 
 			</div>
 			
-			<div class="col-sm-2"> <!--  sec:authorize="hasRole('ROLE_CADASTRAR_FILIAL')">-->
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_OSCOMPUTADOR')">
 				<div class="aw-page-header-controls">
 					<a class="btn btn-default" th:href="@{/oscomputadores/nova}">
 						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Nova Os</span>
@@ -84,9 +84,11 @@
 			<thead>
 				<tr>
 					<th class="table-kuubuu-col-codigo">Código</th>
-					<th class="table-kuubuu-col-nome">Descrição</th>
+					<th class="table-kuubuu-col-nome">Computador</th>
 					<th class="table-kuubuu-col-nome">Data de Entrada</th>
+					<th class="table-kuubuu-col-nome">Data de Fechamento</th>
 					<th class="table-kuubuu-col-nome">Usuário de Abertura</th>
+					<th class="table-kuubuu-col-nome">Usuário de Fechamento</th>
 					<th class="table-kuubuu-col-nome">Status</th>
 					<th class="table-kuubuu-col-acoess"></th>
 				</tr>
@@ -95,9 +97,11 @@
 			<tbody>
 				<tr th:each="osComputador : ${pagina.conteudo}">
 					<td class="text-center" th:text="${osComputador.codigo}">1</td>
-					<td th:text="${osComputador.descricao}"></td>
+					<td th:text="${osComputador.computador.nome}"></td>
 					<td th:text="${osComputador.dataEntrada}"></td>
+					<td th:text="${not osComputador.manutencaoAberto} ? ${osComputador.dataFechamento}: 'OS aberta'"></td>
 					<td th:text="${osComputador.loginEntrada.email}">1</td>
+					<td th:text="${not osComputador.manutencaoAberto} ? ${osComputador.loginSaida.email} : 'Os aberta' ">1</td>
 					<td>
 						<th:block th:if="${osComputador.manutencaoAberto}">
 							<span class="label label-warning" th:text="${osComputador.statusManutencao.descricao}">em aberto</span>
@@ -109,15 +113,12 @@
 							<span class="label label-danger" th:text="${osComputador.statusManutencao.descricao}">Fechado</span>
 						</th:block>
 					<td class="text-center">
+						<th:block th:if="${osComputador.manutencaoAberto}" sec:authorize="hasRole('ROLE_CADASTRAR_OSCOMPUTADOR')">
+							<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+						</th:block>
 						
-						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"> 
-							<i class="glyphicon glyphicon-pencil"></i>
-						</a>
-						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
-							data:url="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"
-							data:objeto=${osComputador.descricao}>
-							<i class="glyphicon glyphicon-remove"></i>
-						</a>
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/oscomputadores/visualizar/{codigo}(codigo=${osComputador.codigo})}"> 
 							<i class="glyphicon glyphicon-eye-open"></i>
 						</a>

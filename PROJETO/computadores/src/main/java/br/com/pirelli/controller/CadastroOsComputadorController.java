@@ -43,7 +43,7 @@ public class CadastroOsComputadorController
 		ModelAndView mv = new ModelAndView("oscomputador/CadastroOsComputador");
 		mv.addObject("tipoManutencao", TipoManutencao.values());
 		mv.addObject("statusManutencao", StatusManutencao.values());
-		mv.addObject("computadores", computadores.computadorOrdemCrescente());
+		mv.addObject("computadores", computadores.buscarComputadoresEmUsoOrdemCrescente());
 		//mv.addObject("logins", logins.findAll());
 		System.out.println("-----------------------------"+ osComputador.UsuarioAutenticado());
 		return mv;
