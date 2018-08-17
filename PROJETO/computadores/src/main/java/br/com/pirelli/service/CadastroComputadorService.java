@@ -34,15 +34,23 @@ public class CadastroComputadorService
 		//{
 			//throw new ComputadorJaCadastradoException("Computador1 já cadastrado");
 		//}
-		Optional<Computador> optional = computadores.findByNomeStartingWithIgnoreCase(computador.getNome());
+		//Optional<Computador> optional = computadores.findByNomeStartingWithIgnoreCase(computador.getNome());
 		
 		//Optional<Computador> optional2 = computadores.findByNomeAndStatus(computador.getNome(), Status.DESATIVADO);
 		
 		//Optional<Computador> optional3 = computadores.findByNomeAndCodigo(computador.getNome(), computador.getCodigo());
 		
-		if((computador.getCodigo() == null) && optional.isPresent())
+		List<Computador> listaVerificada = computadores.findByNomeAndStatus(computador.getNome(), computador.getStatus());
+		
+		
+		if((computador.getCodigo() == null) && listaVerificada.size() >= 1)
 		{
 			throw new ComputadorJaCadastradoException("Computador já cadastrado");
+		}
+		
+		if((computador.getCodigo() != null) && listaVerificada.size() >= 1 && computador.getStatus().equals(Status.ATIVO))
+		{
+			throw new ComputadorJaCadastradoException("Já existe um computador Ativo com este nome");
 		}
 		
 		

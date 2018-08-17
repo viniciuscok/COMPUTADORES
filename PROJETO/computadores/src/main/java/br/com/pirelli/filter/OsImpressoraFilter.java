@@ -1,18 +1,19 @@
 package br.com.pirelli.filter;
 
-import br.com.pirelli.model.Computador;
+import br.com.pirelli.model.Impressora;
 import br.com.pirelli.model.Login;
 import br.com.pirelli.model.StatusManutencao;
 import br.com.pirelli.model.TipoManutencao;
 
-public class OsComputadorFilter 
+public class OsImpressoraFilter 
 {
 	private Long codigo;
-	private Computador computador;
+	private Impressora impressora;
 	private Login loginEntrada;
 	private Login loginSaida;
 	private TipoManutencao tipoManutencao;
 	private StatusManutencao statusManutencao;
+	
 	
 	public Long getCodigo() {
 		return codigo;
@@ -20,11 +21,11 @@ public class OsComputadorFilter
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public Computador getComputador() {
-		return computador;
+	public Impressora getImpressora() {
+		return impressora;
 	}
-	public void setComputador(Computador computador) {
-		this.computador = computador;
+	public void setImpressora(Impressora impressora) {
+		this.impressora = impressora;
 	}
 	public Login getLoginEntrada() {
 		return loginEntrada;
@@ -49,6 +50,8 @@ public class OsComputadorFilter
 	}
 	public void setStatusManutencao(StatusManutencao statusManutencao) {
 		this.statusManutencao = statusManutencao;
-	}	
+	}
+	
+	
 
 }

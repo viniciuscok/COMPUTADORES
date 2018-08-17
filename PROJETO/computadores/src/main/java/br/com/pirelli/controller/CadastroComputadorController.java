@@ -93,6 +93,7 @@ public class CadastroComputadorController
 	@PostMapping(value= {"/novo", "{\\d+}"})
 	public ModelAndView salvar(@Valid Computador computador, BindingResult result, RedirectAttributes attributes)
 	{
+		System.out.println("-----------------------------------------------passo 1");
 		if(result.hasErrors())
 		{
 			return novo(computador);
@@ -106,6 +107,7 @@ public class CadastroComputadorController
 				attributes.addFlashAttribute("mensagem", "Computador cadastrado com sucesso");
 			}else
 			{
+				System.out.println("-----------------------------------------------passo 3");
 				cadastroComputadorService.salvar(computador);
 				attributes.addFlashAttribute("mensagem", "Computador editado com sucesso");
 			}

@@ -17,6 +17,8 @@ public interface Computadores extends JpaRepository<Computador, Long>, Computado
 	
 	public Optional<Computador> findByNomeStartingWithIgnoreCase(String nome);
 	
+	public List<Computador> findByNomeAndStatus(String nome, Status status);
+	
 	//public Optional<Computador> findByNomeAndStatus(String nome, Status status);
 	
 	//public Optional<Computador> findByNomeAndCodigo(String nome, Long codigo);
