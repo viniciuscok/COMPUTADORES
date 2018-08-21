@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1 th:if="${osImpressora.nova}">Manutenção de Impressora</h1>
+				<h1 th:unless="${osImpressora.nova}" th:text="|Edição da os ${osImpressora.codigo}|"></h1>
+			</div>
+			 
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_OSCOMPUTADOR')">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/osimpressoras}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar de Os</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${osImpressora}" class="form-vertical  js-form-loading"
+		th:action="${osImpressora.nova} ? @{/osimpressoras/nova} : @{/osimpressoras/{codigo}(codigo=${osImpressora.codigo})}">
+		
+		  <th:block th:include="fragments/ErroValidacao"></th:block> 
+		
+		<input type="hidden" th:field=*{codigo}>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group orc-required" kuubuu:errortext="descricao">
+				<label for="descricaoOsImpressora" class="control-label">Descrição do Problema</label>
+				<textarea class="form-control" id="descricaoOsImpressora" rows="3" th:field="*{descricao}"></textarea>
+			</div>
+		</div>
+		
+		<div class="row">
+			<th:block th:if="${not osImpressora.nova}">
+				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataEntrada">
+					<label for="dataEntrada" class="control-label">Data de Entrada</label>
+					<span class="form-control" id="dataEntrada" th:text="${osImpressora.dataEntrada}"></span>
+					<input type="hidden" th:field="*{dataEntrada}" th:value="${dataEntrada}"/>
+					<!--  <input type="text" class="form-control js-date" id="dataEntrada" disabled th:field="*{dataEntrada}"/>-->
+				</div>
+				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataFechamento">
+					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
+					<span class="form-control" id="dataFechamento" th:text="${osImpressora.dataFechamento}"></span>
+					<input type="hidden" th:field="*{dataFechamento}" th:value="${dataFechamento}"/>
+					<!--<input type="text" class="form-control js-date" id="dataFechamento" disabled th:field="*{dataFechamento}"/>-->
+				</div>
+				<div class="form-group col-sm-3">
+					<label for="loginEntradaOsImpressora" class="control-label">Usuário de Abertura</label>
+					<span class="form-control" id="loginEntradaOsImpressora" th:text="${osImpressora.loginEntrada.email}"></span>
+					<input type="hidden" th:field="*{loginEntrada}" th:value="${loginEntrada}"/>
+					<!--  <input type="text" class="form-control" id="loginEntradaOsComputador" th:field="*{loginEntrada}">-->
+				</div>
+				<div class="form-group col-sm-3">
+					<label for="loginSaidaOsImpressora" class="control-label">Usuário de Fechamento</label>
+					<span class="form-control" id="loginSaidaOsImpressora" th:text="${osImpressora.loginSaida}" ></span>
+					<input type="hidden" th:field="*{loginSaida}" th:value="${loginSaida}"/>
+					<!--<input type="text" class="form-control" id="loginSaidaOsComputador" th:field="*{loginSaida}">-->
+				</div>
+				
+				
+			</th:block>
+		</div>
+		<div class="row">
+			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="tipoManutencao">
+				<label for="tipoManutencaoOsImpressora" class="control-label">Tipo Manutencao</label>
+				<select id="tipoManutencaoOsImpressora" class="form-control" th:field="*{tipoManutencao}">
+					<option value="">Selecione o tipo da manutenção</option>
+					<option th:each="tipoManutencao : ${tipoManutencao}" th:value="${tipoManutencao}" th:label="${tipoManutencao.descricao}">
+				</select>
+			</div>
+			<th:block th:if="${not osImpressora.nova}">
+				<div class="form-group col-sm-4 orc-required" kuubuu:errortext="statusManutencao">
+					<label for="statusManutencaoOsImpressora" class="control-label">Status Manutencao</label>
+					<select id="statusManutencaoOsImpressora" class="form-control" th:field="*{statusManutencao}">
+						<option value="">Selecione o tipo da manutenção</option>
+						<option th:each="statusManutencao : ${statusManutencao}" th:value="${statusManutencao}" th:label="${statusManutencao.descricao}">
+					</select>
+				</div>
+			</th:block>
+			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="impressora">
+				<label for="computadorOsImpressora" class="control-label">Impressora</label>
+				<select id="computadorOsImpressora" class="form-control" th:field="*{impressora}">
+					<option value="">Selecione a Impressora</option>
+					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:label="${impressora.nome}">
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<th:block th:if="${not osImpressora.nova}">
+				<div class="col-sm-12 form-group orc-required" kuubuu:errortext="solucao">
+	   				<label for="solucaoOsImpressora">Solução do Problema</label>
+	  				<textarea class="form-control" id="solucaoOsImpressora" rows="3" th:field="*{solucao}"></textarea>
+				</div>
+			</th:block>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsOsImpressora">Observação</label>
+  				<textarea class="form-control" id="obsOsImpressora" rows="3" th:field="*{obs}"></textarea>
+				
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Salvar</button>
+			<th:block th:if="${not osImpressora.nova}">
+				<button class="btn  btn-primary" type="submit">FinalizarOs</button>
+			</th:block>
+				
+			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
+		</div>
+		
+	
+	</form>
+</div> 
+
+
+</section>
+</body>
+</html>

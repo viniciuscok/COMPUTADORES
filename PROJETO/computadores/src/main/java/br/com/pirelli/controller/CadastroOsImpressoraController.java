@@ -75,13 +75,13 @@ public class CadastroOsImpressoraController
 			return nova(osImpressora);
 		}
 		
-		return new ModelAndView("redirect:/oscomputadores/nova");
+		return new ModelAndView("redirect:/osimpressoras/nova");
 	}
 
 	@GetMapping
 	public ModelAndView pesquisar(OsImpressoraFilter osImpressoraFilter, BindingResult result, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest )
 	{
-		ModelAndView mv = new ModelAndView("oscomputador/PesquisaOsComputadores");
+		ModelAndView mv = new ModelAndView("osimpressora/PesquisaOsImpressora");
 		mv.addObject("tipoManutencao", TipoManutencao.values());
 		mv.addObject("statusManutencao", StatusManutencao.values());
 		mv.addObject("impressoras", impressoras.findAll()); //computadorOrdemCrescente());
