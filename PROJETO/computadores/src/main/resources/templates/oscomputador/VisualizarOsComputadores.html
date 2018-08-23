@@ -49,69 +49,90 @@
 		</div>
 		
 		<div class="row">
-			<th:block th:if="${not osComputador.nova}">
-				<div class="form-group  col-sm-3">
-					<label for="dataEntrada" class="control-label">Data de Entrada</label>
-					<span class="form-control" id="dataEntrada" th:text="${osComputador.dataEntrada}"></span>
-					<!--  <input type="text" class="form-control js-date" id="dataEntrada" disabled th:field="*{dataEntrada}"/>-->
-				</div>
+			
+			<div class="form-group  col-sm-3">
+				<label for="dataEntrada" class="control-label">Data de Entrada</label>
+				<span class="form-control" id="dataEntrada" th:text="${osComputador.dataEntrada}"></span>	
+			</div>
+			
+			<th:block th:if="${osComputador.dataFechamento != null}">
 				<div class="form-group  col-sm-3" >
 					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
 					<span class="form-control" id="dataFechamento" th:text="${osComputador.dataFechamento}"></span>
-					<!--<input type="text" class="form-control js-date" id="dataFechamento" disabled th:field="*{dataFechamento}"/>-->
 				</div>
-				<div class="form-group col-sm-3">
-					<label for="loginEntradaOsComputador" class="control-label">Usuário de Abertura</label>
-					<span class="form-control" id="loginEntradaOsComputador" th:text="${osComputador.loginEntrada.email}"></span>
-					<!--  <input type="text" class="form-control" id="loginEntradaOsComputador" th:field="*{loginEntrada}">-->
-				</div>
+			</th:block>
+			
+			
+			<div class="form-group col-sm-3">
+				<label for="loginEntradaOsComputador" class="control-label">Usuário de Abertura</label>
+				<span class="form-control" id="loginEntradaOsComputador" th:text="${osComputador.loginEntrada.email}"></span>
+				
+			</div>
+			
+			<th:block th:if="${osComputador.loginSaida != null}">
 				<div class="form-group col-sm-3">
 					<label for="loginSaidaOsComputador" class="control-label">Usuário de Fechamento</label>
 					<span class="form-control" id="loginSaidaOsComputador" th:text="${osComputador.loginSaida.email}"></span>
-					<!--<input type="text" class="form-control" id="loginSaidaOsComputador" th:field="*{loginSaida}">-->
+					
 				</div>	
 			</th:block>
 		</div>
+		
 		<div class="row">
 			<div class="form-group col-sm-4">
 				<label for="tipoManutencaoOsComputador" class="control-label">Tipo Manutencao</label>
-				<!--  <select id="tipoManutencaoOsComputador" class="form-control" th:field="*{tipoManutencao}">
-					<option value="">Selecione o tipo da manutenção</option>
-					<option th:each="tipoManutencao : ${tipoManutencao}" th:value="${tipoManutencao}" th:text="${tipoManutencao.descricao}">
-				</select>-->
 				<span class="form-control" th:text="${osComputador.tipoManutencao.descricao}"></span>
 			</div>
-			<th:block th:if="${not osComputador.nova}">
-				<div class="form-group col-sm-4">
-					<label for="statusManutencaoOsComputador" class="control-label">Status Manutencao</label>
-					<span class="form-control" th:text="${osComputador.statusManutencao.descricao}"></span>
-				</div>
-			</th:block>
+			
+			<div class="form-group col-sm-4">
+				<label for="statusManutencaoOsComputador" class="control-label">Status Manutencao</label>
+				<span class="form-control" th:text="${osComputador.statusManutencao.descricao}"></span>
+			</div>
+			
 			<div class="form-group col-sm-4">
 				<label for="computadorOsComputador" class="control-label">Computador</label>
 				<span class="form-control" th:text="${osComputador.computador.nome}"></span>
 			</div>
-		</div>
+		</div>	
+		
 		<div class="row">
-			<th:block th:if="${not osComputador.nova}">
+			<th:block th:if="${osComputador.solucao != null}">
+				
 				<div class="col-sm-12 form-group">
-	   				<label for="solucaoOsComputador">Solução do Problema</label>
-	  				<textarea class="form-control" id="solucaoOsComputador" rows="3" th:field="*{solucao}" disabled></textarea>
+		   			<label for="solucaoOsComputador">Solução do Problema</label>
+		  			<textarea class="form-control" id="solucaoOsComputador" rows="3" th:field="*{solucao}" disabled></textarea>
 				</div>
+				
 			</th:block>
+	
 		</div>
+				
 		<div class="row">
+			
 			<div class="col-sm-12 form-group">
    				<label for="obsOsComputador">Observação</label>
-  				<textarea class="form-control" id="obsOsComputador" rows="3" th:field="*{obs}" disabled></textarea>
-				
+  				<textarea class="form-control" id="obsOsComputador" rows="3" th:field="*{obs}" disabled></textarea>	
 			</div>
+			
+		</div>	
+		<div class="form-group" style="text-align: center">
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+			
+	</form>
+</div>		
+		<!--  
+		
+				
+		
+		<div class="row">
+			
 		</div>
 		
 	</form>
 </div> 
 
-
+-->
 </section>
 </body>
 </html>

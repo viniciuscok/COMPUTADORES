@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Visualizar Os Impressora</h1>
+			</div>
+			 
+			<div class="col-sm-2" > <!--  sec:authorize="hasRole('ROLE_PESQUISAR_FILIAL')">-->
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/osimpressoras}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar de Os</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${osImpressora}" class="form-vertical  js-form-loading"
+		th:action="${osImpressora.nova} ? @{/osimpressoras/nova} : @{/osimpressoras/{codigo}(codigo=${osImpressora.codigo})}">
+		
+		  <th:block th:include="fragments/ErroValidacao"></th:block> 
+		
+		<input type="hidden" th:field=*{codigo}>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+				<label for="descricaoOsImpressora" class="control-label">Descrição do Problema</label>
+				<textarea class="form-control" id="descricaoOsImpressora" rows="3" th:field="*{descricao}" disabled></textarea>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+			<div class="form-group  col-sm-3">
+				<label for="dataEntrada" class="control-label">Data de Entrada</label>
+				<span class="form-control" id="dataEntrada" th:text="${osImpressora.dataEntrada}"></span>	
+			</div>
+			
+			<th:block th:if="${osImpressora.dataFechamento != null}">
+				<div class="form-group  col-sm-3" >
+					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
+					<span class="form-control" id="dataFechamento" th:text="${osImpressora.dataFechamento}"></span>
+				</div>
+			</th:block>
+			
+			
+			<div class="form-group col-sm-3">
+				<label for="loginEntradaOsImpressora" class="control-label">Usuário de Abertura</label>
+				<span class="form-control" id="loginEntradaOsImpressora" th:text="${osImpressora.loginEntrada.email}"></span>
+				
+			</div>
+			
+			<th:block th:if="${osImpressora.loginSaida != null}">
+				<div class="form-group col-sm-3">
+					<label for="loginSaidaOsImpressora" class="control-label">Usuário de Fechamento</label>
+					<span class="form-control" id="loginSaidaOsImpressora" th:text="${osImpressora.loginSaida.email}"></span>
+					
+				</div>	
+			</th:block>
+		</div>
+		
+		<div class="row">
+			<div class="form-group col-sm-4">
+				<label for="tipoManutencaoOsImpressora" class="control-label">Tipo Manutencao</label>
+				<span class="form-control" th:text="${osImpressora.tipoManutencao.descricao}"></span>
+			</div>
+			
+			<div class="form-group col-sm-4">
+				<label for="statusManutencaoOsImpressora" class="control-label">Status Manutencao</label>
+				<span class="form-control" th:text="${osImpressora.statusManutencao.descricao}"></span>
+			</div>
+			
+			<div class="form-group col-sm-4">
+				<label for="impressoraOsImpressora" class="control-label">Computador</label>
+				<span class="form-control" th:text="${osImpressora.impressora.numeroDeSerie}"></span>
+			</div>
+		</div>	
+		
+		<div class="row">
+			<th:block th:if="${osImpressora.solucao != null}">
+				
+				<div class="col-sm-12 form-group">
+		   			<label for="solucaoOsImpressora">Solução do Problema</label>
+		  			<textarea class="form-control" id="solucaoOsImpressora" rows="3" th:field="*{solucao}" disabled></textarea>
+				</div>
+				
+			</th:block>
+	
+		</div>
+				
+		<div class="row">
+			
+			<div class="col-sm-12 form-group">
+   				<label for="obsOsImpressora">Observação</label>
+  				<textarea class="form-control" id="obsOsImpressora" rows="3" th:field="*{obs}" disabled></textarea>	
+			</div>
+			
+		</div>	
+		<div class="form-group" style="text-align: center">
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+			
+	</form>
+</div>		
+</section>
+</body>
+</html>

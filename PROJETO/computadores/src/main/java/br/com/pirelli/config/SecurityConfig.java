@@ -58,6 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.antMatchers("/toners/novo").hasRole("CADASTRAR_TONER")
 				.antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO")
 				.antMatchers("/oscomputadores/nova").hasRole("CADASTRAR_OSCOMPUTADOR")
+				.antMatchers("/osimpressoras/nova").hasRole("CADASTRAR_OSIMPRESSORA")
 				//PESQUISA
 				.antMatchers("/computadores").hasRole("PESQUISAR_COMPUTADOR")
 				.antMatchers("/filiais").hasRole("PESQUISAR_FILIAL")
@@ -74,11 +75,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.antMatchers("/toners").hasRole("PESQUISAR_TONER")
 				.antMatchers("/usuarios").hasRole("PESQUISAR_USUARIO")
 				.antMatchers("/oscomputadores").hasRole("PESQUISAR_OSCOMPUTADOR")
+				.antMatchers("/osimpressoras").hasRole("PESQUISAR_OSIMPRESSORA")
 				// MENU
 				.antMatchers().hasRole("MENU_CADASTRAR")
 				.antMatchers().hasRole("MENU_BUSCAR")
 				.antMatchers().hasRole("MENU_CONFIGURACOES")
-				.antMatchers().hasRole("MENU_OSCOMPUTADOR")
+				.antMatchers().hasRole("MENU_MANUTENCAO")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

@@ -93,8 +93,9 @@ public class CadastroLoginController
 	}
 	
 	@GetMapping("/{codigo}")
-	public ModelAndView editar(@PathVariable("codigo") Login login)
+	public ModelAndView editar(@PathVariable Long codigo)
 	{
+		Login login = logins.buscarComGrupos(codigo);
 		ModelAndView mv = novo(login);
 		mv.addObject(login);
 		

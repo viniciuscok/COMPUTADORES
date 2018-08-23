@@ -10,6 +10,7 @@ import br.com.pirelli.model.OsComputador;
 import br.com.pirelli.repository.Computadores;
 import br.com.pirelli.repository.Impressoras;
 import br.com.pirelli.repository.OsComputadores;
+import br.com.pirelli.repository.OsImpressoras;
 import br.com.pirelli.repository.Usuarios;
 
 @Controller
@@ -27,6 +28,9 @@ public class HomeController
 	@Autowired
 	private OsComputadores osComputadores;
 	
+	@Autowired
+	private OsImpressoras osImpressoras;
+	
 	@GetMapping("/")
 	public ModelAndView novo()
 	{
@@ -38,25 +42,26 @@ public class HomeController
 		mv.addObject("totalImpTermicas", impressoras.impressoraTermica());
 		mv.addObject("totalImpEscritorio", impressoras.impressoraEscritorio());
 		mv.addObject("osComputadores", osComputadores.pesquisarOsComputadorAberto());
+		mv.addObject("osImpressoras", osImpressoras.pesquisarOsImpressoraAberto());
 		return mv;
 	}
 	
-	@GetMapping("/{codigo}")
-	public ModelAndView editar(@PathVariable("codigo") OsComputador osComputador)
-	{
-		ModelAndView mv = new ModelAndView("oscomputador/PesquisaOsComputadores/{codigo}");
-		mv.addObject(osComputador);
-		
-		return mv;
-	}
+	//@GetMapping("/{codigo}")
+	//public ModelAndView editar(@PathVariable("codigo") OsComputador osComputador)
+	//{
+	//	ModelAndView mv = new ModelAndView("oscomputador/PesquisaOsComputadores/{codigo}");
+	//	mv.addObject(osComputador);
+	//	
+	//	return mv;
+	//}
 	
-	@GetMapping("/visualizar/{codigo}")
-	public ModelAndView visualizar(@PathVariable("codigo") OsComputador osComputador)
-	{
-		ModelAndView mv = new ModelAndView("oscomputador/VisualizarOsComputadores");
-		mv.addObject(osComputador);
+	//@GetMapping("/visualizar/{codigo}")
+	//public ModelAndView visualizar(@PathVariable("codigo") OsComputador osComputador)
+	//{
+	//	ModelAndView mv = new ModelAndView("oscomputador/VisualizarOsComputadores");
+	//	mv.addObject(osComputador);
 		
-		return mv;
-	}
+	//	return mv;
+	//}
 
 }

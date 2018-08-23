@@ -99,7 +99,7 @@
 					</ul>
 				</li>
 				
-				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_OSCOMPUTADOR')">
+				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_MANUTENCAO')">
 					<a href="#"> <i class="fa fa-fw fa-wrench"></i><span>Manutenção</span> <i
 						class="aw-menu__navigation-icon  fa"></i>
 					</a>
@@ -107,8 +107,8 @@
 						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/oscomputadores} sec:authorize-url="/oscomputadores">
 							<a th:href="@{/oscomputadores}">Computador</a>
 						</li>
-						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/oscomputadores} sec:authorize-url="/oscomputadores">
-							<a th:href="@{/oscomputadores}">Impressora</a>
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/osimpressoras} sec:authorize-url="/osimpressoras">
+							<a th:href="@{/osimpressoras}">Impressora</a>
 						</li>
 					</ul>	
 				</li>

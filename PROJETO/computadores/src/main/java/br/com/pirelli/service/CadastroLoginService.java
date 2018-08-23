@@ -23,7 +23,7 @@ public class CadastroLoginService
 	private PasswordEncoder passwordEncoder;
 	
 	@Transactional
-	public Login salvar(Login login)
+	public void salvar(Login login)
 	{
 		Optional<Login> emailPresente = logins.findByEmailStartingWithIgnoreCase(login.getEmail());
 		
@@ -49,7 +49,7 @@ public class CadastroLoginService
 		if (!login.isNovo() && login.getAtivo() == null) {
 			login.setAtivo(emailPresente.get().getAtivo());
 		}
-		return logins.save(login);
+		logins.save(login);
 		
 	}
 	

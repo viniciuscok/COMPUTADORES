@@ -23,6 +23,7 @@ import br.com.pirelli.repository.Computadores;
 import br.com.pirelli.repository.OsComputadores;
 import br.com.pirelli.service.CadastroOsComputadorService;
 import br.com.pirelli.service.exception.NomeFilialJaCadastradoException;
+import br.com.pirelli.service.exception.SolucaoManutencaoException;
 
 @Controller
 @RequestMapping("/oscomputadores")
@@ -72,6 +73,10 @@ public class CadastroOsComputadorController
 		}catch(NomeFilialJaCadastradoException e)
 		{
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
+			return nova(osComputador);
+		}catch(SolucaoManutencaoException e)
+		{
+			result.rejectValue("solucao", e.getMessage(), e.getMessage());
 			return nova(osComputador);
 		}
 		

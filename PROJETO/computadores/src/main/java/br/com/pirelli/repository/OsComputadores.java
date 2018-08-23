@@ -13,7 +13,8 @@ import br.com.pirelli.repository.helper.oscomputador.OsComputadoresQueries;
 public interface OsComputadores extends JpaRepository<OsComputador, Long>, OsComputadoresQueries
 {
 	
-	@Query(value="select * from manutencao m inner join os_computador os on m.codigo = os.codigo_computador where m.tipo_equipamento = 'computador' and m.status_manutencao = 'ABERTO' order by(m.data_entrada) asc",
+	@Query(value="select * from manutencao m inner join os_computador os on m.codigo = os.codigo "
+			+ "where m.tipo_equipamento = 'computador' and m.status_manutencao = 'ABERTO' order by(m.data_entrada) asc",
 				nativeQuery=true)
 	public List<OsComputador> pesquisarOsComputadorAberto();
 

@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
@@ -43,6 +44,16 @@ public class LoginsImpl implements LoginsQueries
 				criteria.add(Restrictions.ilike("email", loginFilter.getEmail(), MatchMode.START));
 			}
 		}
+	}
+	
+	@Transactional(readOnly = true)
+	@Override
+	public Login buscarComGrupos(Long codigo) {
+		Criteria criteria = manager.unwrap(Session.class).createCriteria(Login.class);
+		criteria.createAlias("grupos", "g", JoinType.LEFT_OUTER_JOIN);
+		criteria.add(Restrictions.eq("codigo", codigo));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		return (Login) criteria.uniqueResult();
 	}
 
 }

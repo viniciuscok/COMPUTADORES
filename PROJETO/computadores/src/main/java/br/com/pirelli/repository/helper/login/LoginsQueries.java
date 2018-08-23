@@ -8,5 +8,7 @@ import br.com.pirelli.model.Login;
 public interface LoginsQueries
 {
 	public List<Login> filtrar(LoginFilter loginFilter);
+	
+	public Login buscarComGrupos(Long codigo);
 
 }

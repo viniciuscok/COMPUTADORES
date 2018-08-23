@@ -55,30 +55,31 @@
 					<label for="dataEntrada" class="control-label">Data de Entrada</label>
 					<span class="form-control" id="dataEntrada" th:text="${osImpressora.dataEntrada}"></span>
 					<input type="hidden" th:field="*{dataEntrada}" th:value="${dataEntrada}"/>
-					<!--  <input type="text" class="form-control js-date" id="dataEntrada" disabled th:field="*{dataEntrada}"/>-->
 				</div>
+				
 				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataFechamento">
 					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
 					<span class="form-control" id="dataFechamento" th:text="${osImpressora.dataFechamento}"></span>
 					<input type="hidden" th:field="*{dataFechamento}" th:value="${dataFechamento}"/>
-					<!--<input type="text" class="form-control js-date" id="dataFechamento" disabled th:field="*{dataFechamento}"/>-->
 				</div>
+				
 				<div class="form-group col-sm-3">
 					<label for="loginEntradaOsImpressora" class="control-label">Usuário de Abertura</label>
 					<span class="form-control" id="loginEntradaOsImpressora" th:text="${osImpressora.loginEntrada.email}"></span>
 					<input type="hidden" th:field="*{loginEntrada}" th:value="${loginEntrada}"/>
-					<!--  <input type="text" class="form-control" id="loginEntradaOsComputador" th:field="*{loginEntrada}">-->
+					
 				</div>
+				
 				<div class="form-group col-sm-3">
 					<label for="loginSaidaOsImpressora" class="control-label">Usuário de Fechamento</label>
 					<span class="form-control" id="loginSaidaOsImpressora" th:text="${osImpressora.loginSaida}" ></span>
 					<input type="hidden" th:field="*{loginSaida}" th:value="${loginSaida}"/>
-					<!--<input type="text" class="form-control" id="loginSaidaOsComputador" th:field="*{loginSaida}">-->
+					
 				</div>
 				
-				
 			</th:block>
-		</div>
+		</div>	
+			
 		<div class="row">
 			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="tipoManutencao">
 				<label for="tipoManutencaoOsImpressora" class="control-label">Tipo Manutencao</label>
@@ -87,6 +88,7 @@
 					<option th:each="tipoManutencao : ${tipoManutencao}" th:value="${tipoManutencao}" th:label="${tipoManutencao.descricao}">
 				</select>
 			</div>
+			
 			<th:block th:if="${not osImpressora.nova}">
 				<div class="form-group col-sm-4 orc-required" kuubuu:errortext="statusManutencao">
 					<label for="statusManutencaoOsImpressora" class="control-label">Status Manutencao</label>
@@ -96,14 +98,26 @@
 					</select>
 				</div>
 			</th:block>
-			<div class="form-group col-sm-4 orc-required" kuubuu:errortext="impressora">
-				<label for="computadorOsImpressora" class="control-label">Impressora</label>
-				<select id="computadorOsImpressora" class="form-control" th:field="*{impressora}">
-					<option value="">Selecione a Impressora</option>
-					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:label="${impressora.nome}">
-				</select>
-			</div>
-		</div>
+			
+			<th:block th:if="${osImpressora.nova}">
+				<div class="form-group col-sm-4 orc-required" kuubuu:errortext="impressora">
+					<label for="impressoraOsImpressora" class="control-label">Impressora</label>
+					<select id="impressoraOsImpressora" class="form-control" th:field="*{impressora}">
+						<option value="">Selecione a Impressora</option>
+						<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="${impressora.numeroDeSerie}">
+					</select>
+				</div>
+			</th:block>
+			
+			<th:block th:if="${not osImpressora.nova}">
+				<div class="form-group col-sm-4 orc-required" kuubuu:errortext="impressora">
+					<label for="impressoraOsImpressora" class="control-label">Impressora</label>
+					<span class="form-control" id="impressoraOsImpressora" th:text="${osImpressora.impressora.numeroDeSerie}" ></span>
+					<input type="hidden" th:field="*{impressora}" th:value="${impressoraOsImpressora}"/>
+				</div>
+			</th:block>
+		</div>	
+		
 		<div class="row">
 			<th:block th:if="${not osImpressora.nova}">
 				<div class="col-sm-12 form-group orc-required" kuubuu:errortext="solucao">
@@ -111,7 +125,7 @@
 	  				<textarea class="form-control" id="solucaoOsImpressora" rows="3" th:field="*{solucao}"></textarea>
 				</div>
 			</th:block>
-		</div>
+		</div>	
 		<div class="row">
 			<div class="col-sm-12 form-group">
    				<label for="obsOsImpressora">Observação</label>
@@ -128,12 +142,9 @@
 				
 			<a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>
 		</div>
-		
-	
 	</form>
 </div> 
-
-
+		
 </section>
 </body>
 </html>

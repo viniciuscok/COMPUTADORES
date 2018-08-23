@@ -110,8 +110,8 @@
 			<table class="table  table-hover">
 				<thead>
 					<tr>
-						<th class="table-kuubuu-col-codigo">Código</th>
-						<th class="table-kuubuu-col-nome">Computador</th>
+						<th class="table-kuubuu-col-codigo">Nº Os</th>
+						<th class="table-kuubuu-col-nome">Equipamento</th>
 						<th class="table-kuubuu-col-nome">Data de Entrada</th>
 						<th class="table-kuubuu-col-nome">Data de Fechamento</th>
 						<th class="table-kuubuu-col-nome">Usuário de Abertura</th>
@@ -141,7 +141,7 @@
 							</th:block>
 						<td class="text-center">
 							<th:block th:if="${osComputador.manutencaoAberto}" sec:authorize="hasRole('ROLE_CADASTRAR_OSCOMPUTADOR')">
-								<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"> 
+								<a class="btn  btn-link  btn-xs js-tooltip" title="Responder" th:href="@{/oscomputadores/{codigo}(codigo=${osComputador.codigo})}"> 
 									<i class="glyphicon glyphicon-pencil"></i>
 								</a>
 							</th:block>
@@ -154,6 +154,49 @@
 					<!--  <tr th:if="${}">
 						<td colspan="3">Nenhuma os encontrada</td>
 					</tr>-->
+				</tbody>
+				<!-- <thead>
+					<tr>
+						<th class="table-kuubuu-col-codigo">Código</th>
+						<th class="table-kuubuu-col-nome">Computador</th>
+						<th class="table-kuubuu-col-nome">Data de Entrada</th>
+						<th class="table-kuubuu-col-nome">Data de Fechamento</th>
+						<th class="table-kuubuu-col-nome">Usuário de Abertura</th>
+						<th class="table-kuubuu-col-nome">Usuário de Fechamento</th>
+						<th class="table-kuubuu-col-nome">Status</th>
+						<th class="table-kuubuu-col-acoess"></th>
+					</tr>
+				</thead>-->
+				<tbody>
+					<tr th:each="osImpressora : ${osImpressoras}">
+						<td class="text-center" th:text="${osImpressora.codigo}">1</td>
+						<td th:text="${osImpressora.impressora.numeroDeSerie}"></td>						
+						<td th:text="${osImpressora.dataEntrada}"></td>
+						<td th:text="${not osImpressora.manutencaoAberto} ? ${osImpressora.dataFechamento}: 'OS aberta'"></td>
+						<td th:text="${osImpressora.loginEntrada.email}">1</td>
+						<td th:text="${not osImpressora.manutencaoAberto} ? ${osImpressora.loginSaida.email} : 'Os aberta' ">1</td>
+						  <td>
+							<th:block th:if="${osImpressora.manutencaoAberto}">
+								<span class="label label-warning" th:text="${osImpressora.statusManutencao.descricao}">em aberto</span>
+							</th:block>
+							<th:block th:if="${osImpressora.manutencaoSemSolucao}">
+								<span class="label label-info" th:text="${osImpressora.statusManutencao.descricao}">sem solução</span>
+							</th:block>
+							<th:block th:if="${osImpressora.manutencaoFechada}">
+								<span class="label label-danger" th:text="${osImpressora.statusManutencao.descricao}">Fechado</span>
+							</th:block>
+						<td class="text-center">
+							<th:block th:if="${osImpressora.manutencaoAberto}" sec:authorize="hasRole('ROLE_CADASTRAR_OSIMPRESSORA')">
+								<a class="btn  btn-link  btn-xs js-tooltip" title="Responder" th:href="@{/osimpressoras/{codigo}(codigo=${osImpressora.codigo})}"> 
+									<i class="glyphicon glyphicon-pencil"></i>
+								</a>
+							</th:block>
+							
+							<a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/osimpressoras/visualizar/{codigo}(codigo=${osImpressora.codigo})}"> 
+								<i class="glyphicon glyphicon-eye-open"></i>
+							</a>
+						</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>

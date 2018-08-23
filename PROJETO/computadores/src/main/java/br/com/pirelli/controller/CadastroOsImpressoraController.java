@@ -43,7 +43,7 @@ public class CadastroOsImpressoraController
 		ModelAndView mv = new ModelAndView("osimpressora/CadastroOsImpressora");
 		mv.addObject("tipoManutencao", TipoManutencao.values());
 		mv.addObject("statusManutencao", StatusManutencao.values());
-		mv.addObject("impressoras", impressoras.findAll()); //buscarComputadoresEmUsoOrdemCrescente());
+		mv.addObject("impressoras", impressoras.buscarImpressoraEmUsoOrdemCrescente()); //buscarComputadoresEmUsoOrdemCrescente());
 		//mv.addObject("logins", logins.findAll());
 		//System.out.println("-----------------------------"+ osComputador.UsuarioAutenticado());
 		return mv;
@@ -105,7 +105,7 @@ public class CadastroOsImpressoraController
 	@GetMapping("/visualizar/{codigo}")
 	public ModelAndView visualizar(@PathVariable("codigo") OsImpressora osImpressora)
 	{
-		ModelAndView mv = new ModelAndView("osimpressora/VisualizarOsImpressoras");
+		ModelAndView mv = new ModelAndView("osimpressora/VisualizarOsImpressora");
 		mv.addObject(osImpressora);
 		
 		return mv;

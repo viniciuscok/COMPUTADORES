@@ -48,6 +48,8 @@ INSERT INTO permissao(nome) values('ROLE_CADASTRAR_SETOR');
 INSERT INTO permissao(nome) values('ROLE_CADASTRAR_TIPO_MODELO');
 INSERT INTO permissao(nome) values('ROLE_CADASTRAR_TONER');
 INSERT INTO permissao(nome) values('ROLE_CADASTRAR_USUARIO');
+INSERT INTO permissao(nome) values('ROLE_CADASTRAR_OSCOMPUTADOR');
+INSERT INTO permissao(nome) values('ROLE_CADASTRAR_OSIMPRESSORA');
 
 -- PESQUISA
 
@@ -65,6 +67,8 @@ INSERT INTO permissao(nome) values('ROLE_PESQUISAR_SETOR');
 INSERT INTO permissao(nome) values('ROLE_PESQUISAR_TIPO_MODELO');
 INSERT INTO permissao(nome) values('ROLE_PESQUISAR_TONER');
 INSERT INTO permissao(nome) values('ROLE_PESQUISAR_USUARIO');
+INSERT INTO permissao(nome) values('ROLE_PESQUISAR_OSCOMPUTADOR');
+INSERT INTO permissao(nome) values('ROLE_PESQUISAR_OSIMPRESSORA');
 
 INSERT INTO permissao(nome) values('ROLE_EDITAR_COMPUTADOR');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_FILIAL');
@@ -80,10 +84,14 @@ INSERT INTO permissao(nome) values('ROLE_EDITAR_SETOR');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_TIPO_MODELO');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_TONER');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_USUARIO');
+INSERT INTO permissao(nome) values('ROLE_EDITAR_OSCOMPUTADOR');
+INSERT INTO permissao(nome) values('ROLE_EDITAR_OSIMPRESSORA');
 
 INSERT INTO permissao(nome) values('ROLE_MENU_CADASTRAR');
 INSERT INTO permissao(nome) values('ROLE_MENU_BUSCAR');
 INSERT INTO permissao(nome) values('ROLE_MENU_CONFIGURACOES');
+INSERT INTO permissao(nome) values('ROLE_MENU_MANUTENCAO');
+
 
 
 

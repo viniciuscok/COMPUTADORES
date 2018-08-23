@@ -10,9 +10,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.pirelli.model.Login;
+import br.com.pirelli.repository.helper.login.LoginsQueries;
 
 @Repository
-public interface Logins extends JpaRepository<Login, Long>
+public interface Logins extends JpaRepository<Login, Long>, LoginsQueries
 {
 	Optional<Login> findByEmailStartingWithIgnoreCase(String email);
 	
@@ -33,4 +34,6 @@ public interface Logins extends JpaRepository<Login, Long>
 	
 	@Query(value="select * from login where email = ?1", nativeQuery=true)
 	public Login buscarCodigoPorEmail(String email);
+	
+	
 }

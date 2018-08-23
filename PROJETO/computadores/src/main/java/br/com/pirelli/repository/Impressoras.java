@@ -29,5 +29,11 @@ public interface Impressoras extends JpaRepository<Impressora, Long>, Impressora
 	@Query(value="select count(*) from impressora where categoria_impressora = 'IMPRESSORA_ESCRITORIO'",
 			nativeQuery=true)
 	public Long impressoraEscritorio();
+	
+	@Query(value="select * from equipamento e inner join impressora i on e.codigo = i.codigo "
+			+ "where e.tipo_equipamento = 'impressora' and e.status = 'ATIVO' order by(i.numero_serie) asc",
+			nativeQuery=true)
+	public List<Impressora> buscarImpressoraEmUsoOrdemCrescente();
+	
 
 }
