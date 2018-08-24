@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.OsImpressoraFilter;
+import br.com.pirelli.model.Manutencao;
 import br.com.pirelli.model.OsImpressora;
 import br.com.pirelli.model.StatusManutencao;
 import br.com.pirelli.model.TipoManutencao;
@@ -23,6 +24,8 @@ import br.com.pirelli.repository.Impressoras;
 import br.com.pirelli.repository.OsImpressoras;
 import br.com.pirelli.service.CadastroOsImpressoraService;
 import br.com.pirelli.service.exception.NomeFilialJaCadastradoException;
+import br.com.pirelli.service.exception.SolucaoManutencaoException;
+import br.com.pirelli.service.exception.StatusManutencaoException;
 
 @Controller
 @RequestMapping("/osimpressoras")
@@ -72,6 +75,14 @@ public class CadastroOsImpressoraController
 		}catch(NomeFilialJaCadastradoException e)
 		{
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
+			return nova(osImpressora);
+		}catch(SolucaoManutencaoException e)
+		{
+			result.rejectValue("solucao", e.getMessage(), e.getMessage());
+			return nova(osImpressora);
+		}catch(StatusManutencaoException e)
+		{
+			result.rejectValue("statusManutencao", e.getMessage(), e.getMessage());
 			return nova(osImpressora);
 		}
 		

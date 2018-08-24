@@ -8,6 +8,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Entity
 @Table(name="os_impressora")
 @DiscriminatorValue("IMPRESSORA")
@@ -15,6 +17,7 @@ public class OsImpressora extends Manutencao
 {
 
 	private static final long serialVersionUID = 1L;
+	
 	
 	private Impressora impressora;
 

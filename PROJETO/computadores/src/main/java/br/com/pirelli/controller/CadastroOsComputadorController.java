@@ -3,6 +3,7 @@ package br.com.pirelli.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.codehaus.groovy.runtime.StackTraceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,6 +25,7 @@ import br.com.pirelli.repository.OsComputadores;
 import br.com.pirelli.service.CadastroOsComputadorService;
 import br.com.pirelli.service.exception.NomeFilialJaCadastradoException;
 import br.com.pirelli.service.exception.SolucaoManutencaoException;
+import br.com.pirelli.service.exception.StatusManutencaoException;
 
 @Controller
 @RequestMapping("/oscomputadores")
@@ -77,6 +79,10 @@ public class CadastroOsComputadorController
 		}catch(SolucaoManutencaoException e)
 		{
 			result.rejectValue("solucao", e.getMessage(), e.getMessage());
+			return nova(osComputador);
+		}catch(StatusManutencaoException e)
+		{
+			result.rejectValue("statusManutencao", e.getMessage(), e.getMessage());
 			return nova(osComputador);
 		}
 		

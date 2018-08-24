@@ -41,4 +41,4 @@ $( document ).ready(function() {
 $('#formcadastroimpressora').submit(function(){
 	console.log("teste");
 	$('#enderecoIPImpressora').prop('disabled', false);
-})
+});

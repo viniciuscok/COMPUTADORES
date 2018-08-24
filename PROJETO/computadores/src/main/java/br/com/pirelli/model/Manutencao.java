@@ -26,7 +26,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.apache.tomcat.jni.Local;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import br.com.pirelli.repository.Logins;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -52,6 +56,9 @@ public abstract class Manutencao implements Serializable
 	{
 		//LocalDate data = LocalDate.now();
 		//LocalTime hora = LocalTime.now();
+		//this.loginEntrada = teste();
+		
+		//System.out.println("oioioioioioioioioioioioi-------------"+teste2());
 		statusManutencao = StatusManutencao.ABERTO;
 		this.dataEntrada = LocalDateTime.now();
 		if(this.codigo != null )
@@ -63,8 +70,7 @@ public abstract class Manutencao implements Serializable
 		//{
 		//	System.out.println("deu certo esta merda");
 		//}
-		//System.out.println("-----------------------------"+ UsuarioAutenticado());
-		
+		//System.out.println("-----------------------------"+ UsuarioAutenticado());	
 	}
 	
 	@Id
@@ -216,6 +222,21 @@ public abstract class Manutencao implements Serializable
 	}
 	
 	@Transient
+	public String teste2()
+	{
+		Object test = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		if(test instanceof UserDetails)
+		{
+			String nome = ((UserDetails)test).getUsername();
+			return nome;
+		}else
+		
+		return test.toString();
+	}
+	
+	
+	@Transient
 	public boolean isManutencaoAberto()
 	{
 		return this.statusManutencao.equals(StatusManutencao.ABERTO);
@@ -231,6 +252,12 @@ public abstract class Manutencao implements Serializable
 	public boolean isManutencaoFechada()
 	{
 		return this.statusManutencao.equals(StatusManutencao.FECHADO);
+	}
+	
+	@Transient
+	public boolean isFinalizado()
+	{
+		return this.dataFechamento != null && this.loginSaida != null;
 	}
 	
 	

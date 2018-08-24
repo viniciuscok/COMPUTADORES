@@ -50,13 +50,13 @@
 		
 		<div class="row">
 			
-			<div class="form-group  col-sm-3">
+			<div class="form-group  col-sm-2">
 				<label for="dataEntrada" class="control-label">Data de Entrada</label>
 				<span class="form-control" id="dataEntrada" th:text="${osComputador.dataEntrada}"></span>	
 			</div>
 			
 			<th:block th:if="${osComputador.dataFechamento != null}">
-				<div class="form-group  col-sm-3" >
+				<div class="form-group  col-sm-2" >
 					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
 					<span class="form-control" id="dataFechamento" th:text="${osComputador.dataFechamento}"></span>
 				</div>
@@ -76,6 +76,10 @@
 					
 				</div>	
 			</th:block>
+			<div class="form-group col-sm-2">
+				<label for="loginSaidaOsComputador" class="control-label">Usuário Computador</label>
+				<span class="form-control" id="loginSaidaOsComputador" th:text="${osComputador.computador.usuario.nome}"></span>		
+			</div>	
 		</div>
 		
 		<div class="row">

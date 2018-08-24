@@ -63,19 +63,24 @@
 			</th:block>
 			
 			
-			<div class="form-group col-sm-3">
+			<div class="form-group col-sm-2">
 				<label for="loginEntradaOsImpressora" class="control-label">Usuário de Abertura</label>
 				<span class="form-control" id="loginEntradaOsImpressora" th:text="${osImpressora.loginEntrada.email}"></span>
 				
 			</div>
 			
 			<th:block th:if="${osImpressora.loginSaida != null}">
-				<div class="form-group col-sm-3">
+				<div class="form-group col-sm-2">
 					<label for="loginSaidaOsImpressora" class="control-label">Usuário de Fechamento</label>
 					<span class="form-control" id="loginSaidaOsImpressora" th:text="${osImpressora.loginSaida.email}"></span>
 					
 				</div>	
 			</th:block>
+			
+			<div class="form-group col-sm-2">
+					<label for="impressoraSetorOsImpressora" class="control-label">Setor</label>
+					<span class="form-control" id="impressoraSetorOsImpressora" th:text="${osImpressora.impressora.setor.nome}"></span>		
+			</div>
 		</div>
 		
 		<div class="row">
@@ -90,8 +95,8 @@
 			</div>
 			
 			<div class="form-group col-sm-4">
-				<label for="impressoraOsImpressora" class="control-label">Computador</label>
-				<span class="form-control" th:text="${osImpressora.impressora.numeroDeSerie}"></span>
+				<label for="impressoraOsImpressora" class="control-label">Impressora</label>
+				<span class="form-control" th:text="|${osImpressora.impressora.numeroDeSerie} -- ${osImpressora.impressora.setor.nome}|"></span>
 			</div>
 		</div>	
 		

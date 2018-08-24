@@ -44,7 +44,7 @@
 				<label for="impressoraOsImpressora" class="control-label">Impressora</label>
 				<select id="impressoraOsImpressora" class="form-control" th:field="*{impressora}">
 					<option value="">Selecione o computador</option>
-					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="${impressora.numeroDeSerie}">
+					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="|${impressora.numeroDeSerie} -- ${impressora.setor.nome}|">
 				</select>
 			</div>
 			<!--  <div class="form-group col-sm-4">

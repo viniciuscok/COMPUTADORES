@@ -35,7 +35,7 @@
 	
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
-	<form method="post" th:object="${osImpressora}" class="form-vertical  js-form-loading"
+	<form id="formCadastroOsImpressora" method="post" th:object="${osImpressora}" class="form-vertical  js-form-loading"
 		th:action="${osImpressora.nova} ? @{/osimpressoras/nova} : @{/osimpressoras/{codigo}(codigo=${osImpressora.codigo})}">
 		
 		  <th:block th:include="fragments/ErroValidacao"></th:block> 
@@ -57,25 +57,35 @@
 					<input type="hidden" th:field="*{dataEntrada}" th:value="${dataEntrada}"/>
 				</div>
 				
-				<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataFechamento">
-					<label for="dataFechamento" class="control-label">Data de Fechamento</label>
-					<span class="form-control" id="dataFechamento" th:text="${osImpressora.dataFechamento}"></span>
-					<input type="hidden" th:field="*{dataFechamento}" th:value="${dataFechamento}"/>
-				</div>
+				<th:block th:if="${not osImpressora.manutencaoAberto && osImpressora.finalizado}">
+					<div class="form-group  col-sm-3 orc-required" kuubuu:errortext="dataFechamento">
+						<label for="dataFechamento" class="control-label">Data de Fechamento</label>
+						<span class="form-control" id="dataFechamento" th:text="${osImpressora.dataFechamento}"></span>
+						<input type="hidden" th:field="*{dataFechamento}" th:value="${dataFechamento}"/>
+					</div>
+				</th:block>
 				
-				<div class="form-group col-sm-3">
-					<label for="loginEntradaOsImpressora" class="control-label">Usuário de Abertura</label>
-					<span class="form-control" id="loginEntradaOsImpressora" th:text="${osImpressora.loginEntrada.email}"></span>
-					<input type="hidden" th:field="*{loginEntrada}" th:value="${loginEntrada}"/>
+				<div class="form-group col-sm-2 orc-required testeteste" kuubuu:errortext="loginEntrada">
+					<label for="loginEntradaOsImpressora" class="control-label testeteste">Usuário de Abertura</label>
+					<span class="form-control testeteste" id="loginEntradaOsImpressora" th:text="${osImpressora.loginEntrada.email}"></span>
+					<input type="hidden" th:field="*{loginEntrada}" th:value="${loginEntrada}" class="testeteste"/>
 					
 				</div>
 				
-				<div class="form-group col-sm-3">
-					<label for="loginSaidaOsImpressora" class="control-label">Usuário de Fechamento</label>
-					<span class="form-control" id="loginSaidaOsImpressora" th:text="${osImpressora.loginSaida}" ></span>
-					<input type="hidden" th:field="*{loginSaida}" th:value="${loginSaida}"/>
-					
-				</div>
+				<th:block th:if="${not osImpressora.manutencaoAberto && osImpressora.finalizado}">
+					<div class="form-group col-sm-2">
+						<label for="loginSaidaOsImpressora" class="control-label">Usuário de Fechamento</label>
+						<span class="form-control" id="loginSaidaOsImpressora" th:text="${osImpressora.loginSaida}" ></span>
+						<input type="hidden" th:field="*{loginSaida}" th:value="${loginSaida}"/>
+						
+					</div>
+				</th:block>
+				
+				<div class="form-group col-sm-2">
+					<label for="impressoraSetorOsImpressora" class="control-label">Setor</label>
+					<span class="form-control" id="impressoraSetorOsImpressora" th:text="${osImpressora.impressora.setor.nome}"></span>
+					<input type="hidden" th:field="*{impressora}" th:value="${impressora}"/>		
+				</div>		
 				
 			</th:block>
 		</div>	
@@ -104,7 +114,7 @@
 					<label for="impressoraOsImpressora" class="control-label">Impressora</label>
 					<select id="impressoraOsImpressora" class="form-control" th:field="*{impressora}">
 						<option value="">Selecione a Impressora</option>
-						<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="${impressora.numeroDeSerie}">
+						<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="|${impressora.numeroDeSerie} -- ${impressora.setor.nome}|">
 					</select>
 				</div>
 			</th:block>
