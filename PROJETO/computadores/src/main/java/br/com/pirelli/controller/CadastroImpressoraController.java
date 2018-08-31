@@ -133,6 +133,15 @@ public class CadastroImpressoraController
 		return mv;
 	}
 	
+	@GetMapping("/visualizar/{codigo}")
+	public ModelAndView visualizar(@PathVariable("codigo") Impressora impressora)
+	{
+		ModelAndView mv = new ModelAndView("impressora/VisualizarImpressora");
+		mv.addObject(impressora);
+		
+		return mv;
+	}
+	
 	@DeleteMapping("/{codigo}")
 	public @ResponseBody ResponseEntity<?> excluir(@PathVariable("codigo") Impressora impressora)
 	{

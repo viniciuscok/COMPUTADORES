@@ -151,9 +151,7 @@
 							</a>
 						</td>
 					</tr>
-					<!--  <tr th:if="${}">
-						<td colspan="3">Nenhuma os encontrada</td>
-					</tr>-->
+
 				</tbody>
 				<!-- <thead>
 					<tr>
@@ -196,6 +194,9 @@
 								<i class="glyphicon glyphicon-eye-open"></i>
 							</a>
 						</td>
+					</tr>
+					<tr th:if="${#lists.isEmpty(osImpressoras)} and ${#lists.isEmpty(osComputadores)}">
+						<td colspan="8" align="center">Não possui Chamados Abertos</td>
 					</tr>
 				</tbody>
 			</table>

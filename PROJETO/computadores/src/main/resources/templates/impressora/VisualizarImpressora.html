@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Visualizar Impressora</h1>
+			</div>
+			  
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_IMPRESSORA')">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/impressoras}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Impressora</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form id="formcadastroimpressora" method="post" th:object="${impressora}" class="form-vertical  js-form-loading"
+		th:action="${impressora.nova} ? @{/impressoras/nova} : @{/impressoras/{codigo}(codigo=${impressora.codigo})}">
+		
+		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field=*{codigo}>
+		
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="filialImpressora" class="control-label">Filial</label>
+				<span class="form-control" id="filialImpressora" th:text="${impressora.filial.nome}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="setorImpressora" class="control-label">Setor</label>
+				<span class="form-control" id="setorImpressora" th:text="${impressora.setor.nome}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="marcaImpressora" class="control-label">Marca</label>
+				<span class="form-control" id="marcaImpressora" th:text="${impressora.marca.nome}"></span>
+			</div>	
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="categoriaImpressora" class="control-label">Categoria</label>
+				<span class="form-control" id="categoriaImpressora" th:text="${impressora.categoriaImpressora.descricao}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="modeloImpressora" class="control-label">Modelo</label>
+				<span class="form-control" id="modeloImpressora" th:text="${impressora.modelo.nome}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="tonerImpressora" class="control-label">Toner</label>
+				<span class="form-control" id="tonerImpressora" th:text="${impressora.toner.modelo.nome}"></span>
+			</div>	
+			
+			
+			
+		</div>
+		
+		
+		
+		<div class="row">
+			<div class="col-sm-2 form-group">
+				<label for="tipoImpressora" class="control-label">Tipo Impressora</label>
+				<span class="form-control" id="tipoImpressora" th:text="${impressora.tipoImpressora.descricao}"></span>
+			</div>
+			
+			<div class="col-sm-2 form-group orc-required" kuubuu:errortext="enderecoIP">
+				<label for="enderecoIPImpressora" class="control-label">IP</label>
+				<span class="form-control" id="enderecoIPImpressora" th:text="${impressora.enderecoIP}"></span>
+			</div>
+			
+			
+			
+			<div class="col-sm-4 form-group">
+				<label for="nomeRedeImpressora" class="control-label">Compartilhamento</label>
+				<span class="form-control" id="nomeRedeImpressora" th:text="${impressora.nomeRede}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="numeroDeSerieImpressora" class="control-label">N/S</label>
+				<span class="form-control" id="numeroDeSerieImpressora" th:text="${impressora.numeroDeSerie}"></span>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			
+			<div class="col-sm-4 form-group">
+				<label for="statusImpressora" class="control-label">Status da Impressora</label>
+				<span class="form-control" id="statusImpressora" th:text="${impressora.status.descricao}"></span>
+			</div>
+			
+			
+			<div class="col-sm-4 form-group">
+				<label for="emailImpressora" class="control-label">E-mail</label>
+				<span class="form-control" id="emailImpressora" th:text="${impressora.email}"></span>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsFilial">Observação</label>
+  				<textarea class="form-control" id="obsFilial" rows="3" th:field="*{obs}" disabled="disabled"></textarea>
+				
+			</div>
+		</div>
+		
+		<div class="form-group" style="text-align: center">
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+
+	</form>
+</div>
+
+</section>
+</body>
+</html>

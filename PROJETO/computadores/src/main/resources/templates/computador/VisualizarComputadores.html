@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Visualizar Computador</h1>
+			</div>
+			  
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_COMPUTADOR')">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/computadores}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Computadores</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${computador}" class="form-vertical  js-form-loading" 
+		th:action="${computador.novo} ? @{/computadores/novo} : @{/computadores/{codigo}(codigo=${computador.codigo})}">
+		
+		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field="*{codigo}">
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="filialComputador" class="control-label">Filial</label>
+				<span class="form-control" id="filialComputador" th:text="${computador.filial.nome}"></span>
+				
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="nomeComputador" class="control-label">Computador</label>
+				<span class="form-control" id="nomeComputador" th:text="${computador.nome}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="usuarioComputador" class="control-label">Usuario</label>
+				<span class="form-control" id="usuarioComputador" th:text="${computador.usuario.nome}"></span>
+			</div>
+		</div>
+		<div class="row">
+			
+			
+			<div class="col-sm-4 form-group">
+				<label for="tipoComputador" class="control-label">Tipo de Computador</label>
+				<span class="form-control" id="tipoComputador" th:text="${computador.tipoComputador}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="modeloComputador" class="control-label">Modelo</label>
+				<span class="form-control" id="modeloComputador" th:text="${computador.modelo.nome}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="marcaComputador" class="control-label">Marca</label>
+				<span class="form-control" id="marcaComputador" th:text="${computador.marca.nome}"></span>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="ipComputador" class="control-label">IP</label>
+				<span class="form-control" id="ipComputador" th:text="${computador.enderecoIP}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="setorComputador" class="control-label">Setor</label>
+				<span class="form-control" id="setorComputador" th:text="${computador.setor.nome}"></span>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="soComputador" class="control-label">Sistema Operacional</label>
+				<span class="form-control" id="soComputador" th:text="${computador.sistemaOperacional}"></span>
+			</div>
+		</div>
+		<div class="row">
+			
+			
+			<div class="col-sm-2 form-group">
+				<label for="processadorComputador" class="control-label">Processador</label>
+				<span class="form-control" id="processadorComputador" th:text="${computador.processador}"></span>
+			</div>
+			
+			<div class="col-sm-2 form-group">
+				<label for="memoriaComputador" class="control-label js-inteiro">Memória</label>
+				<div class="input-group">
+					<span class="form-control" id="memoriaComputador" th:text="${computador.memoria}"></span>
+					<span class="input-group-addon" id="memoriaComputador">GB</span>
+				</div>
+			</div>
+			
+			<div class="col-sm-2 form-group">
+				<label for="hdComputador" class="control-label">HD</label>
+				<div class="input-group">
+					<span class="form-control" id="hdComputador" th:text="${computador.hd}"></span>
+					<span class="input-group-addon" id="hdComputador">GB</span>
+				</div>
+			</div>
+			
+			<div class="col-sm-2 form-group">
+				<label for="codeComputador" class="control-label">Code</label>
+				<span class="form-control" id="codeComputador" th:text="${computador.code}"></span>
+			</div>
+			
+			<div class="col-sm-2 form-group">
+				<label for="numeroSerieComputador" class="control-label">Número de Série</label>
+				<span class="form-control" id="numeroSerieComputador" th:text="${computador.numeroDeSerie}"></span>
+			</div>
+			
+			<div class="col-sm-2 form-group">
+				<label for="bpComputador" class="control-label">Bem Patrimonial</label>
+				<span class="form-control" id="bpComputador" th:text="${computador.bemPatrimonial}"></span>
+			</div>
+			
+		</div>	
+		<div class="row">
+			<div class="form-group  col-sm-4" >
+				<label for="nomePrograma" class="control-label">Programas</label>
+				<select id="nomePrograma" class="selectpicker form-control" multiple th:field=*{programas} data-actions-box="true"  
+						title="Visualizar Programas" data-deselect-all-text="Desmarcar Todos" data-select-all-text="Selecione Todos"
+						data-selected-text-format="count" data-count-selected-text="{0} Itens selecionados" data-mobile="false"
+						data-size="false">
+  					<option th:each="programa : ${programas}" th:value="${programa.codigo}" th:text="${programa.nome}" 
+  						disabled="disabled">tes</option>
+				</select>
+				
+				
+			</div>
+			
+			<div class="form-group  col-sm-4" >
+				<label for="nomeImpressora" class="control-label">Impressoras</label>
+				<select id="nomeImpressora" class="selectpicker form-control" multiple th:field=*{impressoras} data-actions-box="true"  
+						title="Visualizar Impressora" data-deselect-all-text="Desmarcar Todos" data-select-all-text="Selecione Todos"
+						data-selected-text-format="count" data-count-selected-text="{0} Itens selecionados" data-mobile="false"
+						data-size="false">
+  					<option th:each="impressora : ${impressoras}" th:value="${impressora.codigo}" th:text="|${impressora.nomeRede}-->${impressora.setor.nome}|" disabled="disabled">tes</option>
+				</select>
+				
+				
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="statusComputador" class="control-label">Status do Computador</label>
+				<span class="form-control" id="statusComputador" th:text="${computador.status}"></span>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsComputador">Observação</label>
+  				<textarea class="form-control" id="obsComputador" rows="3" th:field="*{obs}" disabled="disabled"></textarea>
+				
+			</div>
+		</div>
+		
+		
+		<div class="form-group" style="text-align: center">
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+
+	</form>
+</div>
+
+</section>
+</body>
+</html>

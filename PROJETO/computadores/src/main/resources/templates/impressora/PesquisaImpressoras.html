@@ -170,13 +170,22 @@
 					</td>
 					
 					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_IMPRESSORA')">
-						<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/impressoras/{codigo}(codigo=${impressora.codigo})}"> 
-							<i class="glyphicon glyphicon-pencil"></i>
-						</a>
-						<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
-							data:url="@{/impressoras/{codigo}(codigo=${impressora.codigo})}"
-							data:objeto="${impressora.modelo.nome}">
-							<i class="glyphicon glyphicon-remove"></i>
+						<th:block th:if="${#authorization.expression('hasRole(''ROLE_SISTEMA'')') or impressora.ativo}">
+							<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/impressoras/{codigo}(codigo=${impressora.codigo})}"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+						</th:block>
+						
+						<th:block th:if="${#authorization.expression('hasRole(''ROLE_SISTEMA'')') or #authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')') }">
+							<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
+								data:url="@{/impressoras/{codigo}(codigo=${impressora.codigo})}"
+								data:objeto="${impressora.modelo.nome}">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</th:block>	
+						
+						<a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/impressoras/visualizar/{codigo}(codigo=${impressora.codigo})}"> 
+							<i class="glyphicon glyphicon-eye-open"></i>
 						</a>
 					</td>
 				</tr>

@@ -48,7 +48,7 @@ public class CadastroComputadorService
 			throw new ComputadorJaCadastradoException("Computador já cadastrado");
 		}
 		
-		if((computador.getCodigo() != null) && listaVerificada.size() >= 1 && computador.getStatus().equals(Status.ATIVO))
+		if((computador.getCodigo() != null) && listaVerificada.size() >= 2 && computador.getStatus().equals(Status.ATIVO))
 		{
 			throw new ComputadorJaCadastradoException("Já existe um computador Ativo com este nome");
 		}

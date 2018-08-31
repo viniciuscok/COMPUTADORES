@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.pirelli.filter.ComputadorFilter;
 import br.com.pirelli.model.Computador;
 import br.com.pirelli.model.Modelo;
+import br.com.pirelli.model.OsComputador;
 import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoComputador;
@@ -170,5 +171,16 @@ public class CadastroComputadorController
 	public @ResponseBody List<Modelo> pesquisar(@RequestParam(name="nome", defaultValue="oi") String nomeModelo) {
 		
 		return modelos.teste(nomeModelo);
+	}
+	
+	@GetMapping("/visualizar/{codigo}")
+	public ModelAndView visualizar(@PathVariable("codigo") Computador computador)
+	{
+		ModelAndView mv = new ModelAndView("computador/VisualizarComputadores");
+		mv.addObject("programas", programas.findAll());
+		mv.addObject("impressoras", impressoras.findAll());
+		mv.addObject(computador);
+		
+		return mv;
 	}
 }

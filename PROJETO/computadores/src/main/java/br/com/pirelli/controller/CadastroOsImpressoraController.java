@@ -49,6 +49,7 @@ public class CadastroOsImpressoraController
 		mv.addObject("impressoras", impressoras.buscarImpressoraEmUsoOrdemCrescente()); //buscarComputadoresEmUsoOrdemCrescente());
 		//mv.addObject("logins", logins.findAll());
 		//System.out.println("-----------------------------"+ osComputador.UsuarioAutenticado());
+		
 		return mv;
 	}
 	
