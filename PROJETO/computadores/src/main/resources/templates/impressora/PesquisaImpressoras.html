@@ -137,6 +137,7 @@
 					<th class="table-impressora-col-marca">Marca</th>
 					<th class="table-impressora-col-categoria">Categoria</th>
 					<th class="table-impressora-col-email">E-mail</th>
+					<th class="table-impressora-col-compartilhamento">Compartilhamento</th>
 					<th class="table-impressora-col-setor">Setor</th>
 					<th class="table-impressora-col-status">Status</th>
 					<th class="table-impressora-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_IMPRESSORA')"></th>
@@ -152,6 +153,7 @@
 					<td th:text="${impressora.marca.nome}">1</td>
 					<td th:text="${impressora.categoriaImpressora.descricao}">1</td>
 					<td th:text="${impressora.email}">1</td>
+					<td th:text="${impressora.nomeRede}">1</td>
 					<td th:text="${impressora.setor.nome}">1</td>
 					<!-- <td th:text="${impressora.status.descricao}">1</td> -->
 					<td>	
@@ -187,6 +189,12 @@
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/impressoras/visualizar/{codigo}(codigo=${impressora.codigo})}"> 
 							<i class="glyphicon glyphicon-eye-open"></i>
 						</a>
+							
+						<a class="btn  btn-link  btn-xs js-tooltip" title="enviar email" onchange="alert('teste')" th:href="@{/impressoras/email/{codigo}(codigo=${impressora.codigo})}"> 
+							<i class="glyphicon glyphicon-envelope"></i>
+						</a>
+						
+						
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">

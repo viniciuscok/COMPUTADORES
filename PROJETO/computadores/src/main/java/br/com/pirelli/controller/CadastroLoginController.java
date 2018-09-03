@@ -45,7 +45,7 @@ public class CadastroLoginController
 	public ModelAndView novo(Login login)
 	{
 		ModelAndView mv = new ModelAndView("login/CadastroLogin");
-		mv.addObject("grupos", grupos.findAll());
+		mv.addObject("grupos", grupos.buscarGruposSemSistema());
 		
 		return mv;
 	}

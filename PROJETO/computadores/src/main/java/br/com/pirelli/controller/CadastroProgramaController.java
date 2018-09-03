@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.ProgramaFilter;
+import br.com.pirelli.mail.Mailer;
 import br.com.pirelli.model.Programa;
 import br.com.pirelli.repository.Programas;
 import br.com.pirelli.service.CadastroProgramaService;
@@ -54,6 +55,7 @@ public class CadastroProgramaController
 		{
 			if(programa.getCodigo() == null)
 			{
+				
 				cadastroProgramaService.salvar(programa);
 				attributes.addFlashAttribute("mensagem", "Programa salvo com sucesso.");
 			}else

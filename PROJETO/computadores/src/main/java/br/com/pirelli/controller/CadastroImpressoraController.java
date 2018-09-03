@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.ImpressoraFilter;
+import br.com.pirelli.mail.Mailer;
 import br.com.pirelli.model.CategoriaImpressora;
 import br.com.pirelli.model.Impressora;
 import br.com.pirelli.model.Status;
@@ -58,6 +59,9 @@ public class CadastroImpressoraController
 	@Autowired
 	private Impressoras impressoras;
 	
+	@Autowired
+	private Mailer email;
+	
 	@GetMapping("/novo")
 	public ModelAndView novo(Impressora impressora)
 	{
@@ -74,7 +78,7 @@ public class CadastroImpressoraController
 		return mv;
 	}
 	
-	@PostMapping(value= {"/novo", "{\\d+}"})
+	@PostMapping(value= {"/novo", "{\\d+}"}, params="salvar")
 	public ModelAndView salvar(@Valid Impressora impressora, BindingResult result, RedirectAttributes attributes)
 	{
 		if(result.hasErrors())
@@ -133,6 +137,17 @@ public class CadastroImpressoraController
 		return mv;
 	}
 	
+	@GetMapping("/email/{codigo}")
+	public ModelAndView email(@PathVariable("codigo") Impressora impressora, RedirectAttributes attributes)
+	{
+		ModelAndView mv = new ModelAndView("impressora/EmailImpressora");
+		mv.addObject(impressora);
+		System.out.println("Enviando email");
+		email.enviar(impressora);
+		System.out.println("email enviado com sucesso");
+		return mv;
+	}
+	
 	@GetMapping("/visualizar/{codigo}")
 	public ModelAndView visualizar(@PathVariable("codigo") Impressora impressora)
 	{
@@ -155,7 +170,23 @@ public class CadastroImpressoraController
 		
 		return ResponseEntity.ok().build();
 	}
+	/*
+	@PostMapping(value="/email", params="enviar")
+	public ModelAndView enviarEmail()
+	{
+		//if(result.hasErrors())
+		//{
+		//	return novo(impressora);
+		//}
+		
+		System.out.println("Enviando email");
+			email.enviar();
+		System.out.println("email enviado com sucesso");
+		
+
+		return new ModelAndView("redirect:/impressoras");
+	}
 	
-	
+	*/
 	
 }

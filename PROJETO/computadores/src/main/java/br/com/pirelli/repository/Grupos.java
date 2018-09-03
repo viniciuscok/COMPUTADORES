@@ -1,5 +1,6 @@
 package br.com.pirelli.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -18,5 +19,9 @@ public interface Grupos extends JpaRepository<Grupo, Long>
 			countQuery = "SELECT count(*) FROM Grupo WHERE nome like ?1% order by nome ASC",
 		    nativeQuery = true)
 	Page<Grupo> findByNome(String nome, Pageable pageable);
+	
+	@Query(value= "select * from grupo where codigo != 1",
+		nativeQuery= true)
+	public List<Grupo> buscarGruposSemSistema();
 
 }
