@@ -1,4 +1,4 @@
-/*package br.com.pirelli.mail;
+package br.com.pirelli.mail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Mailer
 		emails.add(impressora.getEmail());
 		emails.add("antonio.carmo.st@pirelli.com");
 		SimpleMailMessage mensagem = new SimpleMailMessage();
-		mensagem.setFrom("Zoho email<viniciuscok1234@gmail.com>");
+		mensagem.setFrom("vinicius email<viniciuscok1234@gmail.com>");
 		mensagem.setTo(emails.toArray(new String[emails.size()]));
 		mensagem.setSubject("Cartuchos");
 		mensagem.setText("Bom dia\r\n" + 
@@ -41,4 +41,4 @@ public class Mailer
 	}
 
 }
-*/
+
