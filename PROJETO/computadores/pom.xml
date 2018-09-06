@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.pirelli</groupId>
-	<artifactId>heranca</artifactId>
+	<artifactId>computadores</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -32,10 +32,10 @@
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 		
 		<!-- JasperReports -->
-		<jasperreports.version>6.3.0</jasperreports.version>
+		<jasperreports.version>6.3.0</jasperreports.version> 
 		
 		<!-- JasperReports Fonts -->
-		<jasperreports-fonts.version>6.0.0</jasperreports-fonts.version>
+		<jasperreports-fonts.version>6.0.0</jasperreports-fonts.version> 
 	
 	</properties>
 
@@ -131,6 +131,7 @@
 			<version>${jasperreports.version}</version>
 			<scope>compile</scope>
 		</dependency>
+	
 		<dependency>
 		    <groupId>net.sf.jasperreports</groupId>
 		    <artifactId>jasperreports-fonts</artifactId>

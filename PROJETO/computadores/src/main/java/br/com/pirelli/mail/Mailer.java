@@ -1,4 +1,4 @@
-package br.com.pirelli.mail;
+/*package br.com.pirelli.mail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,4 +41,4 @@ public class Mailer
 	}
 
 }
-
+*/

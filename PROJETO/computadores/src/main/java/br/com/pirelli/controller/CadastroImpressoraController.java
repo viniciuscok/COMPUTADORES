@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.pirelli.filter.ImpressoraFilter;
-import br.com.pirelli.mail.Mailer;
+//import br.com.pirelli.mail.Mailer;
 //import br.com.pirelli.mail.Mailer;
 import br.com.pirelli.model.CategoriaImpressora;
 import br.com.pirelli.model.Impressora;
@@ -60,8 +60,8 @@ public class CadastroImpressoraController
 	@Autowired
 	private Impressoras impressoras;
 	
-	@Autowired
-	private Mailer email;
+	//@Autowired
+	//private Mailer email;
 	
 	@GetMapping("/novo")
 	public ModelAndView novo(Impressora impressora)
@@ -137,7 +137,7 @@ public class CadastroImpressoraController
 		
 		return mv;
 	}
-	// envio de email
+	/* envio de email
 	@GetMapping("/email/{codigo}")
 	public ModelAndView email(@PathVariable("codigo") Impressora impressora, RedirectAttributes attributes)
 	{
@@ -148,7 +148,7 @@ public class CadastroImpressoraController
 		System.out.println("email enviado com sucesso");
 		return mv;
 	}
-	
+	*/
 	@GetMapping("/visualizar/{codigo}")
 	public ModelAndView visualizar(@PathVariable("codigo") Impressora impressora)
 	{

@@ -84,7 +84,7 @@ public class CadastroComputadorController
 		mv.addObject("usuarios", usuarios.findAll());
 		mv.addObject("marcas", marcas.findAll());
 		mv.addObject("modelos", modelos.modeloComputadorOrdemCrescentePorTipo());
-		mv.addObject("setores", setores.findAll());
+		mv.addObject("setores", setores.setorOrdemCrescente());
 		mv.addObject("programas", programas.findAll());
 		mv.addObject("impressoras", impressoras.findAll());
 		
@@ -133,7 +133,7 @@ public class CadastroComputadorController
 		mv.addObject("sistemas", So.values());
 		mv.addObject("statusComputadores", Status.values());
 		mv.addObject("marcas", marcas.findAll());
-		mv.addObject("setores", setores.findAll());
+		mv.addObject("setores", setores.setorOrdemCrescente());
 		mv.addObject("usuarios", usuarios.findAll());
 		
 		PageWrapper<Computador> pagina = new PageWrapper<>(computadores.filtro(computadorFilter, pageable), httpServletRequest);

@@ -189,16 +189,16 @@
 						<a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/impressoras/visualizar/{codigo}(codigo=${impressora.codigo})}"> 
 							<i class="glyphicon glyphicon-eye-open"></i>
 						</a>
-							
+						<!--  	
 						<a class="btn  btn-link  btn-xs js-tooltip" title="enviar email" onchange="alert('teste')" th:href="@{/impressoras/email/{codigo}(codigo=${impressora.codigo})}"> 
 							<i class="glyphicon glyphicon-envelope"></i>
 						</a>
-						
+						-->
 						
 					</td>
 				</tr>
 				<tr th:if="${pagina.vazia}">
-					<td colspan="9">Nenhuma impressora encontrada</td>
+					<td colspan="11">Nenhuma impressora encontrada</td>
 				</tr>
 			</tbody>
 		</table>
