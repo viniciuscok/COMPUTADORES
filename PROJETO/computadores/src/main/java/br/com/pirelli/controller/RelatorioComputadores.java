@@ -21,7 +21,7 @@ public class RelatorioComputadores
 	
 	@GetMapping("/todoscomputadores")
 	public ModelAndView relatorioVendasEmitidas() {
-		ModelAndView mv = new ModelAndView("relatorio/RelatorioTodosComputadores");
+		ModelAndView mv = new ModelAndView("relatorio/Computadores");
 		
 		return mv;
 	}

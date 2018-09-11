@@ -30,7 +30,7 @@ public class RelatorioService {
 		parametros.put("format", "pdf");
 		
 		InputStream inputStream = this.getClass()
-				.getResourceAsStream("/relatorios/report1.jasper");
+				.getResourceAsStream("/relatorios/Buscar_Todos_Computadores.jasper");
 		
 		Connection con = this.dataSource.getConnection();
 		
