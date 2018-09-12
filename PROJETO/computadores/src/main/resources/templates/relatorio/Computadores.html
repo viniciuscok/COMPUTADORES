@@ -27,11 +27,31 @@
 	<th:block th:include="fragments/SucessoValidacao"></th:block>
 	
 	<form method="post" class="form-vertical  js-form-loading"
-		th:action="@{/relatorios/todoscomputadores}">
+		th:action="@{/relatorios}" th:object="${relatorioPersonalizadoComputador}">
 		
+		<div class="row">
+			<div class="col-sm-6 form-group">
+				<label for="nomeModelo" class="control-label">Modelo</label>
+				<select id="nomeModelo" class="form-control" th:field=*{modelo}>
+					<option value="">Selecione um equipamento</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.nome}" th:text="${modelo.nome}">computador</option>
+				</select>
+				<!-- <input id="nomeModelo" type="text" class="form-control" th:field=*{modelo}/> -->
+			</div>
+			<div class="col-sm-6 form-group">
+				<label for="nomeMarca" class="control-label">Marca</label>
+				<select id="nomeMarca" class="form-control" th:field=*{marca}>
+					<option value="">Selecione um equipamento</option>
+					<option th:each="marca : ${marcas}" th:value="${marca.nome}" th:text="${marca.nome}">computador</option>
+				</select>
+				<!--<input id="nomeMarca" type="text" class="form-control" th:field=*{marca}/> -->
+			</div>
+			
+		</div>
 		
 		<div class="form-group">
-			<button class="btn  btn-primary" type="submit">buscar todos</button>
+			<button class="btn  btn-primary" name="buscaPersonalizadas" type="submit">buscar</button>
+			<button class="btn  btn-primary" name="todoscomputadores" type="submit">buscar todos</button>
 			
 		</div>
 

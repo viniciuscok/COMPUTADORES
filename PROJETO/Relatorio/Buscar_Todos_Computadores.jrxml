@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Buscar_Todos_Computadores" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6194086-221a-4945-8dcf-540750061d25">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Buscar_Todos_Computadores" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6194086-221a-4945-8dcf-540750061d25">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -41,43 +41,66 @@ ORDER BY
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="91" y="31" width="386" height="33" uuid="e0e72c17-304b-434c-8dbe-c3bea63495d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Lista de Computadores]]></text>
+			</staticText>
+		</band>
 	</title>
-	<pageHeader>
-		<band height="35" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
-		<band height="36" splitType="Stretch">
+		<band height="27" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="40" height="20" uuid="8aee4383-9b21-418f-ac22-3a75328034da"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Codigo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="0" width="35" height="20" uuid="643767a5-2931-4379-8ebe-43c5f0a1b9fb"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<reportElement x="40" y="0" width="73" height="20" uuid="643767a5-2931-4379-8ebe-43c5f0a1b9fb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="75" y="0" width="44" height="20" uuid="9caa5098-6928-44a0-8363-14a886351b49"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<reportElement x="113" y="0" width="79" height="20" uuid="9caa5098-6928-44a0-8363-14a886351b49"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[Modelo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="237" y="0" width="79" height="20" uuid="39194189-1ee9-4daa-9312-1f66d301b419"/>
-				<text><![CDATA[processador]]></text>
+				<reportElement x="192" y="1" width="79" height="20" uuid="39194189-1ee9-4daa-9312-1f66d301b419"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processador]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="316" y="0" width="79" height="20" uuid="ad0a70a9-b2b1-4b66-9345-683db1e6a57d"/>
-				<text><![CDATA[memoria]]></text>
+				<reportElement x="271" y="0" width="79" height="20" uuid="ad0a70a9-b2b1-4b66-9345-683db1e6a57d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Memoria]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="395" y="0" width="79" height="20" uuid="a03af4df-5d32-484f-98e7-70e6feb9fe3c"/>
+				<reportElement x="350" y="1" width="79" height="20" uuid="a03af4df-5d32-484f-98e7-70e6feb9fe3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[hd]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="474" y="0" width="79" height="20" uuid="9663ab25-7dad-47af-b381-aba7c6b75291"/>
-				<text><![CDATA[sistema_operacional]]></text>
+				<reportElement x="429" y="1" width="124" height="20" uuid="9663ab25-7dad-47af-b381-aba7c6b75291"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SO]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="20" width="553" height="1" uuid="b86ee07a-b2b5-4376-ac6a-f8c3e40a3c4c"/>
@@ -85,33 +108,40 @@ ORDER BY
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch">
+		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="40" height="20" uuid="8e4c974e-04dc-4ea9-ad22-8a187408438c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="40" y="0" width="35" height="20" uuid="7e1c9ec0-9812-4958-a273-df8438d836f0"/>
+				<reportElement x="40" y="0" width="73" height="20" uuid="7e1c9ec0-9812-4958-a273-df8438d836f0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="158" y="0" width="79" height="20" uuid="b3fa08d5-44e5-4fd1-8eac-db32d6deb1c6"/>
+				<reportElement x="113" y="0" width="79" height="20" uuid="b3fa08d5-44e5-4fd1-8eac-db32d6deb1c6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nomemodelo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="237" y="0" width="79" height="20" uuid="d7232095-01f1-4af2-9ea7-c026dc2a3a35"/>
+				<reportElement x="192" y="0" width="79" height="20" uuid="d7232095-01f1-4af2-9ea7-c026dc2a3a35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{processador}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="316" y="0" width="79" height="20" uuid="530ff1eb-6842-474e-b8ef-bb479f681841"/>
-				<textFieldExpression><![CDATA[$F{memoria}]]></textFieldExpression>
+				<reportElement x="271" y="0" width="79" height="20" uuid="530ff1eb-6842-474e-b8ef-bb479f681841"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{memoria}+"GB"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="395" y="0" width="79" height="20" uuid="4195cf4c-f83b-4fde-a8fe-1d72c0af497c"/>
-				<textFieldExpression><![CDATA[$F{hd}]]></textFieldExpression>
+				<reportElement x="350" y="0" width="79" height="20" uuid="4195cf4c-f83b-4fde-a8fe-1d72c0af497c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hd}+"GB"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="474" y="0" width="79" height="20" uuid="68022601-be74-4a84-bffe-3902e856a15a"/>
+				<reportElement x="429" y="0" width="124" height="20" uuid="68022601-be74-4a84-bffe-3902e856a15a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{sistema_operacional}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -120,7 +150,12 @@ ORDER BY
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="37" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="17" width="40" height="20" uuid="48128b79-54a5-4835-9882-a6c095f965e8"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

@@ -81,6 +81,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.antMatchers().hasRole("MENU_BUSCAR")
 				.antMatchers().hasRole("MENU_CONFIGURACOES")
 				.antMatchers().hasRole("MENU_MANUTENCAO")
+				.antMatchers().hasRole("MENU_RELATORIO")
 				.antMatchers().hasRole("SISTEMA")
 				.antMatchers().hasRole("ADMINISTRADOR")
 				.anyRequest().authenticated()

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Busca_Personalizada_Computador" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4350ac89-001f-40dc-bd76-a921a1ad7216">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nomeModelo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomeMarca" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomeSetor" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="sistemaOperacional" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     comp.`codigo`,
+     comp.`nome`,
+     mo.`nome` modelo,
+     comp.`processador`,
+     comp.`memoria`,
+     comp.`hd`,
+     comp.`sistema_operacional`
+FROM
+     `equipamento` eq INNER JOIN `computador` comp ON eq.`codigo` = comp.`codigo`
+     INNER JOIN `modelo` mo ON eq.`codigo_modelo` = mo.`codigo`
+     INNER JOIN `marca` ma ON eq.`codigo_marca` = ma.`codigo`
+     INNER JOIN `setor` se on eq.`codigo_setor` = se.`codigo`
+WHERE
+     mo.nome LIKE "%$P!{nomeModelo}%"
+     and ma.nome LIKE "%$P!{nomeMarca}%"
+     and se.nome LIKE "%$P!{nomeSetor}%"
+     and comp.sistema_operacional like "%$P!{sistemaOperacional}%"
+ORDER BY
+     comp.nome ASC]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="processador" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="memoria" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sistema_operacional" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="107" y="16" width="336" height="44" uuid="9f54d0c9-54e0-4687-9ddc-4b67e4b1b467"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Relatório Personalizado]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="29" height="20" uuid="53a30898-045c-487e-85ed-313624c7e731"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="1" width="88" height="20" uuid="cb9995a1-99c7-479d-b5f5-d83569fba123"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="117" y="1" width="55" height="20" uuid="df431d5f-dca6-4d18-a12b-587a073848df"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Modelo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="1" width="60" height="20" uuid="90a54295-4115-448d-9bca-55f244b34ea2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Processador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="1" width="65" height="20" uuid="2c80cabc-5ce4-44f3-baed-22cb99aa5ab2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Memoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="1" width="79" height="20" uuid="68be6af2-aae7-41d9-ada4-85e1c18f8421"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[HD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="1" width="172" height="20" uuid="1d1a8f5b-ce35-49d7-b55a-4d2729cd8c86"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="553" height="1" uuid="92992df6-ecdd-4b62-9fd8-58efd39a0e18"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement x="0" y="0" width="29" height="20" uuid="5533f22a-ec9f-4384-8251-9162cb0280d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="0" width="88" height="20" uuid="9334e33c-4bd2-4b51-ab8e-84abd13058f9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="0" width="55" height="20" uuid="d1f5fd44-7bbf-4da8-8912-ae05766e21d1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="0" width="60" height="20" uuid="5cdc0343-469a-4730-bbae-f2b3e25acccf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{processador}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="65" height="20" uuid="1d61023d-89d8-4deb-a1dc-821e5156594f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{memoria}+"GB"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="302" y="0" width="79" height="20" uuid="e8a9394c-120c-4cf1-90ed-e3ad6c032a90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{hd}+"GB"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="381" y="0" width="172" height="20" uuid="4dd9b069-2d09-4081-8fda-f930e072f6e1"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{sistema_operacional}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="25" width="553" height="1" uuid="6b52ac32-d892-4311-9617-8026246860fb"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

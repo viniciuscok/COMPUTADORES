@@ -112,6 +112,20 @@
 						</li>
 					</ul>	
 				</li>
+				
+				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_RELATORIO')">
+					<a href="#"> <i class="fa fa-fw fa-file-text"></i><span>Relatório</span> <i
+						class="aw-menu__navigation-icon  fa"></i>
+					</a>
+					<ul class="aw-menu__list  aw-menu__list--sublist">
+						<li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/relatorios} sec:authorize-url="/relatorios">
+							<a th:href="@{/relatorios}">Computador</a>
+						</li>
+						<!--  <li class="aw-menu__item  aw-menu__item--link" kuubuu:menu=@{/osimpressoras} sec:authorize-url="/osimpressoras">
+							<a th:href="@{/osimpressoras}">Impressora</a>
+						</li> -->
+					</ul>	
+				</li>
 
 				<li class="aw-menu__item" sec:authorize="hasRole('ROLE_MENU_CONFIGURACOES')">
 					<a href="#"> <i
