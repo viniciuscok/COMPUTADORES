@@ -31,6 +31,7 @@ public class Computador extends Equipamento
 	private String code;
 	private String bemPatrimonial;
 	private String numeroDeSerie;
+	private String enderecoIP;
 	private So sistemaOperacional;
 	private TipoComputador tipoComputador;
 	private Usuario usuario;
@@ -95,6 +96,15 @@ public class Computador extends Equipamento
 	public void setNumeroDeSerie(String numeroDeSerie) {
 		this.numeroDeSerie = numeroDeSerie;
 	}
+	
+	@Column(name="endereco_ip", nullable=true, unique=false)
+	public String getEnderecoIP() {
+		return enderecoIP;
+	}
+	public void setEnderecoIP(String enderecoIP) {
+		this.enderecoIP = enderecoIP;
+	}
+	
 	
 	@NotNull(message="O sistema operacional deve ser informado.")
 	@Enumerated(EnumType.STRING)

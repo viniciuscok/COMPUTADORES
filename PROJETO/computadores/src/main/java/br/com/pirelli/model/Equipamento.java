@@ -27,7 +27,7 @@ public abstract class Equipamento implements Serializable
 	
 	private Long codigo;
 	//private String numeroDeSerie;
-	private String enderecoIP;
+	//private String enderecoIP;
 	private String obs;
 	private Status status;
 	private Filial filial;
@@ -54,13 +54,13 @@ public abstract class Equipamento implements Serializable
 	//	this.numeroDeSerie = numeroDeSerie;
 	//}
 	
-	@Column(name="endereco_ip", nullable=true, unique=false)
-	public String getEnderecoIP() {
-		return enderecoIP;
-	}
-	public void setEnderecoIP(String enderecoIP) {
-		this.enderecoIP = enderecoIP;
-	}
+	//@Column(name="endereco_ip", nullable=true, unique=false)
+	//public String getEnderecoIP() {
+	//	return enderecoIP;
+	//}
+	//public void setEnderecoIP(String enderecoIP) {
+	//	this.enderecoIP = enderecoIP;
+	//}
 	
 	@Column(name="obs")
 	public String getObs() {

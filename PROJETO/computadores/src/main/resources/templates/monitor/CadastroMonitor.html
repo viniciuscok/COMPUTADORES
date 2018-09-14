@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu=""
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1 th:if="${monitor.novo}">Cadastro de Monitor</h1>
+				<h1 th:unless="${monitor.novo}" th:text="|Edição do monitor ${monitor.numeroDeSerie}|">Cadastro de monitor</h1>
+			</div>
+			  
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_PESQUISAR_MONITOR')">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/monitores}">
+						<i class="glyphicon  glyphicon-search"></i> <span class="hidden-xs  hidden-sm">Pesquisar Monitores</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<th:block th:include="fragments/SucessoValidacao"></th:block>
+	
+	<form method="post" th:object="${monitor}" class="form-vertical  js-form-loading" 
+		th:action="${monitor.novo} ? @{/monitores/novo} : @{/monitores/{codigo}(codigo=${monitor.codigo})}">
+		
+		<th:block th:include="fragments/ErroValidacao"></th:block>
+		
+		<input type="hidden" th:field="*{codigo}">
+		<div class="row">
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="nome">
+				<label for="filialMonitor" class="control-label">Filial</label>
+				<select id="filialMonitor" class="form-control" th:field=*{filial}>
+					<option value="0">Selecione uma filial</option>
+					<option th:each="filial : ${filiais}" th:value="${filial.codigo}" th:text="${filial.nome}">Feira de Santana</option>
+				</select>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="numeroDeSerie">
+				<label for="numeroDeSerieMonitor" class="control-label">Computador</label>
+				<input id="numeroDeSerieMonitor" type="text" class="form-control" th:field=numeroDeSerie/>
+			</div>
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="modelo">
+				<label for="modeloMonitor" class="control-label">Modelo</label>
+				<select id="modeloMonitor" class="form-control" th:field=*{modelo} disabled>
+					<option value="">Selecione um modelo</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
+				</select>
+			</div>
+			
+		</div>
+		<div class="row">
+		
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="marca">
+				<label for="marcaMonitor" class="control-label">Marca</label>
+				<select id="marcaMonitor" class="form-control" th:field=*{marca}>
+					<option value="">Selecione uma marca</option>
+					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
+				</select>
+			</div>	
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="setor">
+				<label for="setorMonitor" class="control-label">Setor</label>
+				<select id="setorMonitor" class="form-control" th:field=*{setor}>
+					<option value="">Selecione um setor</option>
+					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			
+			<div class="col-sm-2 form-group" kuubuu:errortext="bemPatrimonial">
+				<label for="bpMonitor" class="control-label">Bem Patrimonial</label>
+				<input id="bpMonitor" type="text" class="form-control" th:field=*{bemPatrimonial}/>
+			</div>
+			
+		</div>	
+		<div class="row">
+			
+			<div class="col-sm-4 form-group orc-required" kuubuu:errortext="status">
+				<label for="statusMonitor" class="control-label">Status do Computador</label>
+				<div>
+					<th:block th:each=" status: ${statusMonitores}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${status}|" type="radio" th:value="${status}" th:field="*{status}"> 
+							<label th:for="|id_${status}|" th:text="${status.descricao}" >Status do Monitor</label>
+						</div>
+					</th:block>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12 form-group">
+   				<label for="obsMonitor">Observação</label>
+  				<textarea class="form-control" id="obsMonitor" rows="3" th:field="*{obs}"></textarea>
+				
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<button id="monitorSalvar" class="btn  btn-primary" type="submit">Salvar</button>
+			<!--  <a href="pesquisa-produtos.html" class="btn  btn-default">Cancelar</a>-->
+		</div>
+
+	</form>
+</div>
+
+</section>
+</body>
+</html>

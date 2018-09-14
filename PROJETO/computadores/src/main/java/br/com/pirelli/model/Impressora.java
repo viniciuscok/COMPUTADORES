@@ -23,6 +23,7 @@ public class Impressora extends Equipamento
 	private String nomeRede;
 	private String email;
 	private String numeroDeSerie;
+	private String enderecoIP;
 	private TipoImpressora tipoImpressora;
 	private CategoriaImpressora categoriaImpressora;
 	private Toner toner;
@@ -53,6 +54,15 @@ public class Impressora extends Equipamento
 	public void setNumeroDeSerie(String numeroDeSerie) {
 		this.numeroDeSerie = numeroDeSerie;
 	}
+	
+	@Column(name="endereco_ip", nullable=true, unique=false)
+	public String getEnderecoIP() {
+		return enderecoIP;
+	}
+	public void setEnderecoIP(String enderecoIP) {
+		this.enderecoIP = enderecoIP;
+	}
+	
 	@Enumerated(EnumType.STRING)
 	public TipoImpressora getTipoImpressora() {
 		return tipoImpressora;
