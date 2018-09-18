@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/LayoutPadrao}"
+	xmlns:kuubuu="http://vinicius.com.br"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+	<title>Computadores</title>
+</head>	
+<body>
+<section layout:fragment="conteudo">
+<div class="page-header">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Pesquisa de Monitores</h1> 
+			</div>
+			
+			<div class="col-sm-2" sec:authorize="hasRole('ROLE_CADASTRAR_MONITOR')">
+				<div class="aw-page-header-controls">
+					<a class="btn btn-default" th:href="@{/monitores/novo}">
+						<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Novo Monitor</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<div class="container-fluid">
+	
+	<form method="GET" th:object="${monitorFilter}" class="form-vertical  js-form-loading">
+		
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="numeroDeSerieMonitor" class="control-label">N/S</label>
+				<input id="numeroDeSerieMonitor" type="text" class="form-control" th:field=*{numeroDeSerie}/>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="marcaMonitor" class="control-label">Marca</label>
+				<select id="marcaMonitor" class="form-control" th:field=*{marca}>
+					<option value="">Todas as Marcas</option>
+					<option th:each="marca : ${marcas}" th:value="${marca.codigo}" th:text="${marca.nome}"></option>
+				</select>
+			</div>	
+			
+			<div class="col-sm-4 form-group">
+				<label for="modeloMonitor" class="control-label">Modelo</label>
+				<select id="modeloMonitor" class="form-control" th:field=*{modelo}>
+					<option value="">Todos os Modelos</option>
+					<option th:each="modelo : ${modelos}" th:value="${modelo.codigo}" th:text="${modelo.nome}">optiplex 740</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-4 form-group">
+				<label for="setorMonitor" class="control-label">Setor</label>
+				<select id="setorMonitor" class="form-control" th:field=*{setor}>
+					<option value="">Todos os Setores</option>
+					<option th:each="setor : ${setores}" th:value="${setor.codigo}" th:text="${setor.nome}">CSI</option>
+				</select>
+			</div>
+			
+			<div class="col-sm-4 form-group">
+				<label for="statusMonitor" class="control-label">Status do Monitor</label>
+				<div>
+					<th:block th:each=" status: ${statusMonitores}">
+						<div class="radio  radio-inline">
+							<input th:id="|id_${status}|" type="radio" th:value="${status}" th:field="*{status}"> 
+							<label th:for="|id_${status}|" th:text="${status.descricao}">Status do Monitor</label>
+						</div>
+					</th:block>
+					<div class="radio  radio-inline">
+		    			<input id="monitorStatus" type="radio" th:checked="*{status} == null" name="status"/>
+		    			<label for="monitorStatus" >Todos</label>
+	    			</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="form-group">
+			<button class="btn  btn-primary" type="submit">Pesquisar</button>
+		</div>
+	</form>	
+	<div class="table-responsive kuubuu-tabela-simples">
+		<table class="table  table-hover">
+			<thead>
+				<tr>
+					<th class="table-kuubuu-col-codigo">Código</th>
+					<th class="table-computador-col-nome">N/S</th>
+					<th class="table-computador-col-modelo">Modelo</th>
+					<th class="table-computador-col-status">Status</th>
+					<th class="table-computador-col-acoes" sec:authorize="hasRole('ROLE_CADASTRAR_MONITOR')"></th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each="monitor : ${pagina.conteudo}">
+					<td class="text-center" th:text="${monitor.codigo}">1</td>
+					<td th:text="${monitor.numeroDeSerie}">1</td>
+					<td th:text="${monitor.modelo.nome}">1</td>
+					
+					<!-- <td th:text="${computador.status.descricao}">1</td> -->
+					<td>	
+						<th:block th:if="${monitor.ativo}">
+							<span class="label  label-success" th:text="${monitor.status.descricao}">Ativo</span>
+						</th:block>
+						<th:block th:if="${monitor.desativado}">
+							<span class="label  label-danger" th:text="${monitor.status.descricao}">Ativo</span>
+						</th:block>
+						<th:block th:if="${monitor.chamado}">
+							<span class="label  label-warning" th:text="${monitor.status.descricao}">Ativo</span>
+						</th:block>
+						<th:block th:if="${monitor.manutencao}">
+							<span class="label  label-info" th:text="${monitor.status.descricao}">Ativo</span>
+						</th:block>
+					</td>
+					<td class="text-center" sec:authorize="hasRole('ROLE_CADASTRAR_MONITOR')">
+						<!--  <th:block th:if="|${computador.ativo || "sec:authorize="hasRole('ROLE_SISTEMA')"}|" >-->
+						<th:block th:if="${#authorization.expression('hasRole(''ROLE_SISTEMA'')') or monitor.ativo}">
+							<a class="btn  btn-link  btn-xs js-tooltip" title="Editar" th:href="@{/monitores/{codigo}(codigo=${monitor.codigo})}"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+						</th:block>
+						
+						<th:block th:if="${#authorization.expression('hasRole(''ROLE_SISTEMA'')') or #authorization.expression('hasRole(''ROLE_ADMINISTRADOR'')') }">
+							<a class="btn  btn-link  btn-xs js-tooltip js-exclusao-btn" title="Excluir" href="#"
+								data:url="@{/monitores/{codigo}(codigo=${monitor.codigo})}"
+								data:objeto="${monitor.numeroDeSerie}">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</th:block>
+						<!-- <a class="btn  btn-link  btn-xs js-tooltip" title="Visualizar" th:href="@{/computadores/visualizar/{codigo}(codigo=${computador.codigo})}"> 
+							<i class="glyphicon glyphicon-eye-open"></i>
+						</a> -->
+					</td>
+				</tr>
+				<tr th:if="${pagina.vazia}">
+					<td colspan="5">Nenhum monitor encontrado</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<kuubuu:pagination page="${pagina}"/>
+	
+</div>
+
+</section>
+</body>
+</html>

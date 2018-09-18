@@ -8,23 +8,25 @@ import br.com.pirelli.model.Status;
 public class MonitorFilter 
 {
 	private Long codigo;
-	private String mumeroDeSerie;
+	private String numeroDeSerie;
 	private Modelo modelo;
 	private Status status;
 	private Marca marca;
 	private Setor setor;
+	
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getMumeroDeSerie() {
-		return mumeroDeSerie;
+	public String getNumeroDeSerie() {
+		return numeroDeSerie;
 	}
-	public void setMumeroDeSerie(String mumeroDeSerie) {
-		this.mumeroDeSerie = mumeroDeSerie;
+	public void setNumeroDeSerie(String numeroDeSerie) {
+		this.numeroDeSerie = numeroDeSerie;
 	}
+	
 	public Modelo getModelo() {
 		return modelo;
 	}

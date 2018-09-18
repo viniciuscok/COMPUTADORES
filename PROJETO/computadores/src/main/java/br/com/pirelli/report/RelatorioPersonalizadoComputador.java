@@ -1,10 +1,5 @@
 package br.com.pirelli.report;
 
-import java.util.List;
-
-import br.com.pirelli.model.Marca;
-import br.com.pirelli.model.Modelo;
-
 public class RelatorioPersonalizadoComputador 
 {
 	

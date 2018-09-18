@@ -49,8 +49,8 @@ public class MonitoresImpl implements MonitoresQueries
 
 	private void adicionarFiltro(MonitorFilter monitorFilter, Criteria criteria) {
 		if (monitorFilter != null) {
-			if (!StringUtils.isEmpty(monitorFilter.getMumeroDeSerie())) {
-				criteria.add(Restrictions.ilike("numeroDeSerie", monitorFilter.getMumeroDeSerie(), MatchMode.ANYWHERE));
+			if (!StringUtils.isEmpty(monitorFilter.getNumeroDeSerie())) {
+				criteria.add(Restrictions.ilike("numeroDeSerie", monitorFilter.getNumeroDeSerie(), MatchMode.ANYWHERE));
 			}
 
 			if (isModeloPresente(monitorFilter)) {
@@ -71,7 +71,7 @@ public class MonitoresImpl implements MonitoresQueries
 			
 		}
 	}
-
+	
 	private boolean isModeloPresente(MonitorFilter monitorFilter) {
 		return monitorFilter.getModelo() != null && monitorFilter.getModelo().getCodigo() != null;
 	}

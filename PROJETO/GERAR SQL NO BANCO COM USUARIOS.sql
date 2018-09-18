@@ -24,6 +24,7 @@ INSERT INTO permissao(nome) values('ROLE_CADASTRAR_TONER');
 INSERT INTO permissao(nome) values('ROLE_CADASTRAR_USUARIO');
 INSERT INTO permissao(nome) values('ROLE_CADASTRAR_OSCOMPUTADOR');
 INSERT INTO permissao(nome) values('ROLE_CADASTRAR_OSIMPRESSORA');
+INSERT INTO permissao(nome) values('ROLE_CADASTRAR_MONITOR');
 
 -- CRIANDO AS PERMISSÕES DE PESQUISA DO SISTEMA
 
@@ -43,6 +44,7 @@ INSERT INTO permissao(nome) values('ROLE_PESQUISAR_TONER');
 INSERT INTO permissao(nome) values('ROLE_PESQUISAR_USUARIO');
 INSERT INTO permissao(nome) values('ROLE_PESQUISAR_OSCOMPUTADOR');
 INSERT INTO permissao(nome) values('ROLE_PESQUISAR_OSIMPRESSORA');
+INSERT INTO permissao(nome) values('ROLE_PESQUISAR_MONITOR');
 
 -- CRIANDO AS PERMISSÕES DE EDIÇÃO DO SISTEMA
 
@@ -62,12 +64,14 @@ INSERT INTO permissao(nome) values('ROLE_EDITAR_TONER');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_USUARIO');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_OSCOMPUTADOR');
 INSERT INTO permissao(nome) values('ROLE_EDITAR_OSIMPRESSORA');
+INSERT INTO permissao(nome) values('ROLE_EDITAR_MONITOR');
 
 -- CRIANDO AS PERMISSÕES DE MENU, SISTEMA E ADMINISTRADOR DO SISTEMA
 INSERT INTO permissao(nome) values('ROLE_MENU_CADASTRAR');
 INSERT INTO permissao(nome) values('ROLE_MENU_BUSCAR');
 INSERT INTO permissao(nome) values('ROLE_MENU_CONFIGURACOES');
 INSERT INTO permissao(nome) values('ROLE_MENU_MANUTENCAO');
+INSERT INTO permissao(nome) values('ROLE_MENU_RELATORIO');
 INSERT INTO permissao(nome) values('ROLE_SISTEMA');
 INSERT INTO permissao(nome) values('ROLE_ADMINISTRADOR');
 
@@ -125,6 +129,7 @@ INSERT INTO grupo_permissao values(1,51);
 INSERT INTO grupo_permissao values(1,52);
 INSERT INTO grupo_permissao values(1,53);
 INSERT INTO grupo_permissao values(1,54);
+INSERT INTO grupo_permissao values(1,55);
 
 
 select * from grupo_permissao;

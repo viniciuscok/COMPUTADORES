@@ -70,7 +70,7 @@ public abstract class Equipamento implements Serializable
 		this.obs = obs;
 	}
 	
-	@NotNull(message="O status do computador deve ser Informado.")
+	@NotNull(message="O status do equipamento deve ser Informado.")
 	@Enumerated(EnumType.STRING)
 	@Column(name="status", nullable=false, unique=false)
 	public Status getStatus() {

@@ -1,14 +1,11 @@
 package br.com.pirelli.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,31 +14,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.pirelli.filter.ComputadorFilter;
 import br.com.pirelli.filter.MonitorFilter;
-import br.com.pirelli.model.Computador;
-import br.com.pirelli.model.Modelo;
 import br.com.pirelli.model.Monitor;
-import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
-import br.com.pirelli.model.TipoComputador;
-import br.com.pirelli.repository.Computadores;
 import br.com.pirelli.repository.Filiais;
-import br.com.pirelli.repository.Impressoras;
 import br.com.pirelli.repository.Marcas;
 import br.com.pirelli.repository.Modelos;
 import br.com.pirelli.repository.Monitores;
-import br.com.pirelli.repository.Programas;
 import br.com.pirelli.repository.Setores;
-import br.com.pirelli.repository.Usuarios;
-import br.com.pirelli.service.CadastroComputadorService;
 import br.com.pirelli.service.CadastroMonitorService;
-import br.com.pirelli.service.exception.ComputadorJaCadastradoException;
 import br.com.pirelli.service.exception.ImpossivelExcluirComputadorException;
 import br.com.pirelli.service.exception.MonitorJaCadastradoException;
 
@@ -74,7 +59,7 @@ public class CadastroMonitorController
 		mv.addObject("statusMonitores", Status.values());
 		mv.addObject("filiais", filiais.findAll());
 		mv.addObject("marcas", marcas.findAll());
-		mv.addObject("modelos", modelos.modeloComputadorOrdemCrescentePorTipo());
+		mv.addObject("modelos", modelos.modeloMonitorOrdemCrescentePorTipo());
 		mv.addObject("setores", setores.setorOrdemCrescente());
 		
 		return mv;
@@ -116,8 +101,8 @@ public class CadastroMonitorController
 	public ModelAndView pesquisar(MonitorFilter monitorFilter, BindingResult result, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("monitor/PesquisaMonitores");
-		mv.addObject("modelos", modelos.modeloComputadorOrdemCrescentePorTipo());
-		mv.addObject("statusComputadores", Status.values());
+		mv.addObject("modelos", modelos.modeloMonitorOrdemCrescentePorTipo());
+		mv.addObject("statusMonitores", Status.values());
 		mv.addObject("marcas", marcas.findAll());
 		mv.addObject("setores", setores.setorOrdemCrescente());
 		

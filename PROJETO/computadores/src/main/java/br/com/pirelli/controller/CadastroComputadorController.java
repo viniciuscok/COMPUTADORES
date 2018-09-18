@@ -25,7 +25,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.pirelli.filter.ComputadorFilter;
 import br.com.pirelli.model.Computador;
 import br.com.pirelli.model.Modelo;
-import br.com.pirelli.model.OsComputador;
 import br.com.pirelli.model.So;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.TipoComputador;

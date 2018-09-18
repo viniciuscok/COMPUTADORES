@@ -41,4 +41,8 @@ public interface Modelos extends JpaRepository<Modelo, Long>
 	@Query(value="select m.* from modelo m inner join tipo_modelo t on m.codigo_tipo_modelo = t.codigo where t.nome in('COMPUTADOR', 'NOTEBOOK', 'TOUCH') order by t.nome",
 			nativeQuery=true)
 	public List<Modelo> modeloComputadorOrdemCrescentePorTipo();
+	
+	@Query(value="select m.* from modelo m inner join tipo_modelo t on m.codigo_tipo_modelo = t.codigo where t.nome in('MONITOR') order by t.nome",
+			nativeQuery=true)
+	public List<Modelo> modeloMonitorOrdemCrescentePorTipo();
 }

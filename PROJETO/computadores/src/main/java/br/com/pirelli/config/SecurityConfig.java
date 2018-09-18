@@ -59,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO")
 				.antMatchers("/oscomputadores/nova").hasRole("CADASTRAR_OSCOMPUTADOR")
 				.antMatchers("/osimpressoras/nova").hasRole("CADASTRAR_OSIMPRESSORA")
+				.antMatchers("/monitores/novo").hasRole("CADASTRAR_MONITOR")
 				//PESQUISA
 				.antMatchers("/computadores").hasRole("PESQUISAR_COMPUTADOR")
 				.antMatchers("/filiais").hasRole("PESQUISAR_FILIAL")
@@ -76,6 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 				.antMatchers("/usuarios").hasRole("PESQUISAR_USUARIO")
 				.antMatchers("/oscomputadores").hasRole("PESQUISAR_OSCOMPUTADOR")
 				.antMatchers("/osimpressoras").hasRole("PESQUISAR_OSIMPRESSORA")
+				.antMatchers("/monitores").hasRole("PESQUISAR_MONITOR")
 				// MENU
 				.antMatchers().hasRole("MENU_CADASTRAR")
 				.antMatchers().hasRole("MENU_BUSCAR")

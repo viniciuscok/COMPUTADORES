@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.pirelli.model.Login;
-import br.com.pirelli.model.Manutencao;
 import br.com.pirelli.model.OsImpressora;
 import br.com.pirelli.model.Status;
 import br.com.pirelli.model.StatusManutencao;
