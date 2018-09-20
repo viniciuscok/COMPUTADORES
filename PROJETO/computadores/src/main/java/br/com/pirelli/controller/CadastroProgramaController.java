@@ -75,7 +75,7 @@ public class CadastroProgramaController
 	}
 
 	@GetMapping
-	public ModelAndView pesquisar(ProgramaFilter programaFilter, @PageableDefault(size=2) Pageable pageable, HttpServletRequest httpServletRequest)
+	public ModelAndView pesquisar(ProgramaFilter programaFilter, @PageableDefault(size=10) Pageable pageable, HttpServletRequest httpServletRequest)
 	{
 		ModelAndView mv = new ModelAndView("programa/PesquisaProgramas");
 		
